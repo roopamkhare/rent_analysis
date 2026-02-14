@@ -175,7 +175,8 @@ def parse_zillow_html(html: str, url: str = ""):
             print(f"  MLS: {attr.get('mlsName')} ({attr.get('mlsId')})")
 
     result = {"url": url, "property": prop}
-    out = Path("zillow_detail_data.json")
+    Path("json").mkdir(exist_ok=True)
+    out = Path("json") / "zillow_detail_data.json"
     out.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
     print(f"\nSaved → {out}")
     return prop

@@ -2,6 +2,7 @@ import argparse
 import asyncio
 import json
 from urllib.parse import quote_plus
+from pathlib import Path
 
 from playwright.async_api import async_playwright
 from playwright_stealth import Stealth
@@ -10,7 +11,8 @@ from playwright_stealth import Stealth
 async def scrape_realtor(address: str, headless: bool = True, timeout_ms: int = 5000):
     slug = quote_plus(address)
     url = f"https://www.realtor.com/realestateandhomes-search/{slug}"
-    out_file = f"realtor_{slug}.json"
+    Path("json").mkdir(exist_ok=True)
+    out_file = Path("json") / f"realtor_{slug}.json"
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=headless)

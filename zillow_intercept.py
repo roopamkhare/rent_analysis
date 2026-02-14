@@ -51,7 +51,9 @@ async def intercept_zillow(url: str, headless: bool = True, timeout_ms: int = 10
         title = await page.title()
         print(f"Page title: {title}")
 
-        out_file = Path('zillow_intercepted.json')
+        out_dir = Path('json')
+        out_dir.mkdir(exist_ok=True)
+        out_file = out_dir / 'zillow_intercepted.json'
         out_file.write_text(json.dumps(captured, indent=2, default=str))
         print(f"\nSaved {len(captured)} JSON responses to {out_file}")
 

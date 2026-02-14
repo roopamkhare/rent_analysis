@@ -2,6 +2,7 @@ import argparse
 import asyncio
 import json
 from urllib.parse import quote_plus
+from pathlib import Path
 
 from playwright.async_api import async_playwright
 from playwright_stealth import Stealth
@@ -10,7 +11,8 @@ from playwright_stealth import Stealth
 async def search_mls(query: str, headless: bool = True, timeout_ms: int = 5000):
     slug = quote_plus(query)
     url = f"https://mls.foreclosure.com/listing/search?q={slug}"
-    out_file = f"mls_search_{slug}.json"
+    Path("json").mkdir(exist_ok=True)
+    out_file = Path("json") / f"mls_search_{slug}.json"
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=headless)

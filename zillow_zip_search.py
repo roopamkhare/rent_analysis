@@ -289,7 +289,8 @@ async def scrape_zipcode(
         "listings": all_listings,
     }
 
-    out_file = Path(f"zillow_{zipcode}_listings.json")
+    Path("json").mkdir(exist_ok=True)
+    out_file = Path(f"json/zillow_{zipcode}_listings.json")
     out_file.write_text(json.dumps(output, indent=2, default=str), encoding="utf-8")
     print(f"\n{'='*60}")
     print(f"Saved {len(all_listings)} listings → {out_file}")

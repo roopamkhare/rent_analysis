@@ -26,10 +26,11 @@ async def scrape_redfin(query: str, headless: bool = True, timeout_ms: int = 500
         () => {
             const anchors = Array.from(document.querySelectorAll('a'))
                 .filter(a => (a.href || '').includes('/home/') || (a.href || '').includes('/property/'));
-            const seen = new Set();
-            const out = [];
-            for (const a of anchors) {
-                const href = a.href;
+            import argparse
+            import asyncio
+            import json
+            from urllib.parse import quote_plus
+            from pathlib import Path
                 if (!href || seen.has(href)) continue;
                 seen.add(href);
                 const card = a.closest('div') || a.closest('li') || a;
@@ -37,7 +38,8 @@ async def scrape_redfin(query: str, headless: bool = True, timeout_ms: int = 500
                 const priceMatch = text.match(/\$[0-9,]+/);
                 const price = priceMatch ? priceMatch[0] : '';
                 const addr = text.split('\n')[0] || '';
-                out.push({address: addr.trim(), price: price, url: href});
+                Path("json").mkdir(exist_ok=True)
+                out_file = Path("json") / f"redfin_{slug}.json"
             }
             return out;
         }

@@ -131,7 +131,8 @@ def run_all(address: str):
     out['hud_nearby_count'] = len(nearby)
     out['hud_nearby'] = nearby[:10]
 
-    Path('lookups_output.json').write_text(json.dumps(out, default=str, indent=2))
+    Path('json').mkdir(exist_ok=True)
+    Path('json/lookups_output.json').write_text(json.dumps(out, default=str, indent=2))
     return out
 
 

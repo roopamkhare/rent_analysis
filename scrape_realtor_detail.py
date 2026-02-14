@@ -9,7 +9,8 @@ from playwright_stealth import Stealth
 
 async def scrape_detail(url: str, headful: bool = False, profile_dir: str | None = None):
     out_html = Path('realtor_detail.html')
-    out_json = Path('realtor_detail.json')
+    Path("json").mkdir(exist_ok=True)
+    out_json = Path('json/realtor_detail.json')
 
     profile_dir = profile_dir or '.profiles/realtor'
     Path(profile_dir).mkdir(parents=True, exist_ok=True)

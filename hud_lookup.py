@@ -96,7 +96,8 @@ def main():
         row = ph_df.loc[idx].to_dict()
         out["public_housing_matches"].append({"match_column": col, "match_value": val, "row": row})
 
-    out_file = Path(f"hud_lookup_{query.replace(' ', '_')}.json")
+    Path("json").mkdir(exist_ok=True)
+    out_file = Path(f"json/hud_lookup_{query.replace(' ', '_')}.json")
     with open(out_file, "w") as f:
         json.dump(out, f, indent=2, default=str)
 

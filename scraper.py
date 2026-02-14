@@ -17,7 +17,8 @@ async def scrape_address(address: str, headless: bool = True, timeout_ms: int = 
 
     slug = quote_plus(address)
     search_url = f"https://www.zillow.com/homes/{slug}_rb/"
-    output_file = f"zillow_{slug}.json"
+    Path("json").mkdir(exist_ok=True)
+    output_file = Path("json") / f"zillow_{slug}.json"
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=headless)
@@ -74,7 +75,7 @@ async def scrape_address(address: str, headless: bool = True, timeout_ms: int = 
         # Save both matched (filtered) and all intercepted listings for debugging
         with open(output_file, "w") as f:
             json.dump(matched, f, indent=2)
-        all_file = f"zillow_{slug}_all.json"
+        all_file = Path("json") / f"zillow_{slug}_all.json"
         with open(all_file, "w") as f:
             json.dump(all_listings, f, indent=2)
 
