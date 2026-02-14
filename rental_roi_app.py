@@ -9,10 +9,20 @@ Remaining bal  B = P·((1+i)^N − (1+i)^n) / ((1+i)^N − 1)
 Cap rate       Year-1 NOI / Purchase price
 Cash-on-cash   Year-1 cash flow / Total cash invested
 IRR            numpy-financial IRR on [-init, cf₁…cfₙ+sale]
-Net sale       Sale price − bank balance − sell closing costs
+Net sale       Sale price − bank owed − sell closing costs
 Total profit   Σ(annual CFs) + net sale − initial investment
-Property NW    Equity-in-property + cumulative operating cash − initial investment
-S&P NW         S&P portfolio − total capital deployed  (same $ as property investor)
+
+Comparison model  (Property vs S&P)
+───────────────────────────────────
+Both paths deploy the SAME out-of-pocket dollars:
+  • initial investment (down + buy closing) at year 0
+  • |negative operating CF| each year the property bleeds cash
+S&P path:  that money goes into S&P → portfolio grows.
+Property:  money covers purchase + expenses; rent provides income;
+           at sale you receive equity − bank − sell closing.
+Series show "if I liquidated today, how much cash do I have?"
+  S&P wealth   = portfolio value
+  Prop wealth  = (property value − mortgage − sell costs) + cumulative operating CF
 """
 
 import json
@@ -204,35 +214,40 @@ def analyze(row: pd.Series, p: dict) -> dict:
 
     ann_roi = (total_profit / init_inv / hold * 100) if (init_inv and hold) else 0
 
-    # ── PROPERTY NET-WORTH SERIES ────────────────────────────────
-    # NW = equity_in_property + cumulative_operating_cash − init_inv
-    #   year 0 : equity = down, cash = −init_inv  →  NW = −buy_closing
-    #   year N : sold → equity 0, NW = total_profit
-    prop_nw = [-buy_cc]
-    cumul = 0.0
-    for yr in range(1, hold + 1):
-        cumul += annual_cfs[yr - 1]
-        if yr < hold:
-            nw = equity_list[yr - 1]["equity"] + cumul - init_inv
-        else:
-            nw = total_profit                          # after sale
-        prop_nw.append(nw)
+    # ── COMPARISON SERIES: PROPERTY vs S&P ───────────────────────
+    # Both paths deploy the same out-of-pocket dollars.
+    # Series show: "If I liquidated everything today, how much cash
+    #              do I have?" — directly comparable dollar amounts.
+    sell_frac = sell_cc_pct / 100
 
-    # ── S&P NET-WORTH SERIES ─────────────────────────────────────
-    # Invest the same dollars the property investor spends:
-    #   • initial_investment at year 0
-    #   • any negative operating CF each year (extra out-of-pocket)
-    # NW = portfolio − total_capital_deployed
-    sp_port     = init_inv
-    sp_deployed = init_inv
-    sp_nw       = [0.0]
+    # --- S&P path: portfolio value ---
+    # Year 0: invest init_inv.  Each neg-CF year: invest |neg CF| too.
+    sp_portfolio = [init_inv]
+    sp_dep = init_inv
+    sp_deployed_list = [init_inv]
     for yr in range(1, hold + 1):
-        sp_port *= (1 + sp_rate / 100)
+        grown = sp_portfolio[-1] * (1 + sp_rate / 100)
         cf = annual_cfs[yr - 1]
-        if cf < 0:
-            sp_port     += abs(cf)
-            sp_deployed += abs(cf)
-        sp_nw.append(sp_port - sp_deployed)
+        contrib = abs(cf) if cf < 0 else 0.0
+        sp_dep += contrib
+        sp_portfolio.append(grown + contrib)
+        sp_deployed_list.append(sp_dep)
+
+    # --- Property path: liquidation value ---
+    # "If I sold the property today, paid off the bank and closing,
+    #  and added all the operating cash I've accumulated/spent, what
+    #  would my total cash position be?"
+    # Year 0 (sell immediately): down_payment − sell_closing (lose buy+sell costs)
+    prop_wealth = [down - sell_frac * price]
+    cumul_op = 0.0
+    for yr in range(1, hold + 1):
+        cumul_op += annual_cfs[yr - 1]
+        ev = equity_list[yr - 1]
+        liq = (ev["property_value"] - ev["remaining_mortgage"]
+               - sell_frac * ev["property_value"]) + cumul_op
+        prop_wealth.append(liq)
+
+    sp_profit = sp_portfolio[-1] - sp_dep
 
     return {
         # upfront
@@ -260,10 +275,11 @@ def analyze(row: pd.Series, p: dict) -> dict:
         # series
         "equity_growth": equity_list,
         "annual_cfs": annual_cfs,
-        "prop_nw_series": prop_nw,
-        "sp_nw_series": sp_nw,
-        "sp_final_nw": sp_nw[-1],
-        "sp_total_deployed": sp_deployed,
+        "prop_wealth_series": prop_wealth,
+        "sp_portfolio_series": sp_portfolio,
+        "sp_deployed_series": sp_deployed_list,
+        "sp_deployed": sp_dep,
+        "sp_profit": sp_profit,
     }
 
 
@@ -404,9 +420,10 @@ def main():
                     "net_sale_proceeds", "sell_closing", "remaining_mortgage",
                     "monthly_emi", "total_monthly_expenses",
                     "effective_monthly_rent", "down_payment", "buy_closing",
-                    "sp_final_nw", "sp_total_deployed",
+                    "sp_deployed", "sp_profit",
                     "equity_growth", "annual_cfs",
-                    "prop_nw_series", "sp_nw_series",
+                    "prop_wealth_series", "sp_portfolio_series",
+                    "sp_deployed_series",
                 )},
             })
         rdf = pd.DataFrame(rows)
@@ -565,50 +582,77 @@ def main():
                 )
                 st.plotly_chart(fig, key=f"eq_{row['zpid']}")
 
-            # ── Property vs S&P net-worth comparison ──────────
-            st.subheader("⚖️ Property vs S&P 500 — Net Worth Comparison")
+            # ── Property vs S&P — Investment Comparison ──────
+            st.subheader("⚖️ Property vs S&P 500 — Investment Comparison")
             st.caption(
-                "Both scenarios invest the **same total dollars** "
-                "(initial investment + any negative cash-flow years). "
-                "Net worth = assets − total capital deployed."
+                "Both paths deploy the **same out-of-pocket cash**: "
+                "down payment + buy closing at year 0, plus the equivalent of "
+                "each year's negative cash flow. Lines show what you could "
+                "**liquidate for** at each point in time."
             )
 
-            p_nw = row["prop_nw_series"]
-            s_nw = row["sp_nw_series"]
-            comp_yrs = list(range(len(p_nw)))
+            pw = row["prop_wealth_series"]
+            sw = row["sp_portfolio_series"]
+            dep = row["sp_deployed_series"]
+            comp_yrs = list(range(len(pw)))
 
             comp_fig = go.Figure()
             comp_fig.add_trace(go.Scatter(
-                x=comp_yrs, y=p_nw,
-                name="Property Net Worth",
+                x=comp_yrs, y=pw,
+                name="Property (if sold today)",
                 line=dict(color="#2E86AB", width=3),
                 hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
             ))
             comp_fig.add_trace(go.Scatter(
-                x=comp_yrs, y=s_nw,
-                name=f"S&P Net Worth ({sp_growth_rate}%/yr)",
+                x=comp_yrs, y=sw,
+                name=f"S&P Portfolio ({sp_growth_rate}%/yr)",
                 line=dict(color="#F39C12", width=3),
                 hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
             ))
-            # zero line
-            comp_fig.add_hline(y=0, line_dash="dot", line_color="grey",
-                               annotation_text="Break-even")
+            comp_fig.add_trace(go.Scatter(
+                x=comp_yrs, y=dep,
+                name="Total Cash Deployed",
+                line=dict(color="grey", width=2, dash="dot"),
+                hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
+            ))
             comp_fig.update_layout(
-                xaxis_title="Year", yaxis_title="Net Worth ($)",
-                height=420, hovermode="x unified",
+                xaxis_title="Year",
+                yaxis_title="Total Wealth ($)",
+                yaxis_tickformat="$,.0f",
+                height=440,
+                hovermode="x unified",
+                legend=dict(orientation="h", y=-0.15),
             )
             st.plotly_chart(comp_fig, key=f"cmp_{row['zpid']}")
 
-            # final comparison metrics
-            prop_profit = row["total_profit"]
-            sp_profit   = row["sp_final_nw"]
-            delta       = prop_profit - sp_profit
-            winner      = "🏠 Property" if delta > 0 else "📈 S&P 500"
+            # ── final comparison numbers ─────────────────────
+            deployed_total = row["sp_deployed"]
+            prop_final     = pw[-1]
+            sp_final       = sw[-1]
+            prop_profit    = row["total_profit"]
+            sp_profit_     = row["sp_profit"]
+            delta          = prop_profit - sp_profit_
+            winner         = "🏠 Property" if delta > 0 else "📈 S&P 500"
 
-            cp1, cp2, cp3 = st.columns(3)
-            cp1.metric("Property Profit", f"${prop_profit:,.0f}")
-            cp2.metric(f"S&P Profit ({sp_growth_rate}%)", f"${sp_profit:,.0f}")
-            cp3.metric("Winner", winner, f"by ${abs(delta):,.0f}")
+            st.markdown(
+                f"**Both paths deployed ${deployed_total:,.0f} total over "
+                f"{holding_years} years**"
+            )
+            cp1, cp2, cp3, cp4 = st.columns(4)
+            cp1.metric(
+                "Property Final",
+                f"${prop_final:,.0f}",
+                delta=f"Profit ${prop_profit:,.0f}",
+                delta_color="normal",
+            )
+            cp2.metric(
+                f"S&P Final",
+                f"${sp_final:,.0f}",
+                delta=f"Profit ${sp_profit_:,.0f}",
+                delta_color="normal",
+            )
+            cp3.metric("Deployed", f"${deployed_total:,.0f}")
+            cp4.metric("Winner", winner, f"by ${abs(delta):,.0f}")
 
     # ──────────────────────────────────────────────────────────────
     # FOOTER
