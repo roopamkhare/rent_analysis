@@ -32,9 +32,12 @@ async def scrape_address(address: str, headless: bool = True, timeout_ms: int = 
         await Stealth().apply_stealth_async(page)
 
         matched = []
+        all_listings = []
 
         async def handle_response(response):
             try:
+                # Debug: print each response URL we receive
+                print(f"[response] {response.status} {response.url}")
                 if "search-page-state" in response.url:
                     data = await response.json()
                     results = (
@@ -42,22 +45,23 @@ async def scrape_address(address: str, headless: bool = True, timeout_ms: int = 
                         .get("searchResults", {})
                         .get("listResults", [])
                     )
+                    print(f"[debug] found {len(results)} listings in this response")
                     for house in results:
+                        entry = {
+                            "address": house.get("address"),
+                            "price": house.get("price"),
+                            "rent": house.get("hdpData", {})
+                            .get("homeInfo", {})
+                            .get("rentZestimate"),
+                            "lat": house.get("latLong", {}).get("latitude"),
+                            "lng": house.get("latLong", {}).get("longitude"),
+                            "zpid": house.get("zpid"),
+                            "detailUrl": house.get("detailUrl"),
+                        }
+                        all_listings.append(entry)
                         addr = (house.get("address") or "").lower()
                         if address.lower() in addr:
-                            matched.append(
-                                {
-                                    "address": house.get("address"),
-                                    "price": house.get("price"),
-                                    "rent": house.get("hdpData", {})
-                                    .get("homeInfo", {})
-                                    .get("rentZestimate"),
-                                    "lat": house.get("latLong", {}).get("latitude"),
-                                    "lng": house.get("latLong", {}).get("longitude"),
-                                    "zpid": house.get("zpid"),
-                                    "detailUrl": house.get("detailUrl"),
-                                }
-                            )
+                            matched.append(entry)
             except Exception:
                 return
 
@@ -67,10 +71,15 @@ async def scrape_address(address: str, headless: bool = True, timeout_ms: int = 
         await page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
         await page.wait_for_timeout(timeout_ms)
 
+        # Save both matched (filtered) and all intercepted listings for debugging
         with open(output_file, "w") as f:
             json.dump(matched, f, indent=2)
+        all_file = f"zillow_{slug}_all.json"
+        with open(all_file, "w") as f:
+            json.dump(all_listings, f, indent=2)
 
         print(f"Saved {len(matched)} matching listings to {output_file}")
+        print(f"Saved {len(all_listings)} total intercepted listings to {all_file}")
         await browser.close()
 
 

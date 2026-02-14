@@ -1,0 +1,68 @@
+{
+  "address": "613 kappa way, mckinney, tx, 75071",
+  "nominatim": {
+    "lat": 33.208541052698,
+    "lon": -96.725580685009,
+    "match": "613 KAPPA WAY, MCKINNEY, TX, 75071"
+  },
+  "fcc": {
+    "messages": [
+      "FCC0001: The coordinate lies on the boundary of mulitple blocks, the block contains the clicked location is selected. For a complete list use showall=true to display 'intersection' element in the Block"
+    ],
+    "Block": {
+      "FIPS": "480850305462003",
+      "bbox": [
+        -96.732936,
+        33.203587,
+        -96.722356,
+        33.210931
+      ]
+    },
+    "County": {
+      "FIPS": "48085",
+      "name": "Collin County"
+    },
+    "State": {
+      "FIPS": "48",
+      "code": "TX",
+      "name": "Texas"
+    },
+    "status": "OK",
+    "executionTime": "0"
+  },
+  "acs": {
+    "NAME": "Census Tract 305.46, Collin County, Texas",
+    "B01003_001E": "5490",
+    "B19013_001E": "169129",
+    "state": "48",
+    "county": "085",
+    "tract": "030546"
+  },
+  "hud_nearby_count": 1,
+  "hud_nearby": [
+    {
+      "index": 25778,
+      "distance_km": 2.581026925045343,
+      "row": {
+        "INSPECTION_ID": "INSP-38550",
+        "PROPERTY_ID": 800242682,
+        "PROPERTY_NAME": "WEST RIDGE VILLAS",
+        "ADDRESS": "9331 Westridge                                    ",
+        "CITY": "McKinney                    ",
+        "CBSA_NAME": "Dallas-Fort Worth-Arlington, TX Metropolitan Statistical Area              ",
+        "CBSA_CODE": 19100.0,
+        "COUNTY_NAME": "Collin                   ",
+        "COUNTY_CODE": 85.0,
+        "STATE_NAME": "TX",
+        "STATE_CODE": 48,
+        "ZIPCODE": 75072.0,
+        "LATITUDE": 33.188923,
+        "LONGITUDE": -96.740407,
+        "LOCATION_QUALITY": "R",
+        "INSPECTION_SCORE": 89,
+        "INSPECTION_DATE": "2025-06-06 00:00:00",
+        "INSPECTION_PROTOCOL": "NSPIRE"
+      }
+    }
+  ]
+}
