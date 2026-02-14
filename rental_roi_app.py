@@ -219,7 +219,29 @@ def analyze_property(row: pd.Series, params: dict) -> dict:
     
     # Annualized ROI (simple)
     annualized_roi = (total_profit / initial_investment / holding_years) * 100 if initial_investment > 0 else 0
-    
+    # Build property cumulative balance series (starts negative with initial investment)
+    property_balance_series = []
+    bal = -initial_investment
+    property_balance_series.append(bal)
+    for y in range(1, holding_years + 1):
+        bal += cash_flows[y]
+        property_balance_series.append(bal)
+
+    # Build S&P alternative balance series
+    sp_rate = params.get("sp_growth_rate", 0.0) / 100.0
+    sp_balance_series = []
+    sp_bal = initial_investment
+    sp_balance_series.append(sp_bal)
+    for y in range(1, holding_years + 1):
+        # grow existing balance
+        sp_bal = sp_bal * (1 + sp_rate)
+        # contribution: when property cash flow is negative, that amount would instead be invested
+        contribution = -min(0.0, cash_flows[y])
+        sp_bal += contribution
+        sp_balance_series.append(sp_bal)
+
+    sp_final_balance = sp_balance_series[-1]
+
     return {
         "initial_investment": initial_investment,
         "down_payment": down_payment,
@@ -236,6 +258,12 @@ def analyze_property(row: pd.Series, params: dict) -> dict:
         "annualized_roi": annualized_roi,
         "irr": irr_value,
         "equity_growth": equity_growth,
+        "cash_flow_years": cash_flows,
+        "holding_years": holding_years,
+        "sp_growth_rate": params.get("sp_growth_rate", 0.0),
+        "property_balance_series": property_balance_series,
+        "sp_balance_series": sp_balance_series,
+        "sp_final_balance": sp_final_balance,
         "total_monthly_expenses": total_monthly_expenses,
         "effective_monthly_rent": effective_monthly_rent,
     }
@@ -299,6 +327,11 @@ def main():
         "Annual Rent Increase (%)", 
         min_value=0.0, max_value=10.0, value=3.0, step=0.5
     )
+    # S&P comparison
+    sp_growth_rate = st.sidebar.slider(
+        "Annual S&P Return (%)", 
+        min_value=0.0, max_value=30.0, value=10.0, step=0.5
+    )
     
     st.sidebar.subheader("🔧 Maintenance & Vacancy")
     maintenance_pct = st.sidebar.slider(
@@ -327,6 +360,7 @@ def main():
         "maintenance_pct": maintenance_pct,
         "vacancy_rate": vacancy_rate,
         "insurance_annual": insurance_annual,
+        "sp_growth_rate": sp_growth_rate,
     }
     
     # ═══════════════════════════════════════════════════════════════
@@ -547,6 +581,44 @@ def main():
                 )
                 
                 st.plotly_chart(fig, key=f"equity_chart_{row['zpid']}")
+
+                # Comparison vs S&P
+                # Retrieve analysis again for series (we didn't store series in results_df earlier), so recompute quickly
+                analysis = analyze_property(df[df["zpid"] == row['zpid']].iloc[0], params)
+                prop_series = analysis.get("property_balance_series", [])
+                sp_series = analysis.get("sp_balance_series", [])
+
+                if prop_series and sp_series:
+                    comp_years = list(range(0, len(prop_series)))
+                    comp_fig = go.Figure()
+                    comp_fig.add_trace(go.Scatter(
+                        x=comp_years, y=prop_series,
+                        name="Net Wealth: Property",
+                        line=dict(color="#2E86AB", width=3)
+                    ))
+                    comp_fig.add_trace(go.Scatter(
+                        x=comp_years, y=sp_series,
+                        name=f"Wealth: S&P @ {analysis.get('sp_growth_rate',0):.2f}%",
+                        line=dict(color="#F39C12", width=3)
+                    ))
+                    comp_fig.update_layout(
+                        title="Property vs S&P Wealth Over Time",
+                        xaxis_title="Year",
+                        yaxis_title="Amount ($)",
+                        hovermode="x unified",
+                        height=420
+                    )
+                    st.plotly_chart(comp_fig, key=f"comp_chart_{row['zpid']}")
+
+                    # Final comparison numbers
+                    sp_final = analysis.get("sp_final_balance", 0.0)
+                    prop_final = analysis.get("total_profit", 0.0)
+                    comp_col1, comp_col2 = st.columns(2)
+                    with comp_col1:
+                        st.metric("Property Final Net (Total Profit)", f"${prop_final:,.0f}")
+                    with comp_col2:
+                        st.metric(f"S&P Final Balance (@{analysis.get('sp_growth_rate',0):.2f}%)", f"${sp_final:,.0f}")
+                    st.markdown(f"**Difference (S&P - Property): ${sp_final - prop_final:,.0f}**")
     
     # ═══════════════════════════════════════════════════════════════
     # FOOTER
