@@ -413,6 +413,8 @@ def main():
                 "baths": r.get("bathrooms", 0),
                 "sqft": r.get("livingArea", 0),
                 "homeType": r.get("homeType", "–"),
+                "latitude": r.get("latitude", None),
+                "longitude": r.get("longitude", None),
                 **{k: a[k] for k in (
                     "monthly_cash_flow", "annual_cash_flow", "cap_rate",
                     "cash_on_cash", "total_profit", "annualized_roi", "irr",
@@ -486,12 +488,107 @@ def main():
     st.dataframe(tbl, hide_index=True, width="stretch")
 
     # ──────────────────────────────────────────────────────────────
+    # MAP
+    # ──────────────────────────────────────────────────────────────
+    st.header("🗺️ Top Opportunities on Map")
+    st.caption(
+        "Marker size = monthly cash flow (bigger = better). "
+        "Color = green (positive CF) / red (negative CF). "
+        "Click a marker then use the Zillow link to view the listing."
+    )
+
+    map_df = sdf.dropna(subset=["latitude", "longitude"]).copy()
+    if not map_df.empty:
+        # Build Zillow URLs
+        map_df["zillow_url"] = map_df.apply(
+            lambda r: (
+                f"https://www.zillow.com/homedetails/"
+                f"{str(r.get('address','')).split(',')[0].replace(' ','-')}/"
+                f"{int(r['zpid'])}_zpid/"
+            ),
+            axis=1,
+        )
+
+        # Marker sizing: proportional to |cash flow|, min size 8
+        cf_abs = map_df["monthly_cash_flow"].abs()
+        cf_max = cf_abs.max() if cf_abs.max() > 0 else 1
+        map_df["marker_size"] = 8 + (cf_abs / cf_max) * 30
+
+        # Marker color
+        map_df["color"] = map_df["monthly_cash_flow"].apply(
+            lambda v: "#06A77D" if v >= 0 else "#E74C3C"
+        )
+
+        # Hover text
+        map_df["hover"] = map_df.apply(
+            lambda r: (
+                f"<b>{r['address']}</b><br>"
+                f"Price: ${r['price']:,.0f}<br>"
+                f"Rent: ${r['rent']:,.0f}/mo<br>"
+                f"Cash Flow: ${r['monthly_cash_flow']:,.0f}/mo<br>"
+                f"Cap Rate: {r['cap_rate']:.2f}%<br>"
+                f"IRR: {r['irr']:.2f}%<br>"
+                f"Beds: {_fmt_int(r['beds'])} | Baths: {float(r['baths']):.1f}<br>"
+            ),
+            axis=1,
+        )
+
+        map_fig = go.Figure()
+        map_fig.add_trace(go.Scattermapbox(
+            lat=map_df["latitude"],
+            lon=map_df["longitude"],
+            mode="markers",
+            marker=dict(
+                size=map_df["marker_size"],
+                color=map_df["color"],
+                opacity=0.85,
+            ),
+            text=map_df["hover"],
+            hoverinfo="text",
+            customdata=map_df["zillow_url"],
+        ))
+
+        center_lat = map_df["latitude"].mean()
+        center_lon = map_df["longitude"].mean()
+        map_fig.update_layout(
+            mapbox=dict(
+                style="open-street-map",
+                center=dict(lat=center_lat, lon=center_lon),
+                zoom=12,
+            ),
+            height=550,
+            margin=dict(l=0, r=0, t=0, b=0),
+        )
+        st.plotly_chart(map_fig, key="opportunity_map")
+
+        # Zillow links table below the map
+        st.markdown("**Quick Links — open on Zillow:**")
+        for _, mr in map_df.iterrows():
+            cf_color = "green" if mr["monthly_cash_flow"] >= 0 else "red"
+            st.markdown(
+                f"- [{mr['address']}]({mr['zillow_url']}) — "
+                f"${mr['price']:,.0f} · "
+                f"<span style='color:{cf_color}'>"
+                f"${mr['monthly_cash_flow']:,.0f}/mo CF</span> · "
+                f"IRR {mr['irr']:.1f}%",
+                unsafe_allow_html=True,
+            )
+    else:
+        st.info("No lat/lon data available for mapping.")
+
+    # ──────────────────────────────────────────────────────────────
     # DETAILED PROPERTY VIEWS
     # ──────────────────────────────────────────────────────────────
     st.header("🏡 Property Details")
 
     for _, row in sdf.iterrows():
+        zillow_url = (
+            f"https://www.zillow.com/homedetails/"
+            f"{str(row.get('address','')).split(',')[0].replace(' ','-')}/"
+            f"{int(row['zpid'])}_zpid/"
+        )
         with st.expander(f"📍 {row['address']} — ${row['price']:,.0f}"):
+            st.markdown(f"🔗 [View on Zillow]({zillow_url})")
 
             # ── top metrics ──────────────────────────────────────
             m1, m2, m3, m4, m5 = st.columns(5)
