@@ -431,84 +431,17 @@ def main():
         rdf = pd.DataFrame(rows)
 
     # ──────────────────────────────────────────────────────────────
-    # SUMMARY METRICS
+    # MAP (top of page — all filtered properties)
     # ──────────────────────────────────────────────────────────────
-    st.header("📈 Portfolio Summary")
-    c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric("Properties", f"{len(rdf):,}")
-    c2.metric("Avg IRR", f"{rdf['irr'].mean():.1f}%")
-    c3.metric("Avg Monthly CF", f"${rdf['monthly_cash_flow'].mean():,.0f}")
-    pos = int((rdf["monthly_cash_flow"] > 0).sum())
-    c4.metric("Cash-Flow +ve", f"{pos} ({pos / len(rdf) * 100:.0f}%)")
-    c5.metric("Avg Cash-on-Cash", f"{rdf['cash_on_cash'].mean():.1f}%")
-
-    # ──────────────────────────────────────────────────────────────
-    # SORT & TABLE
-    # ──────────────────────────────────────────────────────────────
-    st.header("🔍 Top Investment Opportunities")
-    sc1, sc2 = st.columns([3, 1])
-    sort_by = sc1.selectbox(
-        "Sort By",
-        ["Monthly Cash Flow", "Cap Rate", "IRR",
-         "Cash-on-Cash", "Total Profit", "Annualized ROI"],
-    )
-    top_n = int(sc2.number_input("Show Top N", 5, 100, 10, 5))
-
-    sort_map = {
-        "Monthly Cash Flow": "monthly_cash_flow",
-        "Cap Rate": "cap_rate",
-        "IRR": "irr",
-        "Cash-on-Cash": "cash_on_cash",
-        "Total Profit": "total_profit",
-        "Annualized ROI": "annualized_roi",
-    }
-    sdf = rdf.sort_values(sort_map[sort_by], ascending=False).head(top_n)
-
-    tbl = sdf[[
-        "address", "price", "rent", "beds", "baths", "sqft", "homeType",
-        "monthly_cash_flow", "cap_rate", "cash_on_cash", "irr",
-    ]].copy()
-    tbl.columns = [
-        "Address", "Price", "Rent/mo", "Beds", "Baths", "Sqft", "Type",
-        "Monthly CF", "Cap Rate", "CoC Return", "IRR",
-    ]
-    for c in ("Price", "Rent/mo", "Monthly CF"):
-        tbl[c] = tbl[c].apply(_fmt_dollar)
-    for c in ("Cap Rate", "CoC Return", "IRR"):
-        tbl[c] = tbl[c].apply(_fmt_pct)
-    for c in ("Beds",):
-        tbl[c] = tbl[c].apply(_fmt_int)
-    tbl["Baths"] = tbl["Baths"].apply(
-        lambda x: f"{float(x):.1f}" if pd.notna(x) else "–"
-    )
-    tbl["Sqft"] = tbl["Sqft"].apply(
-        lambda x: f"{float(x):,.0f}" if pd.notna(x) and float(x) > 0 else "–"
-    )
-
-    st.dataframe(tbl, hide_index=True, width="stretch")
-
-    # ──────────────────────────────────────────────────────────────
-    # MAP
-    # ──────────────────────────────────────────────────────────────
-    st.header("🗺️ Top Opportunities on Map")
+    st.header("🗺️ Property Map")
     st.caption(
-        "Marker size = monthly cash flow (bigger = better). "
-        "Color = green (positive CF) / red (negative CF). "
-        "Click a marker then use the Zillow link to view the listing."
+        "Marker size = monthly cash flow magnitude. "
+        "Green = positive CF, Red = negative CF. "
+        "Hover for details, then select a property below for full analysis."
     )
 
-    map_df = sdf.dropna(subset=["latitude", "longitude"]).copy()
+    map_df = rdf.dropna(subset=["latitude", "longitude"]).copy()
     if not map_df.empty:
-        # Build Zillow URLs
-        map_df["zillow_url"] = map_df.apply(
-            lambda r: (
-                f"https://www.zillow.com/homedetails/"
-                f"{str(r.get('address','')).split(',')[0].replace(' ','-')}/"
-                f"{int(r['zpid'])}_zpid/"
-            ),
-            axis=1,
-        )
-
         # Marker sizing: proportional to |cash flow|, min size 8
         cf_abs = map_df["monthly_cash_flow"].abs()
         cf_max = cf_abs.max() if cf_abs.max() > 0 else 1
@@ -527,8 +460,7 @@ def main():
                 f"Rent: ${r['rent']:,.0f}/mo<br>"
                 f"Cash Flow: ${r['monthly_cash_flow']:,.0f}/mo<br>"
                 f"Cap Rate: {r['cap_rate']:.2f}%<br>"
-                f"IRR: {r['irr']:.2f}%<br>"
-                f"Beds: {_fmt_int(r['beds'])} | Baths: {float(r['baths']):.1f}<br>"
+                f"IRR: {r['irr']:.2f}%"
             ),
             axis=1,
         )
@@ -545,7 +477,6 @@ def main():
             ),
             text=map_df["hover"],
             hoverinfo="text",
-            customdata=map_df["zillow_url"],
         ))
 
         center_lat = map_df["latitude"].mean()
@@ -559,197 +490,271 @@ def main():
             height=550,
             margin=dict(l=0, r=0, t=0, b=0),
         )
-        st.plotly_chart(map_fig, key="opportunity_map")
-
-        # Zillow links table below the map
-        st.markdown("**Quick Links — open on Zillow:**")
-        for _, mr in map_df.iterrows():
-            cf_color = "green" if mr["monthly_cash_flow"] >= 0 else "red"
-            st.markdown(
-                f"- [{mr['address']}]({mr['zillow_url']}) — "
-                f"${mr['price']:,.0f} · "
-                f"<span style='color:{cf_color}'>"
-                f"${mr['monthly_cash_flow']:,.0f}/mo CF</span> · "
-                f"IRR {mr['irr']:.1f}%",
-                unsafe_allow_html=True,
-            )
+        st.plotly_chart(map_fig, key="main_map")
     else:
         st.info("No lat/lon data available for mapping.")
 
     # ──────────────────────────────────────────────────────────────
-    # DETAILED PROPERTY VIEWS
+    # PROPERTY SELECTOR + DETAILS
     # ──────────────────────────────────────────────────────────────
-    st.header("🏡 Property Details")
+    st.header("🏡 Property Analysis")
 
-    for _, row in sdf.iterrows():
-        zillow_url = (
-            f"https://www.zillow.com/homedetails/"
-            f"{str(row.get('address','')).split(',')[0].replace(' ','-')}/"
-            f"{int(row['zpid'])}_zpid/"
+    sort_col_sel, _ = st.columns([3, 1])
+    sort_by = sort_col_sel.selectbox(
+        "Sort / Rank By",
+        ["Monthly Cash Flow", "Cap Rate", "IRR",
+         "Cash-on-Cash", "Total Profit", "Annualized ROI"],
+    )
+    sort_map = {
+        "Monthly Cash Flow": "monthly_cash_flow",
+        "Cap Rate": "cap_rate",
+        "IRR": "irr",
+        "Cash-on-Cash": "cash_on_cash",
+        "Total Profit": "total_profit",
+        "Annualized ROI": "annualized_roi",
+    }
+    sorted_rdf = rdf.sort_values(sort_map[sort_by], ascending=False).reset_index(drop=True)
+
+    # Build selectbox labels
+    prop_options = []
+    for i, (_, r) in enumerate(sorted_rdf.iterrows()):
+        cf_sign = "+" if r["monthly_cash_flow"] >= 0 else ""
+        prop_options.append(
+            f"#{i + 1}  {r['address']}  —  ${r['price']:,.0f}  ·  "
+            f"{cf_sign}${r['monthly_cash_flow']:,.0f}/mo CF  ·  IRR {r['irr']:.1f}%"
         )
-        with st.expander(f"📍 {row['address']} — ${row['price']:,.0f}"):
-            st.markdown(f"🔗 [View on Zillow]({zillow_url})")
 
-            # ── top metrics ──────────────────────────────────────
-            m1, m2, m3, m4, m5 = st.columns(5)
-            m1.metric("Monthly CF", f"${row['monthly_cash_flow']:,.0f}")
-            m2.metric("Cap Rate", f"{row['cap_rate']:.2f}%")
-            m3.metric("Cash-on-Cash", f"{row['cash_on_cash']:.2f}%")
-            m4.metric("IRR", f"{row['irr']:.2f}%")
-            m5.metric(f"Profit ({holding_years}yr)", f"${row['total_profit']:,.0f}")
+    selected_idx = st.selectbox(
+        "Select a property",
+        range(len(prop_options)),
+        format_func=lambda i: prop_options[i],
+    )
 
-            # ── financial breakdown ──────────────────────────────
-            st.subheader("💰 Financial Breakdown")
-            fc1, fc2, fc3 = st.columns(3)
+    row = sorted_rdf.iloc[selected_idx]
 
-            with fc1:
-                st.markdown("**Purchase**")
-                st.write(f"Price: ${row['price']:,.0f}")
-                st.write(f"Down Payment ({down_payment_pct}%): ${row['down_payment']:,.0f}")
-                st.write(f"Buy Closing ({closing_costs_pct}%): ${row['buy_closing']:,.0f}")
-                st.write(f"**Total Out-of-Pocket: ${row['initial_investment']:,.0f}**")
+    # Zillow URL
+    zillow_url = (
+        f"https://www.zillow.com/homedetails/"
+        f"{str(row.get('address','')).split(',')[0].replace(' ','-')}/"
+        f"{int(row['zpid'])}_zpid/"
+    )
 
-            with fc2:
-                st.markdown("**Monthly (Year 1)**")
-                st.write(f"Gross Rent: ${row['rent']:,.0f}")
-                st.write(f"Eff. Rent (−{vacancy_rate}% vacancy): "
-                         f"${row['effective_monthly_rent']:,.0f}")
-                st.write(f"Mortgage ({loan_term}yr @ {interest_rate}%): "
-                         f"${row['monthly_emi']:,.0f}")
-                st.write(f"All Expenses: ${row['total_monthly_expenses']:,.0f}")
-                cf_color = "green" if row["monthly_cash_flow"] >= 0 else "red"
-                st.markdown(
-                    f"**Cash Flow: "
-                    f"<span style='color:{cf_color}'>${row['monthly_cash_flow']:,.0f}/mo"
-                    f"</span>**",
-                    unsafe_allow_html=True,
-                )
+    st.markdown(f"🔗 [View on Zillow]({zillow_url})")
 
-            with fc3:
-                st.markdown(f"**Sale (Year {holding_years})**")
-                st.write(f"Future Value: ${row['future_property_value']:,.0f}")
-                st.write(f"− Bank Owed: ${row['remaining_mortgage']:,.0f}")
-                st.write(f"− Sell Closing ({selling_costs_pct}%): "
-                         f"${row['sell_closing']:,.0f}")
-                st.write(f"**= Net Proceeds: ${row['net_sale_proceeds']:,.0f}**")
+    # ── top metrics row ──────────────────────────────────────
+    m1, m2, m3, m4, m5 = st.columns(5)
+    m1.metric("Monthly CF", f"${row['monthly_cash_flow']:,.0f}")
+    m2.metric("Cap Rate", f"{row['cap_rate']:.2f}%")
+    m3.metric("Cash-on-Cash", f"{row['cash_on_cash']:.2f}%")
+    m4.metric("IRR", f"{row['irr']:.2f}%")
+    m5.metric(f"Profit ({holding_years}yr)", f"${row['total_profit']:,.0f}")
 
-            # ── annual cash-flow bar chart ────────────────────
-            st.subheader("📊 Annual Operating Cash Flow")
-            cfs = row["annual_cfs"]
-            cf_yrs = list(range(1, len(cfs) + 1))
-            colors = ["#06A77D" if v >= 0 else "#E74C3C" for v in cfs]
-            cf_fig = go.Figure(
-                go.Bar(x=cf_yrs, y=cfs, marker_color=colors,
-                       hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>")
-            )
-            cf_fig.update_layout(
-                xaxis_title="Year", yaxis_title="Cash Flow ($)",
-                height=300, hovermode="x",
-            )
-            st.plotly_chart(cf_fig, key=f"cf_{row['zpid']}")
+    # ── financial breakdown ──────────────────────────────────
+    st.subheader("💰 Financial Breakdown")
+    fc1, fc2, fc3 = st.columns(3)
 
-            # ── equity growth chart ───────────────────────────
-            st.subheader(f"📈 Equity Growth Over {holding_years} Years")
-            eq = row["equity_growth"]
-            if eq:
-                yrs = [e["year"] for e in eq]
-                fig = go.Figure()
-                fig.add_trace(go.Scatter(
-                    x=yrs,
-                    y=[e["property_value"] for e in eq],
-                    name="Property Value",
-                    line=dict(color="#2E86AB", width=2),
-                ))
-                fig.add_trace(go.Scatter(
-                    x=yrs,
-                    y=[e["remaining_mortgage"] for e in eq],
-                    name="Mortgage Balance",
-                    line=dict(color="#A23B72", width=2),
-                ))
-                fig.add_trace(go.Scatter(
-                    x=yrs,
-                    y=[e["equity"] for e in eq],
-                    name="Equity",
-                    fill="tonexty",
-                    line=dict(color="#06A77D", width=2),
-                ))
-                fig.update_layout(
-                    xaxis_title="Year", yaxis_title="$",
-                    height=380, hovermode="x unified",
-                )
-                st.plotly_chart(fig, key=f"eq_{row['zpid']}")
+    with fc1:
+        st.markdown("**Purchase**")
+        st.write(f"Price: ${row['price']:,.0f}")
+        st.write(f"Down Payment ({down_payment_pct}%): ${row['down_payment']:,.0f}")
+        st.write(f"Buy Closing ({closing_costs_pct}%): ${row['buy_closing']:,.0f}")
+        st.write(f"**Total Out-of-Pocket: ${row['initial_investment']:,.0f}**")
 
-            # ── Property vs S&P — Investment Comparison ──────
-            st.subheader("⚖️ Property vs S&P 500 — Investment Comparison")
-            st.caption(
-                "Both paths deploy the **same out-of-pocket cash**: "
-                "down payment + buy closing at year 0, plus the equivalent of "
-                "each year's negative cash flow. Lines show what you could "
-                "**liquidate for** at each point in time."
-            )
+    with fc2:
+        st.markdown("**Monthly (Year 1)**")
+        st.write(f"Gross Rent: ${row['rent']:,.0f}")
+        st.write(f"Eff. Rent (−{vacancy_rate}% vacancy): "
+                 f"${row['effective_monthly_rent']:,.0f}")
+        st.write(f"Mortgage ({loan_term}yr @ {interest_rate}%): "
+                 f"${row['monthly_emi']:,.0f}")
+        st.write(f"All Expenses: ${row['total_monthly_expenses']:,.0f}")
+        cf_indicator = "🟢" if row["monthly_cash_flow"] >= 0 else "🔴"
+        st.write(f"**Cash Flow: {cf_indicator} ${row['monthly_cash_flow']:,.0f}/mo**")
 
-            pw = row["prop_wealth_series"]
-            sw = row["sp_portfolio_series"]
-            dep = row["sp_deployed_series"]
-            comp_yrs = list(range(len(pw)))
+    with fc3:
+        st.markdown(f"**Sale (Year {holding_years})**")
+        st.write(f"Future Value: ${row['future_property_value']:,.0f}")
+        st.write(f"− Bank Owed: ${row['remaining_mortgage']:,.0f}")
+        st.write(f"− Sell Closing ({selling_costs_pct}%): "
+                 f"${row['sell_closing']:,.0f}")
+        st.write(f"**= Net Proceeds: ${row['net_sale_proceeds']:,.0f}**")
 
-            comp_fig = go.Figure()
-            comp_fig.add_trace(go.Scatter(
-                x=comp_yrs, y=pw,
-                name="Property (if sold today)",
-                line=dict(color="#2E86AB", width=3),
-                hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
-            ))
-            comp_fig.add_trace(go.Scatter(
-                x=comp_yrs, y=sw,
-                name=f"S&P Portfolio ({sp_growth_rate}%/yr)",
-                line=dict(color="#F39C12", width=3),
-                hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
-            ))
-            comp_fig.add_trace(go.Scatter(
-                x=comp_yrs, y=dep,
-                name="Total Cash Deployed",
-                line=dict(color="grey", width=2, dash="dot"),
-                hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
-            ))
-            comp_fig.update_layout(
-                xaxis_title="Year",
-                yaxis_title="Total Wealth ($)",
-                yaxis_tickformat="$,.0f",
-                height=440,
-                hovermode="x unified",
-                legend=dict(orientation="h", y=-0.15),
-            )
-            st.plotly_chart(comp_fig, key=f"cmp_{row['zpid']}")
+    # ── annual cash-flow bar chart ────────────────────────────
+    st.subheader("📊 Annual Operating Cash Flow")
+    cfs = row["annual_cfs"]
+    cf_yrs = list(range(1, len(cfs) + 1))
+    colors = ["#06A77D" if v >= 0 else "#E74C3C" for v in cfs]
+    cf_fig = go.Figure(
+        go.Bar(x=cf_yrs, y=cfs, marker_color=colors,
+               hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>")
+    )
+    cf_fig.update_layout(
+        xaxis_title="Year", yaxis_title="Cash Flow ($)",
+        height=300, hovermode="x",
+    )
+    st.plotly_chart(cf_fig, key=f"cf_{row['zpid']}")
 
-            # ── final comparison numbers ─────────────────────
-            deployed_total = row["sp_deployed"]
-            prop_final     = pw[-1]
-            sp_final       = sw[-1]
-            prop_profit    = row["total_profit"]
-            sp_profit_     = row["sp_profit"]
-            delta          = prop_profit - sp_profit_
-            winner         = "🏠 Property" if delta > 0 else "📈 S&P 500"
+    # ── equity growth chart ───────────────────────────────────
+    st.subheader(f"📈 Equity Growth Over {holding_years} Years")
+    eq = row["equity_growth"]
+    if eq:
+        yrs = [e["year"] for e in eq]
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=yrs,
+            y=[e["property_value"] for e in eq],
+            name="Property Value",
+            line=dict(color="#2E86AB", width=2),
+        ))
+        fig.add_trace(go.Scatter(
+            x=yrs,
+            y=[e["remaining_mortgage"] for e in eq],
+            name="Mortgage Balance",
+            line=dict(color="#A23B72", width=2),
+        ))
+        fig.add_trace(go.Scatter(
+            x=yrs,
+            y=[e["equity"] for e in eq],
+            name="Equity",
+            fill="tonexty",
+            line=dict(color="#06A77D", width=2),
+        ))
+        fig.update_layout(
+            xaxis_title="Year", yaxis_title="$",
+            height=380, hovermode="x unified",
+        )
+        st.plotly_chart(fig, key=f"eq_{row['zpid']}")
 
-            st.markdown(
-                f"**Both paths deployed ${deployed_total:,.0f} total over "
-                f"{holding_years} years**"
-            )
-            cp1, cp2, cp3, cp4 = st.columns(4)
-            cp1.metric(
-                "Property Final",
-                f"${prop_final:,.0f}",
-                delta=f"Profit ${prop_profit:,.0f}",
-                delta_color="normal",
-            )
-            cp2.metric(
-                f"S&P Final",
-                f"${sp_final:,.0f}",
-                delta=f"Profit ${sp_profit_:,.0f}",
-                delta_color="normal",
-            )
-            cp3.metric("Deployed", f"${deployed_total:,.0f}")
-            cp4.metric("Winner", winner, f"by ${abs(delta):,.0f}")
+    # ── Property vs S&P — Investment Comparison ──────────────
+    st.subheader("⚖️ Property vs S&P 500 — Investment Comparison")
+    st.caption(
+        "Both paths deploy the **same out-of-pocket cash**: "
+        "down payment + buy closing at year 0, plus the equivalent of "
+        "each year's negative cash flow. Lines show what you could "
+        "**liquidate for** at each point in time."
+    )
+
+    pw = row["prop_wealth_series"]
+    sw = row["sp_portfolio_series"]
+    dep = row["sp_deployed_series"]
+    comp_yrs = list(range(len(pw)))
+
+    comp_fig = go.Figure()
+    comp_fig.add_trace(go.Scatter(
+        x=comp_yrs, y=pw,
+        name="Property (if sold today)",
+        line=dict(color="#2E86AB", width=3),
+        hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
+    ))
+    comp_fig.add_trace(go.Scatter(
+        x=comp_yrs, y=sw,
+        name=f"S&P Portfolio ({sp_growth_rate}%/yr)",
+        line=dict(color="#F39C12", width=3),
+        hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
+    ))
+    comp_fig.add_trace(go.Scatter(
+        x=comp_yrs, y=dep,
+        name="Total Cash Deployed",
+        line=dict(color="grey", width=2, dash="dot"),
+        hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
+    ))
+    comp_fig.update_layout(
+        xaxis_title="Year",
+        yaxis_title="Total Wealth ($)",
+        yaxis_tickformat="$,.0f",
+        height=440,
+        hovermode="x unified",
+        legend=dict(orientation="h", y=-0.15),
+    )
+    st.plotly_chart(comp_fig, key=f"cmp_{row['zpid']}")
+
+    # ── final comparison numbers ─────────────────────────────
+    deployed_total = row["sp_deployed"]
+    prop_final     = pw[-1]
+    sp_final       = sw[-1]
+    prop_profit    = row["total_profit"]
+    sp_profit_     = row["sp_profit"]
+    delta          = prop_profit - sp_profit_
+    winner         = "🏠 Property" if delta > 0 else "📈 S&P 500"
+
+    st.markdown(
+        f"**Both paths deployed ${deployed_total:,.0f} total over "
+        f"{holding_years} years**"
+    )
+    cp1, cp2, cp3, cp4 = st.columns(4)
+    cp1.metric(
+        "Property Final",
+        f"${prop_final:,.0f}",
+        delta=f"Profit ${prop_profit:,.0f}",
+        delta_color="normal",
+    )
+    cp2.metric(
+        f"S&P Final",
+        f"${sp_final:,.0f}",
+        delta=f"Profit ${sp_profit_:,.0f}",
+        delta_color="normal",
+    )
+    cp3.metric("Deployed", f"${deployed_total:,.0f}")
+    cp4.metric("Winner", winner, f"by ${abs(delta):,.0f}")
+
+    # ──────────────────────────────────────────────────────────────
+    # PORTFOLIO SUMMARY & TABLE (bottom)
+    # ──────────────────────────────────────────────────────────────
+    st.markdown("---")
+    st.header("📈 Portfolio Summary")
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Properties", f"{len(rdf):,}")
+    c2.metric("Avg IRR", f"{rdf['irr'].mean():.1f}%")
+    c3.metric("Avg Monthly CF", f"${rdf['monthly_cash_flow'].mean():,.0f}")
+    pos = int((rdf["monthly_cash_flow"] > 0).sum())
+    c4.metric("Cash-Flow +ve", f"{pos} ({pos / len(rdf) * 100:.0f}%)")
+    c5.metric("Avg Cash-on-Cash", f"{rdf['cash_on_cash'].mean():.1f}%")
+
+    st.header("🔍 All Properties")
+    tc1, tc2 = st.columns([3, 1])
+    top_n = int(tc2.number_input("Show Top N", 5, len(rdf), min(25, len(rdf)), 5))
+
+    sdf = sorted_rdf.head(top_n)
+
+    tbl = sdf[[
+        "address", "price", "rent", "beds", "baths", "sqft", "homeType",
+        "monthly_cash_flow", "cap_rate", "cash_on_cash", "irr",
+    ]].copy()
+    tbl.columns = [
+        "Address", "Price", "Rent/mo", "Beds", "Baths", "Sqft", "Type",
+        "Monthly CF", "Cap Rate", "CoC Return", "IRR",
+    ]
+
+    # Build Zillow URLs for each row
+    zillow_urls = []
+    for _, tr in sdf.iterrows():
+        slug = str(tr.get("address", "")).split(",")[0].replace(" ", "-")
+        zillow_urls.append(
+            f"https://www.zillow.com/homedetails/{slug}/{int(tr['zpid'])}_zpid/"
+        )
+    tbl.insert(0, "Zillow", zillow_urls)
+
+    for c in ("Price", "Rent/mo", "Monthly CF"):
+        tbl[c] = tbl[c].apply(_fmt_dollar)
+    for c in ("Cap Rate", "CoC Return", "IRR"):
+        tbl[c] = tbl[c].apply(_fmt_pct)
+    for c in ("Beds",):
+        tbl[c] = tbl[c].apply(_fmt_int)
+    tbl["Baths"] = tbl["Baths"].apply(
+        lambda x: f"{float(x):.1f}" if pd.notna(x) else "–"
+    )
+    tbl["Sqft"] = tbl["Sqft"].apply(
+        lambda x: f"{float(x):,.0f}" if pd.notna(x) and float(x) > 0 else "–"
+    )
+
+    st.dataframe(
+        tbl,
+        hide_index=True,
+        width="stretch",
+        column_config={
+            "Zillow": st.column_config.LinkColumn("Zillow", display_text="Open"),
+        },
+    )
 
     # ──────────────────────────────────────────────────────────────
     # FOOTER
