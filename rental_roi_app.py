@@ -1,271 +1,269 @@
 """
-Streamlit Real Estate Rental & ROI Analysis Application
-Analyzes properties from Zillow listings JSON for investment potential
+Streamlit Real-Estate Rental & ROI Analysis
+Analyses Zillow listings for investment potential with S&P 500 comparison.
+
+Key financial calculations
+──────────────────────────
+EMI            M = P·i·(1+i)^n / ((1+i)^n − 1)
+Remaining bal  B = P·((1+i)^N − (1+i)^n) / ((1+i)^N − 1)
+Cap rate       Year-1 NOI / Purchase price
+Cash-on-cash   Year-1 cash flow / Total cash invested
+IRR            numpy-financial IRR on [-init, cf₁…cfₙ+sale]
+Net sale       Sale price − bank balance − sell closing costs
+Total profit   Σ(annual CFs) + net sale − initial investment
+Property NW    Equity-in-property + cumulative operating cash − initial investment
+S&P NW         S&P portfolio − total capital deployed  (same $ as property investor)
 """
 
 import json
-import math
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
-from numpy_financial import irr
+from numpy_financial import irr as compute_irr
 
 
 # ═══════════════════════════════════════════════════════════════════
-# DATA LOADING & PREPROCESSING
+# DATA LOADING
 # ═══════════════════════════════════════════════════════════════════
 
 @st.cache_data
 def load_listings(json_path: str = "json/zillow_75071_listings.json") -> pd.DataFrame:
-    """Load and preprocess Zillow listings from JSON."""
-    with open(json_path, 'r') as f:
+    with open(json_path) as f:
         data = json.load(f)
-    
     listings = data.get("listings", [])
     if not listings:
-        st.error("No listings found in JSON file")
         return pd.DataFrame()
-    
+
     df = pd.DataFrame(listings)
-    
-    # Extract key fields
-    required_fields = ["zpid", "streetAddress", "city", "state", "zipcode", 
-                       "price", "rentZestimate", "bedrooms", "bathrooms", 
-                       "livingArea", "homeType"]
-    
-    # Clean and convert data types
-    if "price" in df.columns:
-        df["price"] = pd.to_numeric(df["price"], errors="coerce")
-    
-    if "rentZestimate" in df.columns:
-        df["rentZestimate"] = pd.to_numeric(df["rentZestimate"], errors="coerce")
-    
+
+    # Numeric conversions
+    for col in ("price", "rentZestimate", "livingArea", "lotAreaValue",
+                "bedrooms", "bathrooms", "taxAssessedValue"):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
     if "propertyTaxRate" in df.columns:
         df["propertyTaxRate"] = pd.to_numeric(df["propertyTaxRate"], errors="coerce")
     else:
-        df["propertyTaxRate"] = 2.15  # Default for McKinney, TX
-    
+        df["propertyTaxRate"] = 2.15  # Collin County default
+
     if "monthlyHoaFee" in df.columns:
         df["monthlyHoaFee"] = pd.to_numeric(df["monthlyHoaFee"], errors="coerce").fillna(0)
     else:
         df["monthlyHoaFee"] = 0
-    
-    # Handle missing rent estimates (0.8% of purchase price per month)
+
+    df["homeType"] = df.get("homeType", pd.Series(dtype=str)).fillna("Unknown")
+    df["bedrooms"] = df["bedrooms"].fillna(0).astype(int)
+    df["bathrooms"] = df["bathrooms"].fillna(0)
+
+    # Fallback rent: 0.8 % of price per month when rentZestimate is missing
     df["rentZestimate"] = df.apply(
-        lambda row: row["rentZestimate"] if pd.notna(row["rentZestimate"]) and row["rentZestimate"] > 0
-        else row["price"] * 0.008 if pd.notna(row["price"]) 
+        lambda r: r["rentZestimate"]
+        if pd.notna(r.get("rentZestimate")) and r["rentZestimate"] > 0
+        else r["price"] * 0.008
+        if pd.notna(r.get("price"))
         else 0,
-        axis=1
+        axis=1,
     )
-    
-    # Filter out properties with no price or invalid data
-    df = df[df["price"] > 0].copy()
-    df = df[df["rentZestimate"] > 0].copy()
-    
-    # Create full address
+
+    df = df[(df["price"] > 0) & (df["rentZestimate"] > 0)].copy()
+
     df["full_address"] = df.apply(
-        lambda row: f"{row.get('streetAddress', 'Unknown')}, {row.get('city', '')}, {row.get('state', '')} {row.get('zipcode', '')}",
-        axis=1
+        lambda r: (
+            f"{r.get('streetAddress','?')}, "
+            f"{r.get('city','')}, {r.get('state','')} {r.get('zipcode','')}"
+        ),
+        axis=1,
     )
-    
     return df
 
 
 # ═══════════════════════════════════════════════════════════════════
-# FINANCIAL CALCULATIONS
+# FINANCIAL HELPERS
 # ═══════════════════════════════════════════════════════════════════
 
-def calculate_monthly_emi(principal: float, annual_rate: float, years: int) -> float:
-    """
-    Calculate monthly EMI using standard formula:
-    M = P * [i(1 + i)^n] / [(1 + i)^n - 1]
-    where i = monthly interest rate, n = total months
-    """
+def calc_emi(principal: float, annual_rate: float, years: int) -> float:
+    """Monthly EMI.  M = P·i·(1+i)^n / ((1+i)^n − 1)"""
+    if principal <= 0:
+        return 0.0
     if annual_rate == 0:
         return principal / (years * 12)
-    
-    monthly_rate = annual_rate / 100 / 12
-    n_months = years * 12
-    
-    emi = principal * (monthly_rate * (1 + monthly_rate) ** n_months) / \
-          ((1 + monthly_rate) ** n_months - 1)
-    
-    return emi
+    i = annual_rate / 100 / 12
+    n = years * 12
+    return principal * i * (1 + i) ** n / ((1 + i) ** n - 1)
 
 
-def calculate_remaining_balance(principal: float, annual_rate: float, 
-                               total_years: int, years_paid: int) -> float:
-    """Calculate remaining mortgage balance after N years."""
+def calc_remaining(principal: float, annual_rate: float,
+                   total_years: int, years_paid: int) -> float:
+    """Outstanding mortgage balance after *years_paid* years."""
+    if years_paid >= total_years or principal <= 0:
+        return 0.0
     if annual_rate == 0:
         return principal * (1 - years_paid / total_years)
-    
-    monthly_rate = annual_rate / 100 / 12
-    n_total = total_years * 12
-    n_paid = years_paid * 12
-    
-    remaining = principal * ((1 + monthly_rate) ** n_total - (1 + monthly_rate) ** n_paid) / \
-                ((1 + monthly_rate) ** n_total - 1)
-    
-    return max(0, remaining)
+    i = annual_rate / 100 / 12
+    N = total_years * 12
+    n = years_paid * 12
+    return max(0.0, principal * ((1 + i) ** N - (1 + i) ** n) / ((1 + i) ** N - 1))
 
 
-def analyze_property(row: pd.Series, params: dict) -> dict:
-    """
-    Comprehensive property analysis with all financial calculations.
-    
-    Returns a dict with monthly cash flow, cap rate, total ROI, IRR, etc.
-    """
-    price = row["price"]
-    monthly_rent = row["rentZestimate"]
-    property_tax_rate = row.get("propertyTaxRate", 2.15)
-    monthly_hoa = row.get("monthlyHoaFee", 0)
-    
-    # User parameters
-    down_payment_pct = params["down_payment_pct"]
-    interest_rate = params["interest_rate"]
-    closing_costs_pct = params["closing_costs_pct"]
-    holding_years = params["holding_years"]
-    appreciation_rate = params["appreciation_rate"]
-    rent_increase_rate = params["rent_increase_rate"]
-    maintenance_pct = params["maintenance_pct"]
-    vacancy_rate = params["vacancy_rate"]
-    insurance_annual = params["insurance_annual"]
-    
-    # Initial costs
-    down_payment = price * (down_payment_pct / 100)
-    closing_costs = price * (closing_costs_pct / 100)
-    initial_investment = down_payment + closing_costs
-    
-    # Loan details
-    loan_amount = price - down_payment
-    monthly_emi = calculate_monthly_emi(loan_amount, interest_rate, 30)
-    
-    # Monthly expenses
-    monthly_property_tax = (price * (property_tax_rate / 100)) / 12
-    monthly_insurance = insurance_annual / 12
-    monthly_maintenance = (price * (maintenance_pct / 100)) / 12
-    
-    total_monthly_expenses = monthly_emi + monthly_property_tax + monthly_hoa + \
-                            monthly_insurance + monthly_maintenance
-    
-    # Effective rent (accounting for vacancy)
-    effective_monthly_rent = monthly_rent * (1 - vacancy_rate / 100)
-    
-    # Monthly cash flow
-    monthly_cash_flow = effective_monthly_rent - total_monthly_expenses
-    
-    # Annual metrics
-    annual_cash_flow = monthly_cash_flow * 12
-    
-    # Cap rate (Year 1 NOI / Purchase Price)
-    annual_noi = (effective_monthly_rent * 12) - \
-                 ((monthly_property_tax + monthly_hoa + monthly_insurance + monthly_maintenance) * 12)
-    cap_rate = (annual_noi / price) * 100
-    
-    # Future value calculations
-    future_property_value = price * ((1 + appreciation_rate / 100) ** holding_years)
-    remaining_mortgage = calculate_remaining_balance(loan_amount, interest_rate, 30, holding_years)
-    
-    # Total cash flows over holding period (for IRR)
-    cash_flows = [-initial_investment]  # Initial outflow
-    
-    cumulative_equity = 0
-    equity_growth = []
-    
-    for year in range(1, holding_years + 1):
-        # Rent grows each year
-        year_rent = monthly_rent * ((1 + rent_increase_rate / 100) ** year)
-        year_effective_rent = year_rent * (1 - vacancy_rate / 100) * 12
-        
-        # Expenses (property tax grows with appreciation, others are fixed)
-        year_property_value = price * ((1 + appreciation_rate / 100) ** year)
-        year_property_tax = (year_property_value * (property_tax_rate / 100))
-        year_expenses = monthly_emi * 12 + year_property_tax + (monthly_hoa * 12) + \
-                       insurance_annual + (year_property_value * maintenance_pct / 100)
-        
-        year_cash_flow = year_effective_rent - year_expenses
-        cash_flows.append(year_cash_flow)
-        
-        # Equity = property value - remaining mortgage
-        year_remaining_mortgage = calculate_remaining_balance(loan_amount, interest_rate, 30, year)
-        year_equity = year_property_value - year_remaining_mortgage
-        equity_growth.append({
-            "year": year,
-            "property_value": year_property_value,
-            "remaining_mortgage": year_remaining_mortgage,
-            "equity": year_equity
+# ═══════════════════════════════════════════════════════════════════
+# PROPERTY ANALYSIS
+# ═══════════════════════════════════════════════════════════════════
+
+def analyze(row: pd.Series, p: dict) -> dict:
+    """Full financial analysis for one property."""
+    price    = row["price"]
+    mo_rent  = row["rentZestimate"]
+    tax_rate = row.get("propertyTaxRate", 2.15)
+    mo_hoa   = row.get("monthlyHoaFee", 0)
+
+    # ── unpack params ────────────────────────────────────────────
+    dp_pct      = p["down_payment_pct"]
+    rate        = p["interest_rate"]
+    loan_yrs    = p["loan_term"]
+    buy_cc_pct  = p["closing_costs_pct"]
+    sell_cc_pct = p["selling_costs_pct"]
+    hold        = p["holding_years"]
+    appr        = p["appreciation_rate"]
+    rent_inc    = p["rent_increase_rate"]
+    maint_pct   = p["maintenance_pct"]
+    vac_pct     = p["vacancy_rate"]
+    ins_annual  = p["insurance_annual"]
+    mgmt_pct    = p["mgmt_fee_pct"]
+    sp_rate     = p["sp_growth_rate"]
+
+    # ── upfront ──────────────────────────────────────────────────
+    down     = price * dp_pct / 100
+    buy_cc   = price * buy_cc_pct / 100
+    init_inv = down + buy_cc
+    loan     = price - down
+    emi      = calc_emi(loan, rate, loan_yrs)
+
+    # ── year-1 monthly snapshot ──────────────────────────────────
+    mo_tax   = price * tax_rate / 100 / 12
+    mo_ins   = ins_annual / 12
+    mo_maint = price * maint_pct / 100 / 12
+    mo_mgmt  = mo_rent * mgmt_pct / 100
+    eff_rent = mo_rent * (1 - vac_pct / 100)
+    mo_exp   = emi + mo_tax + mo_hoa + mo_ins + mo_maint + mo_mgmt
+    mo_cf    = eff_rent - mo_exp
+
+    # cap rate  =  year-1 NOI / price
+    yr1_opex = (mo_tax + mo_hoa + mo_ins + mo_maint + mo_mgmt) * 12
+    yr1_noi  = eff_rent * 12 - yr1_opex
+    cap_rate = yr1_noi / price * 100 if price else 0
+
+    # cash-on-cash  =  year-1 cash-flow / initial investment
+    coc = (mo_cf * 12) / init_inv * 100 if init_inv else 0
+
+    # ── year-by-year ─────────────────────────────────────────────
+    irr_flows   = [-init_inv]
+    annual_cfs  = []          # operating cash-flows only (no sale)
+    equity_list = []
+
+    for yr in range(1, hold + 1):
+        yr_rent_mo  = mo_rent * ((1 + rent_inc / 100) ** yr)
+        yr_eff_ann  = yr_rent_mo * (1 - vac_pct / 100) * 12
+
+        yr_val      = price * ((1 + appr / 100) ** yr)
+        yr_tax_ann  = yr_val * tax_rate / 100
+        yr_mgmt_ann = yr_rent_mo * mgmt_pct / 100 * 12
+        yr_mort     = emi * 12 if yr <= loan_yrs else 0.0   # no payment after loan term
+        yr_exp      = (yr_mort + yr_tax_ann + mo_hoa * 12
+                       + ins_annual + yr_val * maint_pct / 100 + yr_mgmt_ann)
+
+        yr_cf = yr_eff_ann - yr_exp
+        irr_flows.append(yr_cf)
+        annual_cfs.append(yr_cf)
+
+        yr_bal = calc_remaining(loan, rate, loan_yrs, yr)
+        equity_list.append({
+            "year": yr,
+            "property_value": yr_val,
+            "remaining_mortgage": yr_bal,
+            "equity": yr_val - yr_bal,
         })
-        cumulative_equity = year_equity
-    
-    # Exit: add final sale proceeds (minus selling costs)
-    selling_costs = future_property_value * 0.06  # 6% selling costs
-    net_sale_proceeds = future_property_value - remaining_mortgage - selling_costs
-    cash_flows[-1] += net_sale_proceeds  # Add to final year cash flow
-    
-    # Total profit
-    total_cash_inflows = sum(cash_flows[1:])
-    total_profit = total_cash_inflows - initial_investment
-    
-    # Calculate IRR
+
+    # ── sale ─────────────────────────────────────────────────────
+    future_val = price * ((1 + appr / 100) ** hold)
+    rem_mort   = calc_remaining(loan, rate, loan_yrs, hold)
+    sell_cc    = future_val * sell_cc_pct / 100
+    net_sale   = future_val - rem_mort - sell_cc        # sale − bank − closing
+
+    irr_flows[-1] += net_sale                           # add to last year for IRR
+
+    total_profit = sum(irr_flows[1:]) - init_inv        # all cash in − initial out
+
     try:
-        irr_value = irr(cash_flows) * 100  # Convert to percentage
-        if not np.isfinite(irr_value):
-            irr_value = 0
-    except:
-        irr_value = 0
-    
-    # Annualized ROI (simple)
-    annualized_roi = (total_profit / initial_investment / holding_years) * 100 if initial_investment > 0 else 0
-    # Build property cumulative balance series (starts negative with initial investment)
-    property_balance_series = []
-    bal = -initial_investment
-    property_balance_series.append(bal)
-    for y in range(1, holding_years + 1):
-        bal += cash_flows[y]
-        property_balance_series.append(bal)
+        irr_val = compute_irr(irr_flows) * 100
+        if not np.isfinite(irr_val):
+            irr_val = 0.0
+    except Exception:
+        irr_val = 0.0
 
-    # Build S&P alternative balance series
-    sp_rate = params.get("sp_growth_rate", 0.0) / 100.0
-    sp_balance_series = []
-    sp_bal = initial_investment
-    sp_balance_series.append(sp_bal)
-    for y in range(1, holding_years + 1):
-        # grow existing balance
-        sp_bal = sp_bal * (1 + sp_rate)
-        # contribution: when property cash flow is negative, that amount would instead be invested
-        contribution = -min(0.0, cash_flows[y])
-        sp_bal += contribution
-        sp_balance_series.append(sp_bal)
+    ann_roi = (total_profit / init_inv / hold * 100) if (init_inv and hold) else 0
 
-    sp_final_balance = sp_balance_series[-1]
+    # ── PROPERTY NET-WORTH SERIES ────────────────────────────────
+    # NW = equity_in_property + cumulative_operating_cash − init_inv
+    #   year 0 : equity = down, cash = −init_inv  →  NW = −buy_closing
+    #   year N : sold → equity 0, NW = total_profit
+    prop_nw = [-buy_cc]
+    cumul = 0.0
+    for yr in range(1, hold + 1):
+        cumul += annual_cfs[yr - 1]
+        if yr < hold:
+            nw = equity_list[yr - 1]["equity"] + cumul - init_inv
+        else:
+            nw = total_profit                          # after sale
+        prop_nw.append(nw)
+
+    # ── S&P NET-WORTH SERIES ─────────────────────────────────────
+    # Invest the same dollars the property investor spends:
+    #   • initial_investment at year 0
+    #   • any negative operating CF each year (extra out-of-pocket)
+    # NW = portfolio − total_capital_deployed
+    sp_port     = init_inv
+    sp_deployed = init_inv
+    sp_nw       = [0.0]
+    for yr in range(1, hold + 1):
+        sp_port *= (1 + sp_rate / 100)
+        cf = annual_cfs[yr - 1]
+        if cf < 0:
+            sp_port     += abs(cf)
+            sp_deployed += abs(cf)
+        sp_nw.append(sp_port - sp_deployed)
 
     return {
-        "initial_investment": initial_investment,
-        "down_payment": down_payment,
-        "closing_costs": closing_costs,
-        "loan_amount": loan_amount,
-        "monthly_emi": monthly_emi,
-        "monthly_cash_flow": monthly_cash_flow,
-        "annual_cash_flow": annual_cash_flow,
+        # upfront
+        "initial_investment": init_inv,
+        "down_payment": down,
+        "buy_closing": buy_cc,
+        "loan_amount": loan,
+        # year-1 snapshot
+        "monthly_emi": emi,
+        "monthly_cash_flow": mo_cf,
+        "annual_cash_flow": mo_cf * 12,
+        "total_monthly_expenses": mo_exp,
+        "effective_monthly_rent": eff_rent,
         "cap_rate": cap_rate,
-        "future_property_value": future_property_value,
-        "remaining_mortgage": remaining_mortgage,
-        "net_sale_proceeds": net_sale_proceeds,
+        "cash_on_cash": coc,
+        # exit
+        "future_property_value": future_val,
+        "remaining_mortgage": rem_mort,
+        "sell_closing": sell_cc,
+        "net_sale_proceeds": net_sale,
+        # totals
         "total_profit": total_profit,
-        "annualized_roi": annualized_roi,
-        "irr": irr_value,
-        "equity_growth": equity_growth,
-        "cash_flow_years": cash_flows,
-        "holding_years": holding_years,
-        "sp_growth_rate": params.get("sp_growth_rate", 0.0),
-        "property_balance_series": property_balance_series,
-        "sp_balance_series": sp_balance_series,
-        "sp_final_balance": sp_final_balance,
-        "total_monthly_expenses": total_monthly_expenses,
-        "effective_monthly_rent": effective_monthly_rent,
+        "annualized_roi": ann_roi,
+        "irr": irr_val,
+        # series
+        "equity_growth": equity_list,
+        "annual_cfs": annual_cfs,
+        "prop_nw_series": prop_nw,
+        "sp_nw_series": sp_nw,
+        "sp_final_nw": sp_nw[-1],
+        "sp_total_deployed": sp_deployed,
     }
 
 
@@ -273,359 +271,353 @@ def analyze_property(row: pd.Series, params: dict) -> dict:
 # STREAMLIT APP
 # ═══════════════════════════════════════════════════════════════════
 
+def _fmt_dollar(v):
+    try:
+        return f"${float(v):,.0f}"
+    except (ValueError, TypeError):
+        return "–"
+
+
+def _fmt_pct(v):
+    try:
+        return f"{float(v):.2f}%"
+    except (ValueError, TypeError):
+        return "–"
+
+
+def _fmt_int(v):
+    try:
+        return str(int(float(v)))
+    except (ValueError, TypeError):
+        return "–"
+
+
 def main():
     st.set_page_config(
-        page_title="Real Estate ROI Analyzer",
+        page_title="RE ROI Analyzer",
         page_icon="🏠",
         layout="wide",
-        initial_sidebar_state="expanded"
+        initial_sidebar_state="expanded",
     )
-    
+
     st.title("🏠 Real Estate Rental & ROI Analysis")
-    st.markdown("**McKinney, TX (Zip Code 75071)** — Investment Property Analysis")
-    
-    # Load data
+    st.markdown(
+        "**McKinney, TX (75071)** — Investment Property Analyzer with S&P 500 Comparison"
+    )
+
     df = load_listings()
-    
     if df.empty:
-        st.error("No data available. Please check the JSON file.")
+        st.error("No data — check json/zillow_75071_listings.json")
         return
-    
-    st.sidebar.header("📊 Analysis Parameters")
-    
-    # ═══════════════════════════════════════════════════════════════
-    # SIDEBAR INPUTS
-    # ═══════════════════════════════════════════════════════════════
-    
-    st.sidebar.subheader("🏦 Loan Details")
-    interest_rate = st.sidebar.slider(
-        "30-Year Interest Rate (%)", 
-        min_value=2.0, max_value=8.0, value=6.5, step=0.25
+
+    # ──────────────────────────────────────────────────────────────
+    # SIDEBAR
+    # ──────────────────────────────────────────────────────────────
+    sb = st.sidebar
+    sb.header("📊 Analysis Parameters")
+
+    sb.subheader("🏦 Loan")
+    interest_rate    = sb.slider("Interest Rate (%)", 2.0, 10.0, 6.5, 0.25)
+    loan_term        = sb.selectbox("Loan Term (years)", [15, 20, 30], index=2)
+    down_payment_pct = sb.slider("Down Payment (%)", 5, 50, 20, 5)
+
+    sb.subheader("💸 Transaction Costs")
+    closing_costs_pct = sb.slider("Buy Closing Costs (%)", 1.0, 5.0, 3.0, 0.5)
+    selling_costs_pct = sb.slider("Sell Closing Costs (%)", 1.0, 10.0, 6.0, 0.5)
+
+    sb.subheader("⏳ Holding Period")
+    holding_years = sb.selectbox("Years Until Sale", [3, 5, 7, 10, 15, 20, 30], index=4)
+
+    sb.subheader("📈 Growth Assumptions")
+    appreciation_rate  = sb.slider("Property Appreciation (%/yr)", 0.0, 10.0, 3.5, 0.5)
+    rent_increase_rate = sb.slider("Rent Increase (%/yr)", 0.0, 10.0, 3.0, 0.5)
+    sp_growth_rate     = sb.slider("S&P 500 Return (%/yr)", 0.0, 30.0, 10.0, 0.5)
+
+    sb.subheader("🔧 Operating Costs")
+    maintenance_pct  = sb.slider("Maintenance (% of value/yr)", 0.5, 3.0, 1.0, 0.25)
+    vacancy_rate     = sb.slider("Vacancy Rate (%)", 0, 15, 5, 1)
+    mgmt_fee_pct     = sb.slider("Property Mgmt Fee (% of rent)", 0.0, 12.0, 0.0, 1.0)
+    insurance_annual = sb.number_input("Annual Insurance ($)", 500, 5000, 1200, 100)
+
+    sb.subheader("🔍 Filters")
+    p_min = int(df["price"].min())
+    p_max = int(df["price"].max())
+    if p_min == p_max:
+        p_max = p_min + 1
+    price_range = sb.slider(
+        "Price Range ($)", p_min, p_max, (p_min, p_max), step=10_000,
+        format="$%d",
     )
-    down_payment_pct = st.sidebar.slider(
-        "Down Payment (%)", 
-        min_value=5, max_value=50, value=20, step=5
+    home_types = sorted(df["homeType"].unique().tolist())
+    sel_types  = sb.multiselect("Home Type", home_types, default=home_types)
+    bed_opts   = sorted(df["bedrooms"].unique().tolist())
+    sel_beds   = sb.multiselect("Bedrooms", bed_opts, default=bed_opts)
+
+    # apply filters
+    fdf = df[
+        (df["price"] >= price_range[0])
+        & (df["price"] <= price_range[1])
+        & (df["homeType"].isin(sel_types))
+        & (df["bedrooms"].isin(sel_beds))
+    ]
+
+    params = dict(
+        interest_rate=interest_rate,
+        loan_term=loan_term,
+        down_payment_pct=down_payment_pct,
+        closing_costs_pct=closing_costs_pct,
+        selling_costs_pct=selling_costs_pct,
+        holding_years=holding_years,
+        appreciation_rate=appreciation_rate,
+        rent_increase_rate=rent_increase_rate,
+        maintenance_pct=maintenance_pct,
+        vacancy_rate=vacancy_rate,
+        insurance_annual=insurance_annual,
+        mgmt_fee_pct=mgmt_fee_pct,
+        sp_growth_rate=sp_growth_rate,
     )
-    closing_costs_pct = st.sidebar.slider(
-        "Closing Costs (%)", 
-        min_value=1.0, max_value=5.0, value=3.0, step=0.5
-    )
-    
-    st.sidebar.subheader("⏳ Holding Period")
-    holding_years = st.sidebar.selectbox(
-        "Years Until Sale", 
-        options=[5, 10, 15, 20, 30],
-        index=2  # Default to 15 years
-    )
-    
-    st.sidebar.subheader("📈 Growth Assumptions")
-    appreciation_rate = st.sidebar.slider(
-        "Annual Property Appreciation (%)", 
-        min_value=0.0, max_value=10.0, value=3.5, step=0.5
-    )
-    rent_increase_rate = st.sidebar.slider(
-        "Annual Rent Increase (%)", 
-        min_value=0.0, max_value=10.0, value=3.0, step=0.5
-    )
-    # S&P comparison
-    sp_growth_rate = st.sidebar.slider(
-        "Annual S&P Return (%)", 
-        min_value=0.0, max_value=30.0, value=10.0, step=0.5
-    )
-    
-    st.sidebar.subheader("🔧 Maintenance & Vacancy")
-    maintenance_pct = st.sidebar.slider(
-        "Annual Maintenance/Repair (%)", 
-        min_value=0.5, max_value=3.0, value=1.0, step=0.25
-    )
-    vacancy_rate = st.sidebar.slider(
-        "Vacancy Rate (%)", 
-        min_value=0, max_value=15, value=5, step=1
-    )
-    
-    st.sidebar.subheader("🏥 Insurance")
-    insurance_annual = st.sidebar.number_input(
-        "Annual Insurance ($)", 
-        min_value=500, max_value=3000, value=1200, step=100
-    )
-    
-    # Package parameters
-    params = {
-        "interest_rate": interest_rate,
-        "down_payment_pct": down_payment_pct,
-        "closing_costs_pct": closing_costs_pct,
-        "holding_years": holding_years,
-        "appreciation_rate": appreciation_rate,
-        "rent_increase_rate": rent_increase_rate,
-        "maintenance_pct": maintenance_pct,
-        "vacancy_rate": vacancy_rate,
-        "insurance_annual": insurance_annual,
-        "sp_growth_rate": sp_growth_rate,
-    }
-    
-    # ═══════════════════════════════════════════════════════════════
-    # ANALYZE ALL PROPERTIES
-    # ═══════════════════════════════════════════════════════════════
-    
-    with st.spinner("Analyzing properties..."):
-        results = []
-        for idx, row in df.iterrows():
-            analysis = analyze_property(row, params)
-            results.append({
-                "zpid": row["zpid"],
-                "address": row["full_address"],
-                "price": row["price"],
-                "rent": row["rentZestimate"],
-                "beds": row.get("bedrooms", "N/A"),
-                "baths": row.get("bathrooms", "N/A"),
-                "sqft": row.get("livingArea", "N/A"),
-                "monthly_cash_flow": analysis["monthly_cash_flow"],
-                "annual_cash_flow": analysis["annual_cash_flow"],
-                "cap_rate": analysis["cap_rate"],
-                "total_profit": analysis["total_profit"],
-                "annualized_roi": analysis["annualized_roi"],
-                "irr": analysis["irr"],
-                "initial_investment": analysis["initial_investment"],
-                "future_value": analysis["future_property_value"],
-                "equity_growth": analysis["equity_growth"],
-                "monthly_emi": analysis["monthly_emi"],
-                "total_monthly_expenses": analysis["total_monthly_expenses"],
-                "effective_monthly_rent": analysis["effective_monthly_rent"],
+
+    # ──────────────────────────────────────────────────────────────
+    # ANALYZE
+    # ──────────────────────────────────────────────────────────────
+    if fdf.empty:
+        st.warning("No properties match the current filters.")
+        return
+
+    with st.spinner(f"Analyzing {len(fdf)} properties …"):
+        rows = []
+        for _, r in fdf.iterrows():
+            a = analyze(r, params)
+            rows.append({
+                "zpid": r["zpid"],
+                "address": r["full_address"],
+                "price": r["price"],
+                "rent": r["rentZestimate"],
+                "beds": r.get("bedrooms", 0),
+                "baths": r.get("bathrooms", 0),
+                "sqft": r.get("livingArea", 0),
+                "homeType": r.get("homeType", "–"),
+                **{k: a[k] for k in (
+                    "monthly_cash_flow", "annual_cash_flow", "cap_rate",
+                    "cash_on_cash", "total_profit", "annualized_roi", "irr",
+                    "initial_investment", "future_property_value",
+                    "net_sale_proceeds", "sell_closing", "remaining_mortgage",
+                    "monthly_emi", "total_monthly_expenses",
+                    "effective_monthly_rent", "down_payment", "buy_closing",
+                    "sp_final_nw", "sp_total_deployed",
+                    "equity_growth", "annual_cfs",
+                    "prop_nw_series", "sp_nw_series",
+                )},
             })
-        
-        results_df = pd.DataFrame(results)
-    
-    # ═══════════════════════════════════════════════════════════════
+        rdf = pd.DataFrame(rows)
+
+    # ──────────────────────────────────────────────────────────────
     # SUMMARY METRICS
-    # ═══════════════════════════════════════════════════════════════
-    
+    # ──────────────────────────────────────────────────────────────
     st.header("📈 Portfolio Summary")
-    
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        st.metric(
-            "Total Properties",
-            f"{len(results_df):,}"
-        )
-    
-    with col2:
-        avg_roi = results_df["annualized_roi"].mean()
-        st.metric(
-            "Avg Annualized ROI",
-            f"{avg_roi:.2f}%"
-        )
-    
-    with col3:
-        avg_cash_flow = results_df["monthly_cash_flow"].mean()
-        st.metric(
-            "Avg Monthly Cash Flow",
-            f"${avg_cash_flow:,.0f}"
-        )
-    
-    with col4:
-        positive_cf = len(results_df[results_df["monthly_cash_flow"] > 0])
-        st.metric(
-            "Positive Cash Flow",
-            f"{positive_cf} ({positive_cf/len(results_df)*100:.1f}%)"
-        )
-    
-    # ═══════════════════════════════════════════════════════════════
-    # SORTING & FILTERING
-    # ═══════════════════════════════════════════════════════════════
-    
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Properties", f"{len(rdf):,}")
+    c2.metric("Avg IRR", f"{rdf['irr'].mean():.1f}%")
+    c3.metric("Avg Monthly CF", f"${rdf['monthly_cash_flow'].mean():,.0f}")
+    pos = int((rdf["monthly_cash_flow"] > 0).sum())
+    c4.metric("Cash-Flow +ve", f"{pos} ({pos / len(rdf) * 100:.0f}%)")
+    c5.metric("Avg Cash-on-Cash", f"{rdf['cash_on_cash'].mean():.1f}%")
+
+    # ──────────────────────────────────────────────────────────────
+    # SORT & TABLE
+    # ──────────────────────────────────────────────────────────────
     st.header("🔍 Top Investment Opportunities")
-    
-    sort_col1, sort_col2 = st.columns([3, 1])
-    
-    with sort_col1:
-        sort_by = st.selectbox(
-            "Sort By",
-            options=["Monthly Cash Flow", "Cap Rate", "Total ROI (IRR)", "Annualized ROI"],
-            index=0
-        )
-    
-    with sort_col2:
-        top_n = st.number_input("Show Top N", min_value=5, max_value=50, value=10, step=5)
-    
-    # Sort logic
-    sort_mapping = {
+    sc1, sc2 = st.columns([3, 1])
+    sort_by = sc1.selectbox(
+        "Sort By",
+        ["Monthly Cash Flow", "Cap Rate", "IRR",
+         "Cash-on-Cash", "Total Profit", "Annualized ROI"],
+    )
+    top_n = int(sc2.number_input("Show Top N", 5, 100, 10, 5))
+
+    sort_map = {
         "Monthly Cash Flow": "monthly_cash_flow",
         "Cap Rate": "cap_rate",
-        "Total ROI (IRR)": "irr",
-        "Annualized ROI": "annualized_roi"
+        "IRR": "irr",
+        "Cash-on-Cash": "cash_on_cash",
+        "Total Profit": "total_profit",
+        "Annualized ROI": "annualized_roi",
     }
-    
-    sorted_df = results_df.sort_values(
-        by=sort_mapping[sort_by], 
-        ascending=False
-    ).head(top_n)
-    
-    # ═══════════════════════════════════════════════════════════════
-    # DISPLAY TABLE
-    # ═══════════════════════════════════════════════════════════════
-    
-    st.subheader(f"Top {top_n} Properties by {sort_by}")
-    
-    display_df = sorted_df[[
-        "address", "price", "rent", "beds", "baths", "sqft",
-        "monthly_cash_flow", "cap_rate", "annualized_roi", "irr"
+    sdf = rdf.sort_values(sort_map[sort_by], ascending=False).head(top_n)
+
+    tbl = sdf[[
+        "address", "price", "rent", "beds", "baths", "sqft", "homeType",
+        "monthly_cash_flow", "cap_rate", "cash_on_cash", "irr",
     ]].copy()
-    
-    # Format columns
-    display_df["price"] = display_df["price"].apply(lambda x: f"${x:,.0f}")
-    display_df["rent"] = display_df["rent"].apply(lambda x: f"${x:,.0f}")
-    display_df["monthly_cash_flow"] = display_df["monthly_cash_flow"].apply(lambda x: f"${x:,.0f}")
-    display_df["cap_rate"] = display_df["cap_rate"].apply(lambda x: f"{x:.2f}%")
-    display_df["annualized_roi"] = display_df["annualized_roi"].apply(lambda x: f"{x:.2f}%")
-    display_df["irr"] = display_df["irr"].apply(lambda x: f"{x:.2f}%")
-    
-    display_df.columns = [
-        "Address", "Price", "Monthly Rent", "Beds", "Baths", "Sqft",
-        "Monthly Cash Flow", "Cap Rate", "Ann. ROI", "IRR"
+    tbl.columns = [
+        "Address", "Price", "Rent/mo", "Beds", "Baths", "Sqft", "Type",
+        "Monthly CF", "Cap Rate", "CoC Return", "IRR",
     ]
-    
-    st.dataframe(
-        display_df,
-        width="stretch",
-        hide_index=True
+    for c in ("Price", "Rent/mo", "Monthly CF"):
+        tbl[c] = tbl[c].apply(_fmt_dollar)
+    for c in ("Cap Rate", "CoC Return", "IRR"):
+        tbl[c] = tbl[c].apply(_fmt_pct)
+    for c in ("Beds",):
+        tbl[c] = tbl[c].apply(_fmt_int)
+    tbl["Baths"] = tbl["Baths"].apply(
+        lambda x: f"{float(x):.1f}" if pd.notna(x) else "–"
     )
-    
-    # ═══════════════════════════════════════════════════════════════
+    tbl["Sqft"] = tbl["Sqft"].apply(
+        lambda x: f"{float(x):,.0f}" if pd.notna(x) and float(x) > 0 else "–"
+    )
+
+    st.dataframe(tbl, hide_index=True, width="stretch")
+
+    # ──────────────────────────────────────────────────────────────
     # DETAILED PROPERTY VIEWS
-    # ═══════════════════════════════════════════════════════════════
-    
+    # ──────────────────────────────────────────────────────────────
     st.header("🏡 Property Details")
-    
-    for idx, row in sorted_df.iterrows():
+
+    for _, row in sdf.iterrows():
         with st.expander(f"📍 {row['address']} — ${row['price']:,.0f}"):
-            
-            # Metrics
-            metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
-            
-            with metric_col1:
-                st.metric("Monthly Cash Flow", f"${row['monthly_cash_flow']:,.0f}")
-            
-            with metric_col2:
-                st.metric("Cap Rate", f"{row['cap_rate']:.2f}%")
-            
-            with metric_col3:
-                st.metric("Annualized ROI", f"{row['annualized_roi']:.2f}%")
-            
-            with metric_col4:
-                st.metric("IRR", f"{row['irr']:.2f}%")
-            
-            # Financial breakdown
+
+            # ── top metrics ──────────────────────────────────────
+            m1, m2, m3, m4, m5 = st.columns(5)
+            m1.metric("Monthly CF", f"${row['monthly_cash_flow']:,.0f}")
+            m2.metric("Cap Rate", f"{row['cap_rate']:.2f}%")
+            m3.metric("Cash-on-Cash", f"{row['cash_on_cash']:.2f}%")
+            m4.metric("IRR", f"{row['irr']:.2f}%")
+            m5.metric(f"Profit ({holding_years}yr)", f"${row['total_profit']:,.0f}")
+
+            # ── financial breakdown ──────────────────────────────
             st.subheader("💰 Financial Breakdown")
-            
-            fin_col1, fin_col2 = st.columns(2)
-            
-            with fin_col1:
-                st.markdown("**Initial Investment**")
-                st.write(f"Down Payment: ${row['initial_investment'] - (row['price'] * closing_costs_pct / 100):,.0f}")
-                st.write(f"Closing Costs: ${row['price'] * closing_costs_pct / 100:,.0f}")
-                st.write(f"**Total: ${row['initial_investment']:,.0f}**")
-                
-                st.markdown("**Monthly Income**")
+            fc1, fc2, fc3 = st.columns(3)
+
+            with fc1:
+                st.markdown("**Purchase**")
+                st.write(f"Price: ${row['price']:,.0f}")
+                st.write(f"Down Payment ({down_payment_pct}%): ${row['down_payment']:,.0f}")
+                st.write(f"Buy Closing ({closing_costs_pct}%): ${row['buy_closing']:,.0f}")
+                st.write(f"**Total Out-of-Pocket: ${row['initial_investment']:,.0f}**")
+
+            with fc2:
+                st.markdown("**Monthly (Year 1)**")
                 st.write(f"Gross Rent: ${row['rent']:,.0f}")
-                st.write(f"Effective Rent (after vacancy): ${row['effective_monthly_rent']:,.0f}")
-            
-            with fin_col2:
-                st.markdown("**Monthly Expenses**")
-                st.write(f"Mortgage (EMI): ${row['monthly_emi']:,.0f}")
-                st.write(f"Total Expenses: ${row['total_monthly_expenses']:,.0f}")
-                st.write(f"**Net Cash Flow: ${row['monthly_cash_flow']:,.0f}**")
-                
-                st.markdown(f"**Exit ({holding_years} years)**")
-                st.write(f"Property Value: ${row['future_value']:,.0f}")
-                st.write(f"Total Profit: ${row['total_profit']:,.0f}")
-            
-            # Equity growth chart
-            st.subheader(f"📊 Equity Growth Over {holding_years} Years")
-            
-            equity_data = row["equity_growth"]
-            
-            if equity_data:
-                years = [item["year"] for item in equity_data]
-                property_values = [item["property_value"] for item in equity_data]
-                mortgages = [item["remaining_mortgage"] for item in equity_data]
-                equities = [item["equity"] for item in equity_data]
-                
-                fig = go.Figure()
-                
-                fig.add_trace(go.Scatter(
-                    x=years, y=property_values, 
-                    name="Property Value",
-                    line=dict(color="#2E86AB", width=3)
-                ))
-                
-                fig.add_trace(go.Scatter(
-                    x=years, y=mortgages,
-                    name="Remaining Mortgage",
-                    line=dict(color="#A23B72", width=3)
-                ))
-                
-                fig.add_trace(go.Scatter(
-                    x=years, y=equities,
-                    name="Your Equity",
-                    fill='tonexty',
-                    line=dict(color="#06A77D", width=3)
-                ))
-                
-                fig.update_layout(
-                    title="Property Value, Mortgage, and Equity Over Time",
-                    xaxis_title="Year",
-                    yaxis_title="Amount ($)",
-                    hovermode="x unified",
-                    height=400
+                st.write(f"Eff. Rent (−{vacancy_rate}% vacancy): "
+                         f"${row['effective_monthly_rent']:,.0f}")
+                st.write(f"Mortgage ({loan_term}yr @ {interest_rate}%): "
+                         f"${row['monthly_emi']:,.0f}")
+                st.write(f"All Expenses: ${row['total_monthly_expenses']:,.0f}")
+                cf_color = "green" if row["monthly_cash_flow"] >= 0 else "red"
+                st.markdown(
+                    f"**Cash Flow: "
+                    f"<span style='color:{cf_color}'>${row['monthly_cash_flow']:,.0f}/mo"
+                    f"</span>**",
+                    unsafe_allow_html=True,
                 )
-                
-                st.plotly_chart(fig, key=f"equity_chart_{row['zpid']}")
 
-                # Comparison vs S&P
-                # Retrieve analysis again for series (we didn't store series in results_df earlier), so recompute quickly
-                analysis = analyze_property(df[df["zpid"] == row['zpid']].iloc[0], params)
-                prop_series = analysis.get("property_balance_series", [])
-                sp_series = analysis.get("sp_balance_series", [])
+            with fc3:
+                st.markdown(f"**Sale (Year {holding_years})**")
+                st.write(f"Future Value: ${row['future_property_value']:,.0f}")
+                st.write(f"− Bank Owed: ${row['remaining_mortgage']:,.0f}")
+                st.write(f"− Sell Closing ({selling_costs_pct}%): "
+                         f"${row['sell_closing']:,.0f}")
+                st.write(f"**= Net Proceeds: ${row['net_sale_proceeds']:,.0f}**")
 
-                if prop_series and sp_series:
-                    comp_years = list(range(0, len(prop_series)))
-                    comp_fig = go.Figure()
-                    comp_fig.add_trace(go.Scatter(
-                        x=comp_years, y=prop_series,
-                        name="Net Wealth: Property",
-                        line=dict(color="#2E86AB", width=3)
-                    ))
-                    comp_fig.add_trace(go.Scatter(
-                        x=comp_years, y=sp_series,
-                        name=f"Wealth: S&P @ {analysis.get('sp_growth_rate',0):.2f}%",
-                        line=dict(color="#F39C12", width=3)
-                    ))
-                    comp_fig.update_layout(
-                        title="Property vs S&P Wealth Over Time",
-                        xaxis_title="Year",
-                        yaxis_title="Amount ($)",
-                        hovermode="x unified",
-                        height=420
-                    )
-                    st.plotly_chart(comp_fig, key=f"comp_chart_{row['zpid']}")
+            # ── annual cash-flow bar chart ────────────────────
+            st.subheader("📊 Annual Operating Cash Flow")
+            cfs = row["annual_cfs"]
+            cf_yrs = list(range(1, len(cfs) + 1))
+            colors = ["#06A77D" if v >= 0 else "#E74C3C" for v in cfs]
+            cf_fig = go.Figure(
+                go.Bar(x=cf_yrs, y=cfs, marker_color=colors,
+                       hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>")
+            )
+            cf_fig.update_layout(
+                xaxis_title="Year", yaxis_title="Cash Flow ($)",
+                height=300, hovermode="x",
+            )
+            st.plotly_chart(cf_fig, key=f"cf_{row['zpid']}")
 
-                    # Final comparison numbers
-                    sp_final = analysis.get("sp_final_balance", 0.0)
-                    prop_final = analysis.get("total_profit", 0.0)
-                    comp_col1, comp_col2 = st.columns(2)
-                    with comp_col1:
-                        st.metric("Property Final Net (Total Profit)", f"${prop_final:,.0f}")
-                    with comp_col2:
-                        st.metric(f"S&P Final Balance (@{analysis.get('sp_growth_rate',0):.2f}%)", f"${sp_final:,.0f}")
-                    st.markdown(f"**Difference (S&P - Property): ${sp_final - prop_final:,.0f}**")
-    
-    # ═══════════════════════════════════════════════════════════════
+            # ── equity growth chart ───────────────────────────
+            st.subheader(f"📈 Equity Growth Over {holding_years} Years")
+            eq = row["equity_growth"]
+            if eq:
+                yrs = [e["year"] for e in eq]
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(
+                    x=yrs,
+                    y=[e["property_value"] for e in eq],
+                    name="Property Value",
+                    line=dict(color="#2E86AB", width=2),
+                ))
+                fig.add_trace(go.Scatter(
+                    x=yrs,
+                    y=[e["remaining_mortgage"] for e in eq],
+                    name="Mortgage Balance",
+                    line=dict(color="#A23B72", width=2),
+                ))
+                fig.add_trace(go.Scatter(
+                    x=yrs,
+                    y=[e["equity"] for e in eq],
+                    name="Equity",
+                    fill="tonexty",
+                    line=dict(color="#06A77D", width=2),
+                ))
+                fig.update_layout(
+                    xaxis_title="Year", yaxis_title="$",
+                    height=380, hovermode="x unified",
+                )
+                st.plotly_chart(fig, key=f"eq_{row['zpid']}")
+
+            # ── Property vs S&P net-worth comparison ──────────
+            st.subheader("⚖️ Property vs S&P 500 — Net Worth Comparison")
+            st.caption(
+                "Both scenarios invest the **same total dollars** "
+                "(initial investment + any negative cash-flow years). "
+                "Net worth = assets − total capital deployed."
+            )
+
+            p_nw = row["prop_nw_series"]
+            s_nw = row["sp_nw_series"]
+            comp_yrs = list(range(len(p_nw)))
+
+            comp_fig = go.Figure()
+            comp_fig.add_trace(go.Scatter(
+                x=comp_yrs, y=p_nw,
+                name="Property Net Worth",
+                line=dict(color="#2E86AB", width=3),
+                hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
+            ))
+            comp_fig.add_trace(go.Scatter(
+                x=comp_yrs, y=s_nw,
+                name=f"S&P Net Worth ({sp_growth_rate}%/yr)",
+                line=dict(color="#F39C12", width=3),
+                hovertemplate="Year %{x}: $%{y:,.0f}<extra></extra>",
+            ))
+            # zero line
+            comp_fig.add_hline(y=0, line_dash="dot", line_color="grey",
+                               annotation_text="Break-even")
+            comp_fig.update_layout(
+                xaxis_title="Year", yaxis_title="Net Worth ($)",
+                height=420, hovermode="x unified",
+            )
+            st.plotly_chart(comp_fig, key=f"cmp_{row['zpid']}")
+
+            # final comparison metrics
+            prop_profit = row["total_profit"]
+            sp_profit   = row["sp_final_nw"]
+            delta       = prop_profit - sp_profit
+            winner      = "🏠 Property" if delta > 0 else "📈 S&P 500"
+
+            cp1, cp2, cp3 = st.columns(3)
+            cp1.metric("Property Profit", f"${prop_profit:,.0f}")
+            cp2.metric(f"S&P Profit ({sp_growth_rate}%)", f"${sp_profit:,.0f}")
+            cp3.metric("Winner", winner, f"by ${abs(delta):,.0f}")
+
+    # ──────────────────────────────────────────────────────────────
     # FOOTER
-    # ═══════════════════════════════════════════════════════════════
-    
+    # ──────────────────────────────────────────────────────────────
     st.markdown("---")
-    st.caption(f"Data source: `json/zillow_75071_listings.json` | {len(df)} total properties analyzed")
+    st.caption(
+        f"Data: json/zillow_75071_listings.json · "
+        f"{len(df)} total · {len(fdf)} after filters · {len(rdf)} analyzed"
+    )
 
 
 if __name__ == "__main__":
