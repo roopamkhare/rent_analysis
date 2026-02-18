@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Leaflet CSS — loaded from CDN via <link> in layout.tsx */
+
+:root {
+  --color-primary: #2E86AB;
+  --color-green: #06A77D;
+  --color-red: #E74C3C;
+  --color-gold: #F39C12;
+  --color-purple: #A23B72;
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-text: #f1f5f9;
+  --color-muted: #94a3b8;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+/* Leaflet overrides for dark theme */
+.leaflet-container { background: #1e293b; }
+.leaflet-popup-content-wrapper { background: #1e293b; color: #f1f5f9; border-radius: 8px; }
+.leaflet-popup-tip { background: #1e293b; }

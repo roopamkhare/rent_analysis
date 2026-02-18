@@ -1,0 +1,31 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^25.2.3",
+    "@types/react": "^19.2.14",
+    "@types/react-plotly.js": "^2.6.4",
+    "leaflet": "^1.9.4",
+    "next": "^16.1.6",
+    "plotly.js-basic-dist": "^3.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-leaflet": "^5.0.0",
+    "react-plotly.js": "^2.6.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
+  }
+}
