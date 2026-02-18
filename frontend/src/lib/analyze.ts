@@ -111,22 +111,48 @@ export function calcRemaining(
   return Math.max(0, (principal * (Math.pow(1 + i, N) - Math.pow(1 + i, n))) / (Math.pow(1 + i, N) - 1));
 }
 
-/** Newton-Raphson IRR (matches numpy-financial). */
+/** Bisection + Newton-Raphson IRR — robust against divergence. */
 function computeIrr(cashFlows: number[]): number {
-  let r = 0.1;
-  for (let iter = 0; iter < 200; iter++) {
-    let npv = 0, dnpv = 0;
+  // Check if all flows are same sign → no IRR exists
+  const hasNeg = cashFlows.some((c) => c < 0);
+  const hasPos = cashFlows.some((c) => c > 0);
+  if (!hasNeg || !hasPos) return 0;
+
+  // NPV helper
+  const npvAt = (rate: number): number => {
+    let npv = 0;
     for (let t = 0; t < cashFlows.length; t++) {
-      const d = Math.pow(1 + r, t);
-      npv += cashFlows[t] / d;
-      dnpv -= t * cashFlows[t] / (d * (1 + r));
+      npv += cashFlows[t] / Math.pow(1 + rate, t);
     }
-    if (Math.abs(dnpv) < 1e-14) break;
-    const newR = r - npv / dnpv;
-    if (Math.abs(newR - r) < 1e-10) { r = newR; break; }
-    r = newR;
+    return npv;
+  };
+
+  // 1) Bisection to find a stable bracket
+  let lo = -0.5, hi = 5.0; // −50% to 500%
+  let nLo = npvAt(lo), nHi = npvAt(hi);
+
+  // If no sign change in bracket, widen or give up
+  if (nLo * nHi > 0) {
+    // Try wider range
+    for (const tryHi of [10, 50, 100]) {
+      nHi = npvAt(tryHi);
+      if (nLo * nHi <= 0) { hi = tryHi; break; }
+    }
+    if (nLo * nHi > 0) return 0; // no root found
   }
-  return isFinite(r) ? r * 100 : 0;
+
+  // Bisection: 60 iterations ≈ 1e-18 precision
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const nMid = npvAt(mid);
+    if (nMid * nLo <= 0) { hi = mid; nHi = nMid; }
+    else { lo = mid; nLo = nMid; }
+  }
+
+  const r = (lo + hi) / 2;
+  // Clamp to reasonable range: -100% to 1000%
+  if (!isFinite(r) || r < -1 || r > 10) return 0;
+  return r * 100;
 }
 
 /* ── main analyze ─────────────────────────────────────────────── */
