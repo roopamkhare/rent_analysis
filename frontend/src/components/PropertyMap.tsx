@@ -41,19 +41,21 @@ export default function PropertyMap({ listings, results, selectedZpid, onSelect 
 
     mapRef.current = map;
 
-    // Add markers
-    const cfValues = valid.map((l) => {
+    // Add markers — size by IRR to highlight best investment opportunities
+    const irrValues = valid.map((l) => {
       const r = results.get(l.zpid);
-      return r ? Math.abs(r.monthlyCashFlow) : 0;
+      return r ? r.irr : 0;
     });
-    const cfMax = Math.max(...cfValues, 1);
+    const irrMax = Math.max(...irrValues, 1);
 
     valid.forEach((l) => {
       const r = results.get(l.zpid);
       if (!r) return;
       const cf = r.monthlyCashFlow;
-      const radius = 6 + (Math.abs(cf) / cfMax) * 18;
-      const color = cf >= 0 ? "#06A77D" : "#E74C3C";
+      const irr = r.irr;
+      // Larger circles for higher IRR; minimum radius 5, max ~28
+      const radius = 5 + (Math.max(irr, 0) / irrMax) * 23;
+      const color = irr >= 10 ? "#06A77D" : irr >= 5 ? "#F39C12" : "#E74C3C";
 
       const marker = L.circleMarker([l.latitude, l.longitude], {
         radius,
