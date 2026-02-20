@@ -3,14 +3,11 @@
 import { useState } from "react";
 import { AnalysisParams } from "@/lib/analyze";
 
-/* ── Tooltip helper ──────────────────────────────────────────── */
+/* ── Tooltip helper (uses native title — never clipped by overflow) ── */
 function Tip({ text }: { text: string }) {
   return (
-    <span className="relative group ml-1 cursor-help">
-      <span className="text-[var(--color-muted)] text-[10px]">ⓘ</span>
-      <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 hidden group-hover:block w-48 text-[10px] p-1.5 rounded bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] shadow-lg z-50 leading-snug">
-        {text}
-      </span>
+    <span className="ml-1 cursor-help text-[10px] text-[var(--color-primary)] opacity-70 hover:opacity-100" title={text}>
+      ⓘ
     </span>
   );
 }

@@ -94,14 +94,9 @@ export default function PropertyDetail({ listing: l, result: r, params: p }: Pro
 
 function Metric({ label, value, tip }: { label: string; value: string; tip?: string }) {
   return (
-    <div className="bg-[var(--color-surface)] rounded-lg p-3 text-center border border-[var(--color-border)] relative group">
+    <div className="bg-[var(--color-surface)] rounded-lg p-3 text-center border border-[var(--color-border)] cursor-default" title={tip}>
       <div className="text-xs text-[var(--color-muted)]">{label}</div>
       <div className="text-base font-bold mt-1">{value}</div>
-      {tip && (
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 hidden group-hover:block w-52 text-[10px] p-2 rounded bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] shadow-lg z-50 leading-snug">
-          {tip}
-        </div>
-      )}
     </div>
   );
 }
