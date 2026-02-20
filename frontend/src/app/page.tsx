@@ -107,6 +107,12 @@ export default function Home() {
     return arr;
   }, [filtered, results, sortBy, hideFlagged]);
 
+  // Listings to display (respects hideFlagged)
+  const displayListings = useMemo(
+    () => sorted.map((r) => r.listing),
+    [sorted],
+  );
+
   // Selected property
   const selectedListing = filtered.find((l) => l.zpid === selectedZpid);
   const selectedResult = selectedZpid ? results.get(selectedZpid) : undefined;
@@ -154,14 +160,14 @@ export default function Home() {
           <p className="text-sm text-[var(--color-muted)]">
             DFW Metroplex{meta.zipcodes ? ` (${meta.zipcodes.length} zipcodes)` : ""}
             {meta.scraped_at ? ` · Updated ${meta.scraped_at}` : ""}
-            {" "} — {filtered.length} properties · Click markers or rows to analyze
+            {" "} — {displayListings.length} properties{hideFlagged && displayListings.length < filtered.length ? ` (${filtered.length - displayListings.length} flagged hidden)` : ""} · Click markers or rows to analyze
           </p>
         </div>
 
         {/* Map */}
         <div className="mb-6">
           <PropertyMap
-            listings={filtered}
+            listings={displayListings}
             results={results}
             selectedZpid={selectedZpid}
             onSelect={handleSelect}
