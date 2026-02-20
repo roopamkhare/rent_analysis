@@ -22,7 +22,7 @@ const DEFAULT_PARAMS: AnalysisParams = {
   rentIncreaseRate: 3,
   maintenancePct: 1,
   vacancyRate: 5,
-  insuranceAnnual: 1200,
+  insurancePct: 0.5,
   mgmtFeePct: 0,
   spGrowthRate: 10,
   rentEstimatePct: 0.55,  // updated once data loads

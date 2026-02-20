@@ -42,7 +42,7 @@ export interface AnalysisParams {
   rentIncreaseRate: number;  // %/yr
   maintenancePct: number;    // % of value/yr
   vacancyRate: number;       // %
-  insuranceAnnual: number;   // $
+  insurancePct: number;      // % of property value/yr
   mgmtFeePct: number;        // % of rent
   spGrowthRate: number;      // %/yr
   rentEstimatePct: number;   // monthly rent as % of sale price (fallback)
@@ -226,7 +226,7 @@ export function analyze(listing: Listing, p: AnalysisParams): AnalysisResult {
 
   // year-1 monthly
   const moTax = price * taxRate / 100 / 12;
-  const moIns = p.insuranceAnnual / 12;
+  const moIns = price * p.insurancePct / 100 / 12;
   const moMaint = price * p.maintenancePct / 100 / 12;
   const moMgmt = moRent * p.mgmtFeePct / 100;
   const effRent = moRent * (1 - p.vacancyRate / 100);
@@ -250,7 +250,7 @@ export function analyze(listing: Listing, p: AnalysisParams): AnalysisResult {
     const yrTaxAnn = yrVal * taxRate / 100;
     const yrMgmtAnn = yrRentMo * p.mgmtFeePct / 100 * 12;
     const yrMort = yr <= p.loanTerm ? emi * 12 : 0;
-    const yrExp = yrMort + yrTaxAnn + moHoa * 12 + p.insuranceAnnual + yrVal * p.maintenancePct / 100 + yrMgmtAnn;
+    const yrExp = yrMort + yrTaxAnn + moHoa * 12 + yrVal * p.insurancePct / 100 + yrVal * p.maintenancePct / 100 + yrMgmtAnn;
     const yrCf = yrEffAnn - yrExp;
 
     irrFlows.push(yrCf);

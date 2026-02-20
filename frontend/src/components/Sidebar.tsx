@@ -115,7 +115,7 @@ export default function Sidebar({
         <Slider label="Maintenance" value={p.maintenancePct} min={0.5} max={3} step={0.25} unit="%" tip="Annual maintenance as % of value. 1% for newer, 2%+ for older homes." onChange={(v) => set({ maintenancePct: v })} />
         <Slider label="Vacancy" value={p.vacancyRate} min={0} max={15} step={1} unit="%" tip="% of time empty. 5% ≈ 2-3 weeks/year. DFW avg ~5-7%." onChange={(v) => set({ vacancyRate: v })} />
         <Slider label="Mgmt Fee" value={p.mgmtFeePct} min={0} max={12} step={1} unit="%" tip="PM fee as % of rent. 0% if self-managed, 8-10% for a PM company." onChange={(v) => set({ mgmtFeePct: v })} />
-        <Slider label="Insurance" value={p.insuranceAnnual} min={500} max={5000} step={100} unit="$" tip="Annual homeowners insurance. Varies by location, size, and age." onChange={(v) => set({ insuranceAnnual: v })} />
+        <Slider label="Insurance" value={p.insurancePct} min={0.1} max={2} step={0.1} unit="%" tip="Annual insurance as % of property value. Texas avg 0.5-1.5%. Higher for older homes or flood zones." onChange={(v) => set({ insurancePct: v })} />
       </Section>
 
       <Section title="🔍 Filters">
