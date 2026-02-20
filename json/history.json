@@ -1,0 +1,7411 @@
+{
+  "snapshots": [
+    {
+      "date": "2026-02-14",
+      "totalListings": 820,
+      "medianPrice": 529995,
+      "medianRent": 2880,
+      "avgPricePerSqFt": 215.6,
+      "minPrice": 249000,
+      "maxPrice": 14650000,
+      "zipcodes": [
+        "75071"
+      ],
+      "byZipcode": {
+        "75071": {
+          "count": 820,
+          "medianPrice": 529995,
+          "medianRent": 2880
+        }
+      },
+      "byHomeType": {
+        "SINGLE_FAMILY": 782,
+        "MANUFACTURED": 4,
+        "TOWNHOUSE": 22,
+        "LOT": 12
+      }
+    }
+  ],
+  "properties": {
+    "96438844": [
+      {
+        "date": "2026-02-14",
+        "price": 595000,
+        "rent": 3165,
+        "address": "2505 Sunnyside Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "26668082": [
+      {
+        "date": "2026-02-14",
+        "price": 309900,
+        "rent": 2740,
+        "address": "2808 High Pointe Blvd",
+        "zipcode": "75071"
+      }
+    ],
+    "53098893": [
+      {
+        "date": "2026-02-14",
+        "price": 564999,
+        "rent": 3260,
+        "address": "2806 Rosewood Blvd",
+        "zipcode": "75071"
+      }
+    ],
+    "80056097": [
+      {
+        "date": "2026-02-14",
+        "price": 1250000,
+        "rent": 3708,
+        "address": "4435 Serenity Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "83745948": [
+      {
+        "date": "2026-02-14",
+        "price": 600000,
+        "rent": 3154,
+        "address": "7824 Harvest Hill Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "454927991": [
+      {
+        "date": "2026-02-14",
+        "price": 335000,
+        "rent": null,
+        "address": "221 Caliber Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "249833449": [
+      {
+        "date": "2026-02-14",
+        "price": 590000,
+        "rent": null,
+        "address": "5608 Kildare Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "336112465": [
+      {
+        "date": "2026-02-14",
+        "price": 889000,
+        "rent": 3974,
+        "address": "8713 Autumn Lake Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "116189891": [
+      {
+        "date": "2026-02-14",
+        "price": 699000,
+        "rent": 3318,
+        "address": "6600 Orchard Park Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242110015": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": null,
+        "address": "609 Seymour Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "116188899": [
+      {
+        "date": "2026-02-14",
+        "price": 750000,
+        "rent": null,
+        "address": "6629 Orchard Park Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459609683": [
+      {
+        "date": "2026-02-14",
+        "price": 439990,
+        "rent": null,
+        "address": "5100 Noland Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2053526702": [
+      {
+        "date": "2026-02-14",
+        "price": 600000,
+        "rent": null,
+        "address": "3337 Blake Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83129014": [
+      {
+        "date": "2026-02-14",
+        "price": 925000,
+        "rent": null,
+        "address": "2316 Grassmere Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "116189845": [
+      {
+        "date": "2026-02-14",
+        "price": 14650000,
+        "rent": null,
+        "address": "1201 Gray Branch Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "53087192": [
+      {
+        "date": "2026-02-14",
+        "price": 485000,
+        "rent": null,
+        "address": "809 Glenwood Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "336113222": [
+      {
+        "date": "2026-02-14",
+        "price": 300000,
+        "rent": 1946,
+        "address": "7421 Gray Wolf Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "122294849": [
+      {
+        "date": "2026-02-14",
+        "price": 610000,
+        "rent": 2929,
+        "address": "2417 Wrexham Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "125230466": [
+      {
+        "date": "2026-02-14",
+        "price": 675000,
+        "rent": 3328,
+        "address": "7701 Caddo Cv",
+        "zipcode": "75071"
+      }
+    ],
+    "249776833": [
+      {
+        "date": "2026-02-14",
+        "price": 715000,
+        "rent": null,
+        "address": "7409 Eastwick Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "53087204": [
+      {
+        "date": "2026-02-14",
+        "price": 335000,
+        "rent": 2062,
+        "address": "3407 Broadview Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "53112772": [
+      {
+        "date": "2026-02-14",
+        "price": 370000,
+        "rent": 2726,
+        "address": "3337 Woodberry Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "242107927": [
+      {
+        "date": "2026-02-14",
+        "price": 407900,
+        "rent": 2567,
+        "address": "9828 Diamondback Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "55703512": [
+      {
+        "date": "2026-02-14",
+        "price": 529000,
+        "rent": 3220,
+        "address": "3516 Bluff Creek Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458050372": [
+      {
+        "date": "2026-02-14",
+        "price": 294990,
+        "rent": null,
+        "address": "804 Antioch Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "26615928": [
+      {
+        "date": "2026-02-14",
+        "price": 315000,
+        "rent": 2095,
+        "address": "319 Gwendola Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459804543": [
+      {
+        "date": "2026-02-14",
+        "price": 327490,
+        "rent": 2449,
+        "address": "508 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "65366751": [
+      {
+        "date": "2026-02-14",
+        "price": 1195000,
+        "rent": null,
+        "address": "1413 Montclair Cir",
+        "zipcode": "75071"
+      }
+    ],
+    "331505722": [
+      {
+        "date": "2026-02-14",
+        "price": 545000,
+        "rent": 2856,
+        "address": "8916 Brushy Springs Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457623525": [
+      {
+        "date": "2026-02-14",
+        "price": 275257,
+        "rent": 2001,
+        "address": "707 Dotty Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "55695333": [
+      {
+        "date": "2026-02-14",
+        "price": 410000,
+        "rent": 2617,
+        "address": "9120 Harrisburg Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "53118125": [
+      {
+        "date": "2026-02-14",
+        "price": 375000,
+        "rent": 2157,
+        "address": "2600 Hidden Valley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "53087214": [
+      {
+        "date": "2026-02-14",
+        "price": 499900,
+        "rent": null,
+        "address": "710 Bluffview Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "448214048": [
+      {
+        "date": "2026-02-14",
+        "price": 389990,
+        "rent": null,
+        "address": "5106 Lawton Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "65373860": [
+      {
+        "date": "2026-02-14",
+        "price": 415000,
+        "rent": null,
+        "address": "3901 Hickory Bend Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "96459886": [
+      {
+        "date": "2026-02-14",
+        "price": 635000,
+        "rent": null,
+        "address": "8100 Caelan Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "83759364": [
+      {
+        "date": "2026-02-14",
+        "price": 375000,
+        "rent": null,
+        "address": "5405 Mountain Pointe Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "338241602": [
+      {
+        "date": "2026-02-14",
+        "price": 825000,
+        "rent": 3816,
+        "address": "2405 Bucer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "26615471": [
+      {
+        "date": "2026-02-14",
+        "price": 359900,
+        "rent": null,
+        "address": "2119 Quail Run",
+        "zipcode": "75071"
+      }
+    ],
+    "83733438": [
+      {
+        "date": "2026-02-14",
+        "price": 574450,
+        "rent": 2986,
+        "address": "5665 Binbranch Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457623373": [
+      {
+        "date": "2026-02-14",
+        "price": 354289,
+        "rent": 2492,
+        "address": "808 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "304052346": [
+      {
+        "date": "2026-02-14",
+        "price": 439000,
+        "rent": null,
+        "address": "2420 Jeans Mill Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "55700160": [
+      {
+        "date": "2026-02-14",
+        "price": 3225000,
+        "rent": 6049,
+        "address": "505 Creekside Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "120748071": [
+      {
+        "date": "2026-02-14",
+        "price": 580000,
+        "rent": 3040,
+        "address": "917 Park Place Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "2054098827": [
+      {
+        "date": "2026-02-14",
+        "price": 350000,
+        "rent": 2578,
+        "address": "505 Cottagewood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "249835117": [
+      {
+        "date": "2026-02-14",
+        "price": 997000,
+        "rent": 3313,
+        "address": "7070 Armadillo Rdg",
+        "zipcode": "75071"
+      }
+    ],
+    "336114664": [
+      {
+        "date": "2026-02-14",
+        "price": 294000,
+        "rent": 1996,
+        "address": "7513 Gray Wolf Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "242111803": [
+      {
+        "date": "2026-02-14",
+        "price": 394900,
+        "rent": 2301,
+        "address": "10353 Big Sandy Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "83757235": [
+      {
+        "date": "2026-02-14",
+        "price": 499990,
+        "rent": 2999,
+        "address": "2809 Glendale Way",
+        "zipcode": "75071"
+      }
+    ],
+    "457492920": [
+      {
+        "date": "2026-02-14",
+        "price": 279990,
+        "rent": 1997,
+        "address": "503 Cottner Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "55703453": [
+      {
+        "date": "2026-02-14",
+        "price": 379900,
+        "rent": 3421,
+        "address": "2333 Avalon Creek Way",
+        "zipcode": "75071"
+      }
+    ],
+    "62572651": [
+      {
+        "date": "2026-02-14",
+        "price": 925000,
+        "rent": null,
+        "address": "7212 Millard Pond Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "339270272": [
+      {
+        "date": "2026-02-14",
+        "price": 799990,
+        "rent": null,
+        "address": "416 Calmwater Cv",
+        "zipcode": "75071"
+      }
+    ],
+    "113398428": [
+      {
+        "date": "2026-02-14",
+        "price": 835000,
+        "rent": 3171,
+        "address": "5855 County Road 408",
+        "zipcode": "75071"
+      }
+    ],
+    "2065476572": [
+      {
+        "date": "2026-02-14",
+        "price": 5000000,
+        "rent": null,
+        "address": "4590 County Road 340",
+        "zipcode": "75071"
+      }
+    ],
+    "120736727": [
+      {
+        "date": "2026-02-14",
+        "price": 578000,
+        "rent": null,
+        "address": "5220 Grove Cove Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "113398433": [
+      {
+        "date": "2026-02-14",
+        "price": 567000,
+        "rent": 2578,
+        "address": "200 Dale Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "249770402": [
+      {
+        "date": "2026-02-14",
+        "price": 370000,
+        "rent": 2809,
+        "address": "421 Overland Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "2053192887": [
+      {
+        "date": "2026-02-14",
+        "price": 400000,
+        "rent": 2288,
+        "address": "8105 Meadow Valley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242109386": [
+      {
+        "date": "2026-02-14",
+        "price": 600000,
+        "rent": 4007,
+        "address": "1012 Summer Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457625865": [
+      {
+        "date": "2026-02-14",
+        "price": 287680,
+        "rent": 2088,
+        "address": "521 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "338240278": [
+      {
+        "date": "2026-02-14",
+        "price": 525000,
+        "rent": null,
+        "address": "3901 Forged Way",
+        "zipcode": "75071"
+      }
+    ],
+    "168648899": [
+      {
+        "date": "2026-02-14",
+        "price": 494000,
+        "rent": 2597,
+        "address": "3613 Texas Dall Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "120576687": [
+      {
+        "date": "2026-02-14",
+        "price": 975000,
+        "rent": 4294,
+        "address": "8636 Vatican Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "89523919": [
+      {
+        "date": "2026-02-14",
+        "price": 4494998,
+        "rent": 5215,
+        "address": "2115 Paradise Ranch Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "168649128": [
+      {
+        "date": "2026-02-14",
+        "price": 675000,
+        "rent": 3398,
+        "address": "7500 Blanco Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "83128999": [
+      {
+        "date": "2026-02-14",
+        "price": 990000,
+        "rent": 4154,
+        "address": "2305 State Blvd",
+        "zipcode": "75071"
+      }
+    ],
+    "459898071": [
+      {
+        "date": "2026-02-14",
+        "price": 449990,
+        "rent": 3356,
+        "address": "5706 Rushing River Way",
+        "zipcode": "75071"
+      }
+    ],
+    "83726491": [
+      {
+        "date": "2026-02-14",
+        "price": 536600,
+        "rent": 2791,
+        "address": "6401 Canyon Crest Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "53128721": [
+      {
+        "date": "2026-02-14",
+        "price": 1674999,
+        "rent": 5122,
+        "address": "501 Saint Gabriel Way",
+        "zipcode": "75071"
+      }
+    ],
+    "80061449": [
+      {
+        "date": "2026-02-14",
+        "price": 415000,
+        "rent": 2530,
+        "address": "2209 Timothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83753192": [
+      {
+        "date": "2026-02-14",
+        "price": 399900,
+        "rent": 2546,
+        "address": "2408 Emerald Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "62609485": [
+      {
+        "date": "2026-02-14",
+        "price": 485000,
+        "rent": 2865,
+        "address": "2937 High Pointe Blvd",
+        "zipcode": "75071"
+      }
+    ],
+    "60251957": [
+      {
+        "date": "2026-02-14",
+        "price": 599000,
+        "rent": 3015,
+        "address": "812 Brookwater Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83739545": [
+      {
+        "date": "2026-02-14",
+        "price": 335000,
+        "rent": 2077,
+        "address": "2508 Gabriel Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "96482703": [
+      {
+        "date": "2026-02-14",
+        "price": 1590000,
+        "rent": 5034,
+        "address": "4644 Lake Breeze Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83759998": [
+      {
+        "date": "2026-02-14",
+        "price": 650000,
+        "rent": 3163,
+        "address": "1221 Evers Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456684189": [
+      {
+        "date": "2026-02-14",
+        "price": 839990,
+        "rent": 3705,
+        "address": "Bellflower II Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "457625759": [
+      {
+        "date": "2026-02-14",
+        "price": 283515,
+        "rent": 2097,
+        "address": "501 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "65362841": [
+      {
+        "date": "2026-02-14",
+        "price": 704900,
+        "rent": 3297,
+        "address": "7100 Faraday Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460485179": [
+      {
+        "date": "2026-02-14",
+        "price": 423999,
+        "rent": null,
+        "address": "7001 Camphor Ctw O",
+        "zipcode": "75071"
+      }
+    ],
+    "460278966": [
+      {
+        "date": "2026-02-14",
+        "price": 420204,
+        "rent": null,
+        "address": "3411 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460485174": [
+      {
+        "date": "2026-02-14",
+        "price": 419999,
+        "rent": null,
+        "address": "6836 Steiger Trhold",
+        "zipcode": "75071"
+      }
+    ],
+    "336114406": [
+      {
+        "date": "2026-02-14",
+        "price": 418999,
+        "rent": 2645,
+        "address": "7108 Black Cherry Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "2052853762": [
+      {
+        "date": "2026-02-14",
+        "price": 639995,
+        "rent": 3179,
+        "address": "2309 Red Tailed Hawk Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "304053599": [
+      {
+        "date": "2026-02-14",
+        "price": 585000,
+        "rent": null,
+        "address": "2421 Jeans Mill Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "119554467": [
+      {
+        "date": "2026-02-14",
+        "price": 630000,
+        "rent": 3142,
+        "address": "3916 Brook Wood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2053893134": [
+      {
+        "date": "2026-02-14",
+        "price": 415700,
+        "rent": 3392,
+        "address": "4005 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "53087291": [
+      {
+        "date": "2026-02-14",
+        "price": 395000,
+        "rent": 2202,
+        "address": "3602 Creekstone Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "116188644": [
+      {
+        "date": "2026-02-14",
+        "price": 599000,
+        "rent": 2994,
+        "address": "505 Peterhouse Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83729791": [
+      {
+        "date": "2026-02-14",
+        "price": 355000,
+        "rent": null,
+        "address": "2421 Gabriel Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "89525305": [
+      {
+        "date": "2026-02-14",
+        "price": 1300000,
+        "rent": 3813,
+        "address": "7304 Ripley St",
+        "zipcode": "75071"
+      }
+    ],
+    "338238684": [
+      {
+        "date": "2026-02-14",
+        "price": 365000,
+        "rent": 2695,
+        "address": "7932 San Bernard Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "336113811": [
+      {
+        "date": "2026-02-14",
+        "price": 699000,
+        "rent": null,
+        "address": "8908 Brandy Branch Way",
+        "zipcode": "75071"
+      }
+    ],
+    "460278963": [
+      {
+        "date": "2026-02-14",
+        "price": 333922,
+        "rent": null,
+        "address": "3409 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459474572": [
+      {
+        "date": "2026-02-14",
+        "price": 415000,
+        "rent": 3798,
+        "address": "3604 Trickling Crk",
+        "zipcode": "75071"
+      }
+    ],
+    "60251652": [
+      {
+        "date": "2026-02-14",
+        "price": 499000,
+        "rent": 3239,
+        "address": "2800 Gabriel Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "60311194": [
+      {
+        "date": "2026-02-14",
+        "price": 555000,
+        "rent": 3194,
+        "address": "604 Maple Leaf Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "304047698": [
+      {
+        "date": "2026-02-14",
+        "price": 595000,
+        "rent": 3269,
+        "address": "821 Beeville Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "459767340": [
+      {
+        "date": "2026-02-14",
+        "price": 758053,
+        "rent": 3801,
+        "address": "3412 Aldrich Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "53083867": [
+      {
+        "date": "2026-02-14",
+        "price": 420000,
+        "rent": 2594,
+        "address": "3016 Deer Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "339271575": [
+      {
+        "date": "2026-02-14",
+        "price": 399000,
+        "rent": 2746,
+        "address": "8029 Pine Island Way",
+        "zipcode": "75071"
+      }
+    ],
+    "116190213": [
+      {
+        "date": "2026-02-14",
+        "price": 470000,
+        "rent": 2922,
+        "address": "5212 Fringetree Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "448213882": [
+      {
+        "date": "2026-02-14",
+        "price": 384990,
+        "rent": null,
+        "address": "5115 Lawton Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460413804": [
+      {
+        "date": "2026-02-14",
+        "price": 545990,
+        "rent": null,
+        "address": "Rose Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "62609367": [
+      {
+        "date": "2026-02-14",
+        "price": 485000,
+        "rent": 2199,
+        "address": "1709 Van Landingham Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459804545": [
+      {
+        "date": "2026-02-14",
+        "price": 319990,
+        "rent": 2260,
+        "address": "5708 Rushing River Way",
+        "zipcode": "75071"
+      }
+    ],
+    "457492919": [
+      {
+        "date": "2026-02-14",
+        "price": 419990,
+        "rent": 3031,
+        "address": "603 Marigold Hill Way",
+        "zipcode": "75071"
+      }
+    ],
+    "53087279": [
+      {
+        "date": "2026-02-14",
+        "price": 555000,
+        "rent": 3131,
+        "address": "3615 Crestcreek Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "457625823": [
+      {
+        "date": "2026-02-14",
+        "price": 264867,
+        "rent": 1975,
+        "address": "520 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242104172": [
+      {
+        "date": "2026-02-14",
+        "price": 409900,
+        "rent": null,
+        "address": "9901 Fox Squirrel Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "62612000": [
+      {
+        "date": "2026-02-14",
+        "price": 469000,
+        "rent": 2462,
+        "address": "3412 Grant St",
+        "zipcode": "75071"
+      }
+    ],
+    "2060505071": [
+      {
+        "date": "2026-02-14",
+        "price": 339900,
+        "rent": null,
+        "address": "4918 Pebblewood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242107453": [
+      {
+        "date": "2026-02-14",
+        "price": 495000,
+        "rent": null,
+        "address": "2912 Inn Kitchen Way",
+        "zipcode": "75071"
+      }
+    ],
+    "63674578": [
+      {
+        "date": "2026-02-14",
+        "price": 750000,
+        "rent": 3354,
+        "address": "7500 Burr Ferry Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "168649166": [
+      {
+        "date": "2026-02-14",
+        "price": 599950,
+        "rent": 3214,
+        "address": "7605 Blanco Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "459816056": [
+      {
+        "date": "2026-02-14",
+        "price": 649990,
+        "rent": 3318,
+        "address": "6372 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "120086547": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": 3027,
+        "address": "1001 Nob Hill Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "440084783": [
+      {
+        "date": "2026-02-14",
+        "price": 400000,
+        "rent": 2474,
+        "address": "3313 Ringtail Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "55703503": [
+      {
+        "date": "2026-02-14",
+        "price": 514999,
+        "rent": 3515,
+        "address": "3800 Bluff Creek Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457623523": [
+      {
+        "date": "2026-02-14",
+        "price": 375302,
+        "rent": 2520,
+        "address": "812 Leavenworth Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458406077": [
+      {
+        "date": "2026-02-14",
+        "price": 339990,
+        "rent": 2367,
+        "address": "617 Marigold Hill Way",
+        "zipcode": "75071"
+      }
+    ],
+    "455144550": [
+      {
+        "date": "2026-02-14",
+        "price": 614990,
+        "rent": 3538,
+        "address": "6724 Tadpole Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "457623539": [
+      {
+        "date": "2026-02-14",
+        "price": 289360,
+        "rent": 2105,
+        "address": "810 Leavenworth Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625826": [
+      {
+        "date": "2026-02-14",
+        "price": 268167,
+        "rent": 2001,
+        "address": "511 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "331504102": [
+      {
+        "date": "2026-02-14",
+        "price": 899900,
+        "rent": 3988,
+        "address": "8516 Autumn Lake Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "120749276": [
+      {
+        "date": "2026-02-14",
+        "price": 370000,
+        "rent": 2193,
+        "address": "300 Black Bear Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "119905961": [
+      {
+        "date": "2026-02-14",
+        "price": 425000,
+        "rent": 2552,
+        "address": "5104 Grove Cove Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83735264": [
+      {
+        "date": "2026-02-14",
+        "price": 384900,
+        "rent": 2143,
+        "address": "2204 Rockport Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "168641874": [
+      {
+        "date": "2026-02-14",
+        "price": 390000,
+        "rent": 2300,
+        "address": "9808 Coyote Pass Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "457625795": [
+      {
+        "date": "2026-02-14",
+        "price": 323660,
+        "rent": 2370,
+        "address": "503 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "26627797": [
+      {
+        "date": "2026-02-14",
+        "price": 610000,
+        "rent": 2669,
+        "address": "14055 Red Oak Cir N",
+        "zipcode": "75071"
+      }
+    ],
+    "457625816": [
+      {
+        "date": "2026-02-14",
+        "price": 271490,
+        "rent": 2088,
+        "address": "505 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "96473471": [
+      {
+        "date": "2026-02-14",
+        "price": 1259500,
+        "rent": 4257,
+        "address": "4289 Waterstone Estates Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "80060738": [
+      {
+        "date": "2026-02-14",
+        "price": 418000,
+        "rent": 2548,
+        "address": "2201 Preston Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460278968": [
+      {
+        "date": "2026-02-14",
+        "price": 315362,
+        "rent": null,
+        "address": "3407 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460278965": [
+      {
+        "date": "2026-02-14",
+        "price": 411804,
+        "rent": null,
+        "address": "3403 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2069750113": [
+      {
+        "date": "2026-02-14",
+        "price": 629500,
+        "rent": 3126,
+        "address": "6410 Starr Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625840": [
+      {
+        "date": "2026-02-14",
+        "price": 281315,
+        "rent": 2097,
+        "address": "507 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "53118132": [
+      {
+        "date": "2026-02-14",
+        "price": 314000,
+        "rent": null,
+        "address": "2614 Hidden Valley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459809653": [
+      {
+        "date": "2026-02-14",
+        "price": 351990,
+        "rent": 2810,
+        "address": "Willow Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "120286790": [
+      {
+        "date": "2026-02-14",
+        "price": 799000,
+        "rent": null,
+        "address": "4209 Eliska Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457623542": [
+      {
+        "date": "2026-02-14",
+        "price": 276236,
+        "rent": 1998,
+        "address": "803 Dotty Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625861": [
+      {
+        "date": "2026-02-14",
+        "price": 342047,
+        "rent": 2650,
+        "address": "509 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "55695565": [
+      {
+        "date": "2026-02-14",
+        "price": 359000,
+        "rent": 2102,
+        "address": "4832 Fox Ridge Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460269370": [
+      {
+        "date": "2026-02-14",
+        "price": 379990,
+        "rent": 2475,
+        "address": "624 Marigold Hill Way",
+        "zipcode": "75071"
+      }
+    ],
+    "62611849": [
+      {
+        "date": "2026-02-14",
+        "price": 465000,
+        "rent": null,
+        "address": "6813 Allegiance Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457623508": [
+      {
+        "date": "2026-02-14",
+        "price": 353702,
+        "rent": 2394,
+        "address": "704 Dotty Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "168646774": [
+      {
+        "date": "2026-02-14",
+        "price": 524900,
+        "rent": 2379,
+        "address": "7508 W Fork Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "119705760": [
+      {
+        "date": "2026-02-14",
+        "price": 739000,
+        "rent": 3379,
+        "address": "11916 Presario Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "249832500": [
+      {
+        "date": "2026-02-14",
+        "price": 512795,
+        "rent": null,
+        "address": "10105 Eagle Pass Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "459492125": [
+      {
+        "date": "2026-02-14",
+        "price": 314990,
+        "rent": 2282,
+        "address": "305 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625772": [
+      {
+        "date": "2026-02-14",
+        "price": 396814,
+        "rent": 3771,
+        "address": "3408 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "453197568": [
+      {
+        "date": "2026-02-14",
+        "price": 392990,
+        "rent": 2817,
+        "address": "Yuma Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "96464931": [
+      {
+        "date": "2026-02-14",
+        "price": 1170000,
+        "rent": 4265,
+        "address": "4260 Waterstone Estates Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83755310": [
+      {
+        "date": "2026-02-14",
+        "price": 869000,
+        "rent": 3641,
+        "address": "1604 Litchfield Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "122295897": [
+      {
+        "date": "2026-02-14",
+        "price": 649999,
+        "rent": 3825,
+        "address": "2404 Marshbrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "339271880": [
+      {
+        "date": "2026-02-14",
+        "price": 420000,
+        "rent": null,
+        "address": "200 Sleepy Willow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "249775019": [
+      {
+        "date": "2026-02-14",
+        "price": 1050000,
+        "rent": 4610,
+        "address": "7409 Cormac St",
+        "zipcode": "75071"
+      }
+    ],
+    "448053382": [
+      {
+        "date": "2026-02-14",
+        "price": 579990,
+        "rent": 3322,
+        "address": "3613 Aberavon St",
+        "zipcode": "75071"
+      }
+    ],
+    "60254008": [
+      {
+        "date": "2026-02-14",
+        "price": 470000,
+        "rent": null,
+        "address": "3801 Quail View Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "450379684": [
+      {
+        "date": "2026-02-14",
+        "price": 664340,
+        "rent": 3501,
+        "address": "6716 Mill Creek Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460269406": [
+      {
+        "date": "2026-02-14",
+        "price": 439990,
+        "rent": 4340,
+        "address": "507 River Ridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "53087196": [
+      {
+        "date": "2026-02-14",
+        "price": 385000,
+        "rent": 2524,
+        "address": "3404 Ivy Glen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "440087936": [
+      {
+        "date": "2026-02-14",
+        "price": 454900,
+        "rent": null,
+        "address": "3233 Marilanda Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "96489078": [
+      {
+        "date": "2026-02-14",
+        "price": 1075000,
+        "rent": 3950,
+        "address": "4223 Waterstone Estates Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625775": [
+      {
+        "date": "2026-02-14",
+        "price": 318843,
+        "rent": 2443,
+        "address": "3412 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "60309905": [
+      {
+        "date": "2026-02-14",
+        "price": 337000,
+        "rent": null,
+        "address": "2600 Terrace Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456569273": [
+      {
+        "date": "2026-02-14",
+        "price": 2250000,
+        "rent": 4916,
+        "address": "106 Lakeshore Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455271356": [
+      {
+        "date": "2026-02-14",
+        "price": 509990,
+        "rent": 2607,
+        "address": "Farwell Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "65361174": [
+      {
+        "date": "2026-02-14",
+        "price": 1500000,
+        "rent": null,
+        "address": "109 Haddington Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "456645294": [
+      {
+        "date": "2026-02-14",
+        "price": 406999,
+        "rent": 2663,
+        "address": "Elton Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "457625803": [
+      {
+        "date": "2026-02-14",
+        "price": 327655,
+        "rent": 2370,
+        "address": "517 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83736837": [
+      {
+        "date": "2026-02-14",
+        "price": 1189000,
+        "rent": 4392,
+        "address": "4594 Lake Breeze Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83728152": [
+      {
+        "date": "2026-02-14",
+        "price": 349000,
+        "rent": null,
+        "address": "701 Kiowa Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "168642297": [
+      {
+        "date": "2026-02-14",
+        "price": 440000,
+        "rent": 2295,
+        "address": "5909 Fremont Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "440077582": [
+      {
+        "date": "2026-02-14",
+        "price": 325000,
+        "rent": 2193,
+        "address": "307 Bertney Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "336114210": [
+      {
+        "date": "2026-02-14",
+        "price": 635000,
+        "rent": 3483,
+        "address": "4100 Sweet Birch Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "249831705": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": null,
+        "address": "2936 Greenhigh Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460026766": [
+      {
+        "date": "2026-02-14",
+        "price": 625000,
+        "rent": 3226,
+        "address": "3716 Delta Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458042145": [
+      {
+        "date": "2026-02-14",
+        "price": 614990,
+        "rent": 3406,
+        "address": "3421 Teasdale Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "96460374": [
+      {
+        "date": "2026-02-14",
+        "price": 1298000,
+        "rent": 4289,
+        "address": "4310 Waterstone Estates Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "341880955": [
+      {
+        "date": "2026-02-14",
+        "price": 698990,
+        "rent": 3646,
+        "address": "Sapphire Plan, Highland Lakes 60s",
+        "zipcode": "75071"
+      }
+    ],
+    "80071887": [
+      {
+        "date": "2026-02-14",
+        "price": 1150000,
+        "rent": 4114,
+        "address": "4215 Serenity Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "249836266": [
+      {
+        "date": "2026-02-14",
+        "price": 750000,
+        "rent": 3741,
+        "address": "1217 Hoyt Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "453197563": [
+      {
+        "date": "2026-02-14",
+        "price": 404990,
+        "rent": 2936,
+        "address": "San Marcos Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "80051556": [
+      {
+        "date": "2026-02-14",
+        "price": 499900,
+        "rent": 2260,
+        "address": "1301 Meadow Ranch Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "80070034": [
+      {
+        "date": "2026-02-14",
+        "price": 525000,
+        "rent": 2739,
+        "address": "3813 Jeanette Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "331506112": [
+      {
+        "date": "2026-02-14",
+        "price": 899900,
+        "rent": null,
+        "address": "8620 Autumn Lake Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "458883446": [
+      {
+        "date": "2026-02-14",
+        "price": 289990,
+        "rent": 2049,
+        "address": "906 Knox River Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "440077211": [
+      {
+        "date": "2026-02-14",
+        "price": 300000,
+        "rent": 1995,
+        "address": "5019 Somersworth Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460269376": [
+      {
+        "date": "2026-02-14",
+        "price": 279990,
+        "rent": 2018,
+        "address": "520 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "60251963": [
+      {
+        "date": "2026-02-14",
+        "price": 625000,
+        "rent": 3170,
+        "address": "5224 Briarwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460471742": [
+      {
+        "date": "2026-02-14",
+        "price": 474391,
+        "rent": null,
+        "address": "4721 Vizsla Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460472285": [
+      {
+        "date": "2026-02-14",
+        "price": 899000,
+        "rent": null,
+        "address": "7416 Lemon Tree Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "249773907": [
+      {
+        "date": "2026-02-14",
+        "price": 725000,
+        "rent": 2879,
+        "address": "7404 Easley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "125233346": [
+      {
+        "date": "2026-02-14",
+        "price": 649900,
+        "rent": 2915,
+        "address": "7809 Medina Way",
+        "zipcode": "75071"
+      }
+    ],
+    "80045804": [
+      {
+        "date": "2026-02-14",
+        "price": 464900,
+        "rent": 2517,
+        "address": "1604 Creek Crest Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2056831429": [
+      {
+        "date": "2026-02-14",
+        "price": 369990,
+        "rent": null,
+        "address": "7216 Raynor Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "125316866": [
+      {
+        "date": "2026-02-14",
+        "price": 449000,
+        "rent": 2386,
+        "address": "712 Llano Falls Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460269364": [
+      {
+        "date": "2026-02-14",
+        "price": 364990,
+        "rent": 2682,
+        "address": "505 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "53120001": [
+      {
+        "date": "2026-02-14",
+        "price": 379900,
+        "rent": 2276,
+        "address": "2900 Palomino Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "55698683": [
+      {
+        "date": "2026-02-14",
+        "price": 363500,
+        "rent": null,
+        "address": "2520 Cattleman Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "116189204": [
+      {
+        "date": "2026-02-14",
+        "price": 485000,
+        "rent": 2503,
+        "address": "4509 Moonlight Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459798211": [
+      {
+        "date": "2026-02-14",
+        "price": 534990,
+        "rent": 3013,
+        "address": "4732 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "242107907": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": 3007,
+        "address": "2913 Country Church Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459650939": [
+      {
+        "date": "2026-02-14",
+        "price": 674990,
+        "rent": 3537,
+        "address": "Toulouse Plan, Painted Tree - South",
+        "zipcode": "75071"
+      }
+    ],
+    "83744848": [
+      {
+        "date": "2026-02-14",
+        "price": 725000,
+        "rent": 3392,
+        "address": "832 Hidden Springs Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "331505793": [
+      {
+        "date": "2026-02-14",
+        "price": 599000,
+        "rent": null,
+        "address": "1020 Saffold Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "53117697": [
+      {
+        "date": "2026-02-14",
+        "price": 450000,
+        "rent": null,
+        "address": "5101 Raincrest Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460455202": [
+      {
+        "date": "2026-02-14",
+        "price": 424127,
+        "rent": null,
+        "address": "818 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "455109712": [
+      {
+        "date": "2026-02-14",
+        "price": 399000,
+        "rent": 2681,
+        "address": "4825 Maxwell Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455625762": [
+      {
+        "date": "2026-02-14",
+        "price": 645000,
+        "rent": null,
+        "address": "3913 Menard St",
+        "zipcode": "75071"
+      }
+    ],
+    "249775605": [
+      {
+        "date": "2026-02-14",
+        "price": 775000,
+        "rent": 2922,
+        "address": "7504 Stanhope St",
+        "zipcode": "75071"
+      }
+    ],
+    "459503139": [
+      {
+        "date": "2026-02-14",
+        "price": 424990,
+        "rent": 2807,
+        "address": "3501 Pineda Way",
+        "zipcode": "75071"
+      }
+    ],
+    "331504729": [
+      {
+        "date": "2026-02-14",
+        "price": 559125,
+        "rent": null,
+        "address": "1117 Chambers Creek Cv",
+        "zipcode": "75071"
+      }
+    ],
+    "451120781": [
+      {
+        "date": "2026-02-14",
+        "price": 589999,
+        "rent": 3696,
+        "address": "241 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "60313305": [
+      {
+        "date": "2026-02-14",
+        "price": 449900,
+        "rent": 2909,
+        "address": "9105 Boone Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "453197570": [
+      {
+        "date": "2026-02-14",
+        "price": 341990,
+        "rent": 2587,
+        "address": "Ash Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "456397444": [
+      {
+        "date": "2026-02-14",
+        "price": 338490,
+        "rent": 2440,
+        "address": "3902 Sandstone Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "443081197": [
+      {
+        "date": "2026-02-14",
+        "price": 8485000,
+        "rent": null,
+        "address": "520 Highridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458772137": [
+      {
+        "date": "2026-02-14",
+        "price": 543890,
+        "rent": 3152,
+        "address": "9228 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "83756403": [
+      {
+        "date": "2026-02-14",
+        "price": 825000,
+        "rent": 3193,
+        "address": "2205 State Blvd",
+        "zipcode": "75071"
+      }
+    ],
+    "53103730": [
+      {
+        "date": "2026-02-14",
+        "price": 619900,
+        "rent": 3332,
+        "address": "4705 Virginia Woods Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460464534": [
+      {
+        "date": "2026-02-14",
+        "price": 786820,
+        "rent": null,
+        "address": "6364 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "120736215": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": null,
+        "address": "11812 Bertram Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "96459937": [
+      {
+        "date": "2026-02-14",
+        "price": 725000,
+        "rent": 3667,
+        "address": "7808 Dawson Creek Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242103229": [
+      {
+        "date": "2026-02-14",
+        "price": 615000,
+        "rent": 2972,
+        "address": "11408 Morrow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "440080536": [
+      {
+        "date": "2026-02-14",
+        "price": 550000,
+        "rent": 2571,
+        "address": "8224 Legacy Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "457625898": [
+      {
+        "date": "2026-02-14",
+        "price": 278315,
+        "rent": 2097,
+        "address": "516 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625773": [
+      {
+        "date": "2026-02-14",
+        "price": 340718,
+        "rent": 2448,
+        "address": "3410 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460219495": [
+      {
+        "date": "2026-02-14",
+        "price": 330372,
+        "rent": 2267,
+        "address": "813 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457625882": [
+      {
+        "date": "2026-02-14",
+        "price": 321150,
+        "rent": 2289,
+        "address": "522 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83758329": [
+      {
+        "date": "2026-02-14",
+        "price": 1200000,
+        "rent": 2237,
+        "address": "4380 Remembrance Hill Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "55695265": [
+      {
+        "date": "2026-02-14",
+        "price": 369998,
+        "rent": 2185,
+        "address": "9204 Newport Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "96470650": [
+      {
+        "date": "2026-02-14",
+        "price": 2700000,
+        "rent": 5467,
+        "address": "4332 Waterstone Estates Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625906": [
+      {
+        "date": "2026-02-14",
+        "price": 338657,
+        "rent": 2617,
+        "address": "518 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "338239199": [
+      {
+        "date": "2026-02-14",
+        "price": 649900,
+        "rent": 3112,
+        "address": "113 Calmwater Cv",
+        "zipcode": "75071"
+      }
+    ],
+    "80045117": [
+      {
+        "date": "2026-02-14",
+        "price": 1224000,
+        "rent": 3737,
+        "address": "4255 Serenity Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "2057282651": [
+      {
+        "date": "2026-02-14",
+        "price": 365000,
+        "rent": 2222,
+        "address": "3312 Ringtail Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "453197559": [
+      {
+        "date": "2026-02-14",
+        "price": 444990,
+        "rent": 3657,
+        "address": "Southfork Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "443531614": [
+      {
+        "date": "2026-02-14",
+        "price": 630000,
+        "rent": null,
+        "address": "3924 Clingsman Way",
+        "zipcode": "75071"
+      }
+    ],
+    "242110760": [
+      {
+        "date": "2026-02-14",
+        "price": 625000,
+        "rent": 3315,
+        "address": "3201 Maplewood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "450901184": [
+      {
+        "date": "2026-02-14",
+        "price": 385990,
+        "rent": 2549,
+        "address": "2508 Red Tailed Hawk Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "455046634": [
+      {
+        "date": "2026-02-14",
+        "price": 304999,
+        "rent": null,
+        "address": "7708 Thornton Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "63672795": [
+      {
+        "date": "2026-02-14",
+        "price": 469000,
+        "rent": 2491,
+        "address": "5429 Devils River Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83748250": [
+      {
+        "date": "2026-02-14",
+        "price": 730000,
+        "rent": 3106,
+        "address": "8709 Herns Meadow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "450379679": [
+      {
+        "date": "2026-02-14",
+        "price": 765090,
+        "rent": 4202,
+        "address": "6708 Coffee Mill Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "168646637": [
+      {
+        "date": "2026-02-14",
+        "price": 549000,
+        "rent": null,
+        "address": "1204 Caney Creek Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "168649178": [
+      {
+        "date": "2026-02-14",
+        "price": 550000,
+        "rent": 3118,
+        "address": "401 Mossy Rock Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "249772257": [
+      {
+        "date": "2026-02-14",
+        "price": 515000,
+        "rent": 2830,
+        "address": "10024 Kemah Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "83729647": [
+      {
+        "date": "2026-02-14",
+        "price": 500000,
+        "rent": null,
+        "address": "412 Cypress Hill Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457623487": [
+      {
+        "date": "2026-02-14",
+        "price": 363707,
+        "rent": 2539,
+        "address": "717 Dotty Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "339270397": [
+      {
+        "date": "2026-02-14",
+        "price": 349900,
+        "rent": 2188,
+        "address": "816 Hidden Eddy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "80059949": [
+      {
+        "date": "2026-02-14",
+        "price": 525000,
+        "rent": 2774,
+        "address": "3804 Jeanette Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "83750315": [
+      {
+        "date": "2026-02-14",
+        "price": 500000,
+        "rent": null,
+        "address": "2701 Indian Oak Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "304051122": [
+      {
+        "date": "2026-02-14",
+        "price": 589000,
+        "rent": 3097,
+        "address": "10920 Calvert Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "249839184": [
+      {
+        "date": "2026-02-14",
+        "price": 574840,
+        "rent": 3144,
+        "address": "1421 Hodge St",
+        "zipcode": "75071"
+      }
+    ],
+    "459804553": [
+      {
+        "date": "2026-02-14",
+        "price": 344990,
+        "rent": 2570,
+        "address": "509 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459798221": [
+      {
+        "date": "2026-02-14",
+        "price": 559990,
+        "rent": 3184,
+        "address": "4708 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "83730182": [
+      {
+        "date": "2026-02-14",
+        "price": 495900,
+        "rent": 2819,
+        "address": "3416 Ridge Lily Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "459649992": [
+      {
+        "date": "2026-02-14",
+        "price": 659900,
+        "rent": 3754,
+        "address": "4736 Baytown Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "2053814842": [
+      {
+        "date": "2026-02-14",
+        "price": 450000,
+        "rent": 2434,
+        "address": "3324 Marilanda Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459798212": [
+      {
+        "date": "2026-02-14",
+        "price": 412490,
+        "rent": 2705,
+        "address": "626 Marigold Hill Way",
+        "zipcode": "75071"
+      }
+    ],
+    "457062878": [
+      {
+        "date": "2026-02-14",
+        "price": 432920,
+        "rent": 2619,
+        "address": "3705 Homer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "459898075": [
+      {
+        "date": "2026-02-14",
+        "price": 452990,
+        "rent": 3323,
+        "address": "623 Marigold Hill Way",
+        "zipcode": "75071"
+      }
+    ],
+    "2057526269": [
+      {
+        "date": "2026-02-14",
+        "price": 330989,
+        "rent": 2076,
+        "address": "7724 Privet Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "83761167": [
+      {
+        "date": "2026-02-14",
+        "price": 380000,
+        "rent": 2385,
+        "address": "513 Wichita Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "448824842": [
+      {
+        "date": "2026-02-14",
+        "price": 799000,
+        "rent": 3807,
+        "address": "6837 Olive Br",
+        "zipcode": "75071"
+      }
+    ],
+    "347261912": [
+      {
+        "date": "2026-02-14",
+        "price": 699999,
+        "rent": 3449,
+        "address": "4001 Maida Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "26674958": [
+      {
+        "date": "2026-02-14",
+        "price": 1100000,
+        "rent": 4033,
+        "address": "241 Highridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457623411": [
+      {
+        "date": "2026-02-14",
+        "price": 361608,
+        "rent": 2514,
+        "address": "811 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "2057185258": [
+      {
+        "date": "2026-02-14",
+        "price": 332000,
+        "rent": 2217,
+        "address": "8309 Caracara Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "336113171": [
+      {
+        "date": "2026-02-14",
+        "price": 303000,
+        "rent": 1941,
+        "address": "3217 Mountain Lion Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "458957962": [
+      {
+        "date": "2026-02-14",
+        "price": 334990,
+        "rent": 2440,
+        "address": "309 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457837513": [
+      {
+        "date": "2026-02-14",
+        "price": 589990,
+        "rent": 3305,
+        "address": "3608 Teasdale Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455714199": [
+      {
+        "date": "2026-02-14",
+        "price": 634870,
+        "rent": null,
+        "address": "1608 Archmont Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "458252729": [
+      {
+        "date": "2026-02-14",
+        "price": 315413,
+        "rent": 2188,
+        "address": "521 Tidal Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2061855904": [
+      {
+        "date": "2026-02-14",
+        "price": 495000,
+        "rent": 3078,
+        "address": "4009 Savoy Way",
+        "zipcode": "75071"
+      }
+    ],
+    "83728505": [
+      {
+        "date": "2026-02-14",
+        "price": 475000,
+        "rent": 2580,
+        "address": "2616 Clover Hill Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "458883455": [
+      {
+        "date": "2026-02-14",
+        "price": 282990,
+        "rent": 1997,
+        "address": "5515 Chasewood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456264784": [
+      {
+        "date": "2026-02-14",
+        "price": 315413,
+        "rent": 2263,
+        "address": "521 Tidal Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "351211455": [
+      {
+        "date": "2026-02-14",
+        "price": 320000,
+        "rent": 2016,
+        "address": "1901 Ashland St",
+        "zipcode": "75071"
+      }
+    ],
+    "26674581": [
+      {
+        "date": "2026-02-14",
+        "price": 1494000,
+        "rent": 3663,
+        "address": "2252 County Road 342",
+        "zipcode": "75071"
+      }
+    ],
+    "458957969": [
+      {
+        "date": "2026-02-14",
+        "price": 299990,
+        "rent": 2109,
+        "address": "517 River Ridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "304049856": [
+      {
+        "date": "2026-02-14",
+        "price": 545000,
+        "rent": 2633,
+        "address": "604 Athens Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "440086309": [
+      {
+        "date": "2026-02-14",
+        "price": 585000,
+        "rent": 3346,
+        "address": "5101 Beechtree Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "304022509": [
+      {
+        "date": "2026-02-14",
+        "price": 350000,
+        "rent": 1930,
+        "address": "1340 Pebblebrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242102698": [
+      {
+        "date": "2026-02-14",
+        "price": 645000,
+        "rent": 3135,
+        "address": "3805 Bamboo Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "53128508": [
+      {
+        "date": "2026-02-14",
+        "price": 599900,
+        "rent": null,
+        "address": "4142 County Road 1001",
+        "zipcode": "75071"
+      }
+    ],
+    "336112254": [
+      {
+        "date": "2026-02-14",
+        "price": 495000,
+        "rent": null,
+        "address": "8721 Navidad Falls Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458931114": [
+      {
+        "date": "2026-02-14",
+        "price": 429990,
+        "rent": 3547,
+        "address": "3707 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625866": [
+      {
+        "date": "2026-02-14",
+        "price": 326660,
+        "rent": 2370,
+        "address": "514 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625765": [
+      {
+        "date": "2026-02-14",
+        "price": 335133,
+        "rent": 2443,
+        "address": "3404 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455768198": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": 3177,
+        "address": "4724 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "338238590": [
+      {
+        "date": "2026-02-14",
+        "price": 379900,
+        "rent": 2547,
+        "address": "7928 San Bernard Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "125234434": [
+      {
+        "date": "2026-02-14",
+        "price": 580000,
+        "rent": 2934,
+        "address": "7512 Sabine Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "450820638": [
+      {
+        "date": "2026-02-14",
+        "price": 680826,
+        "rent": null,
+        "address": "6512 Fort Parker Way",
+        "zipcode": "75071"
+      }
+    ],
+    "338238645": [
+      {
+        "date": "2026-02-14",
+        "price": 399900,
+        "rent": null,
+        "address": "400 Blue Creek Cv",
+        "zipcode": "75071"
+      }
+    ],
+    "456229708": [
+      {
+        "date": "2026-02-14",
+        "price": 499304,
+        "rent": 3037,
+        "address": "3116 Lenten Rose Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457623467": [
+      {
+        "date": "2026-02-14",
+        "price": 302665,
+        "rent": 2114,
+        "address": "703 Dotty Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459492122": [
+      {
+        "date": "2026-02-14",
+        "price": 369990,
+        "rent": 3090,
+        "address": "509 River Ridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455714560": [
+      {
+        "date": "2026-02-14",
+        "price": 635970,
+        "rent": null,
+        "address": "1632 Archmont Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "336114111": [
+      {
+        "date": "2026-02-14",
+        "price": 335000,
+        "rent": 2146,
+        "address": "3713 Dayflower Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "450102378": [
+      {
+        "date": "2026-02-14",
+        "price": 640000,
+        "rent": null,
+        "address": "3933 Clingsman Way",
+        "zipcode": "75071"
+      }
+    ],
+    "168641872": [
+      {
+        "date": "2026-02-14",
+        "price": 455000,
+        "rent": 2785,
+        "address": "9816 Coyote Pass Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "242108456": [
+      {
+        "date": "2026-02-14",
+        "price": 449900,
+        "rent": 2468,
+        "address": "2900 Country Church Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "83129018": [
+      {
+        "date": "2026-02-14",
+        "price": 899900,
+        "rent": 3597,
+        "address": "7104 Cheltenham Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "53108284": [
+      {
+        "date": "2026-02-14",
+        "price": 460000,
+        "rent": null,
+        "address": "5201 Lake Bend Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458241748": [
+      {
+        "date": "2026-02-14",
+        "price": 649930,
+        "rent": null,
+        "address": "5705 Cypresswood Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458386417": [
+      {
+        "date": "2026-02-14",
+        "price": 494911,
+        "rent": 2839,
+        "address": "3136 Lenten Rose Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "83735864": [
+      {
+        "date": "2026-02-14",
+        "price": 270000,
+        "rent": 2540,
+        "address": "7367 County Road 410",
+        "zipcode": "75071"
+      }
+    ],
+    "2057701367": [
+      {
+        "date": "2026-02-14",
+        "price": 380000,
+        "rent": 2627,
+        "address": "7313 Bledington Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457625845": [
+      {
+        "date": "2026-02-14",
+        "price": 287515,
+        "rent": 2094,
+        "address": "524 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458931104": [
+      {
+        "date": "2026-02-14",
+        "price": 324990,
+        "rent": 2223,
+        "address": "512 River Ridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "452754078": [
+      {
+        "date": "2026-02-14",
+        "price": 489999,
+        "rent": 2752,
+        "address": "8525 Brookhaven Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457837517": [
+      {
+        "date": "2026-02-14",
+        "price": 269990,
+        "rent": 1937,
+        "address": "311 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83751057": [
+      {
+        "date": "2026-02-14",
+        "price": 427000,
+        "rent": 2157,
+        "address": "5204 Balsam Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "443298671": [
+      {
+        "date": "2026-02-14",
+        "price": 509000,
+        "rent": 2504,
+        "address": "8109 Meadow Valley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458190769": [
+      {
+        "date": "2026-02-14",
+        "price": 314990,
+        "rent": 2268,
+        "address": "407 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456705854": [
+      {
+        "date": "2026-02-14",
+        "price": 345000,
+        "rent": 2445,
+        "address": "2504 Red Tailed Hawk Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "246504819": [
+      {
+        "date": "2026-02-14",
+        "price": 449999,
+        "rent": 2383,
+        "address": "3205 Hickory Bend Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "440884764": [
+      {
+        "date": "2026-02-14",
+        "price": 579990,
+        "rent": 3194,
+        "address": "Riverdale Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "447898369": [
+      {
+        "date": "2026-02-14",
+        "price": 584990,
+        "rent": 3287,
+        "address": "4240 Gladewater Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "331505267": [
+      {
+        "date": "2026-02-14",
+        "price": 435000,
+        "rent": 2667,
+        "address": "516 Gibbons Creek Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "457623372": [
+      {
+        "date": "2026-02-14",
+        "price": 348823,
+        "rent": 2477,
+        "address": "814 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "336112290": [
+      {
+        "date": "2026-02-14",
+        "price": 599995,
+        "rent": 2933,
+        "address": "1029 Saffold Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "454280962": [
+      {
+        "date": "2026-02-14",
+        "price": 795000,
+        "rent": 3414,
+        "address": "237 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "83129397": [
+      {
+        "date": "2026-02-14",
+        "price": 559900,
+        "rent": 3450,
+        "address": "3209 Sprucewood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458190777": [
+      {
+        "date": "2026-02-14",
+        "price": 444990,
+        "rent": 3040,
+        "address": "3701 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459410629": [
+      {
+        "date": "2026-02-14",
+        "price": 428890,
+        "rent": 2606,
+        "address": "3716 Homer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "460269366": [
+      {
+        "date": "2026-02-14",
+        "price": 419990,
+        "rent": 2893,
+        "address": "5803 Rushing River Way",
+        "zipcode": "75071"
+      }
+    ],
+    "125230459": [
+      {
+        "date": "2026-02-14",
+        "price": 530000,
+        "rent": 2619,
+        "address": "933 Spring Falls Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "339770592": [
+      {
+        "date": "2026-02-14",
+        "price": 499000,
+        "rent": null,
+        "address": "8141 Meadow Valley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457963652": [
+      {
+        "date": "2026-02-14",
+        "price": 673900,
+        "rent": 3422,
+        "address": "9655 Rock Rose St",
+        "zipcode": "75071"
+      }
+    ],
+    "2055365168": [
+      {
+        "date": "2026-02-14",
+        "price": 525000,
+        "rent": 2761,
+        "address": "4109 Holbrook Way",
+        "zipcode": "75071"
+      }
+    ],
+    "250909732": [
+      {
+        "date": "2026-02-14",
+        "price": 579900,
+        "rent": 2847,
+        "address": "909 Hubbard Creek Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "453197566": [
+      {
+        "date": "2026-02-14",
+        "price": 414990,
+        "rent": 2995,
+        "address": "Hayden Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "455757751": [
+      {
+        "date": "2026-02-14",
+        "price": 424990,
+        "rent": 2834,
+        "address": "4617 Vizsla Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458957965": [
+      {
+        "date": "2026-02-14",
+        "price": 264990,
+        "rent": 1891,
+        "address": "204 Greenbriar Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "242101557": [
+      {
+        "date": "2026-02-14",
+        "price": 725000,
+        "rent": 2656,
+        "address": "7512 Wescott Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457490094": [
+      {
+        "date": "2026-02-14",
+        "price": 805000,
+        "rent": null,
+        "address": "3200 Tios Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "440073343": [
+      {
+        "date": "2026-02-14",
+        "price": 730000,
+        "rent": 4089,
+        "address": "1420 Milton Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "53112726": [
+      {
+        "date": "2026-02-14",
+        "price": 419000,
+        "rent": null,
+        "address": "3360 Woodberry Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "453085107": [
+      {
+        "date": "2026-02-14",
+        "price": 749990,
+        "rent": 4114,
+        "address": "309 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "455646686": [
+      {
+        "date": "2026-02-14",
+        "price": 424990,
+        "rent": 2881,
+        "address": "4724 Maxwell Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83127761": [
+      {
+        "date": "2026-02-14",
+        "price": 325000,
+        "rent": 2230,
+        "address": "2252 Stoneleigh Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "458248858": [
+      {
+        "date": "2026-02-14",
+        "price": 440000,
+        "rent": 2787,
+        "address": "7404 Seton Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "55703464": [
+      {
+        "date": "2026-02-14",
+        "price": 482500,
+        "rent": 3398,
+        "address": "2308 Spruce Meadow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457205727": [
+      {
+        "date": "2026-02-14",
+        "price": 1199500,
+        "rent": 4178,
+        "address": "4418 Lake Breeze Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "338241835": [
+      {
+        "date": "2026-02-14",
+        "price": 774900,
+        "rent": 3468,
+        "address": "4109 Hydrangea Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456645284": [
+      {
+        "date": "2026-02-14",
+        "price": 417999,
+        "rent": 2822,
+        "address": "Hendrix Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "458241764": [
+      {
+        "date": "2026-02-14",
+        "price": 660900,
+        "rent": null,
+        "address": "1700 Jaycreek Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "457625776": [
+      {
+        "date": "2026-02-14",
+        "price": 316441,
+        "rent": 2244,
+        "address": "3414 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "65349190": [
+      {
+        "date": "2026-02-14",
+        "price": 699000,
+        "rent": 3004,
+        "address": "3756 County Road 997",
+        "zipcode": "75071"
+      }
+    ],
+    "460155852": [
+      {
+        "date": "2026-02-14",
+        "price": 1230000,
+        "rent": 4548,
+        "address": "6832 Sunset Hills Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2057090854": [
+      {
+        "date": "2026-02-14",
+        "price": 415000,
+        "rent": 2365,
+        "address": "9304 Riverlight Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "441127687": [
+      {
+        "date": "2026-02-14",
+        "price": 654990,
+        "rent": 3603,
+        "address": "Oak Grove Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "168643631": [
+      {
+        "date": "2026-02-14",
+        "price": 597700,
+        "rent": 3316,
+        "address": "405 Green Valley Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83731092": [
+      {
+        "date": "2026-02-14",
+        "price": 375000,
+        "rent": 2029,
+        "address": "620 Cypress Hill Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457498390": [
+      {
+        "date": "2026-02-14",
+        "price": 629990,
+        "rent": 3428,
+        "address": "4004 Calderwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458573012": [
+      {
+        "date": "2026-02-14",
+        "price": 580689,
+        "rent": null,
+        "address": "4225 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457238381": [
+      {
+        "date": "2026-02-14",
+        "price": 566990,
+        "rent": 3078,
+        "address": "Mason Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "448786749": [
+      {
+        "date": "2026-02-14",
+        "price": 799000,
+        "rent": null,
+        "address": "6837 Olive Branch Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "449322892": [
+      {
+        "date": "2026-02-14",
+        "price": 374000,
+        "rent": 2369,
+        "address": "1629 Lercara Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "65349007": [
+      {
+        "date": "2026-02-14",
+        "price": 994222,
+        "rent": 2634,
+        "address": "2212 County Road 342",
+        "zipcode": "75071"
+      }
+    ],
+    "168648860": [
+      {
+        "date": "2026-02-14",
+        "price": 679000,
+        "rent": 3795,
+        "address": "3309 Wiltshire Horn Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "125235787": [
+      {
+        "date": "2026-02-14",
+        "price": 549000,
+        "rent": 2848,
+        "address": "925 Spring Falls Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "80062394": [
+      {
+        "date": "2026-02-14",
+        "price": 560000,
+        "rent": null,
+        "address": "3904 Buchanan St",
+        "zipcode": "75071"
+      }
+    ],
+    "457625884": [
+      {
+        "date": "2026-02-14",
+        "price": 268167,
+        "rent": 2001,
+        "address": "513 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457344488": [
+      {
+        "date": "2026-02-14",
+        "price": 564190,
+        "rent": 3141,
+        "address": "9212 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "449656347": [
+      {
+        "date": "2026-02-14",
+        "price": 579501,
+        "rent": 3259,
+        "address": "2900 Barbary Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "451086281": [
+      {
+        "date": "2026-02-14",
+        "price": 611750,
+        "rent": 3244,
+        "address": "4220 Gladewater Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "459615860": [
+      {
+        "date": "2026-02-14",
+        "price": 684999,
+        "rent": 3427,
+        "address": "3316 McGraw Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456950026": [
+      {
+        "date": "2026-02-14",
+        "price": 344990,
+        "rent": 2255,
+        "address": "Alpine Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "83752667": [
+      {
+        "date": "2026-02-14",
+        "price": 450000,
+        "rent": 2697,
+        "address": "3501 Foxfield Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "455920589": [
+      {
+        "date": "2026-02-14",
+        "price": 652710,
+        "rent": 3453,
+        "address": "4237 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458177769": [
+      {
+        "date": "2026-02-14",
+        "price": 275257,
+        "rent": 2043,
+        "address": "The Sequoia Plan, Eastridge - Spring Series",
+        "zipcode": "75071"
+      }
+    ],
+    "459992746": [
+      {
+        "date": "2026-02-14",
+        "price": 392650,
+        "rent": 2581,
+        "address": "718 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460269365": [
+      {
+        "date": "2026-02-14",
+        "price": 312990,
+        "rent": 2193,
+        "address": "506 River Ridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458957967": [
+      {
+        "date": "2026-02-14",
+        "price": 444990,
+        "rent": 3659,
+        "address": "3706 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457623418": [
+      {
+        "date": "2026-02-14",
+        "price": 426502,
+        "rent": 3049,
+        "address": "807 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "63674573": [
+      {
+        "date": "2026-02-14",
+        "price": 750000,
+        "rent": 2754,
+        "address": "912 Thimbleberry Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "96462769": [
+      {
+        "date": "2026-02-14",
+        "price": 450000,
+        "rent": 2433,
+        "address": "2400 Gold Rush Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "454833158": [
+      {
+        "date": "2026-02-14",
+        "price": 669631,
+        "rent": 3860,
+        "address": "4208 Gladewater Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "454142673": [
+      {
+        "date": "2026-02-14",
+        "price": 669000,
+        "rent": 2713,
+        "address": "1917 Cotton Creek Pass",
+        "zipcode": "75071"
+      }
+    ],
+    "453197556": [
+      {
+        "date": "2026-02-14",
+        "price": 426990,
+        "rent": 3414,
+        "address": "Snowmass Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "459736878": [
+      {
+        "date": "2026-02-14",
+        "price": 427716,
+        "rent": 3053,
+        "address": "801 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "440076928": [
+      {
+        "date": "2026-02-14",
+        "price": 550000,
+        "rent": null,
+        "address": "2820 Claude White Crk",
+        "zipcode": "75071"
+      }
+    ],
+    "458190785": [
+      {
+        "date": "2026-02-14",
+        "price": 444990,
+        "rent": 3659,
+        "address": "3705 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "168648895": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": null,
+        "address": "3604 Saint Croix Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "249774945": [
+      {
+        "date": "2026-02-14",
+        "price": 579000,
+        "rent": 3037,
+        "address": "5925 Marigold Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "440087943": [
+      {
+        "date": "2026-02-14",
+        "price": 659900,
+        "rent": 3044,
+        "address": "3205 Marilanda Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "454833189": [
+      {
+        "date": "2026-02-14",
+        "price": 599963,
+        "rent": 3224,
+        "address": "4200 Gladewater Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "2055703886": [
+      {
+        "date": "2026-02-14",
+        "price": 375000,
+        "rent": null,
+        "address": "401 Long Pines Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459829602": [
+      {
+        "date": "2026-02-14",
+        "price": 556240,
+        "rent": null,
+        "address": "8636 Katydid Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "305575629": [
+      {
+        "date": "2026-02-14",
+        "price": 350000,
+        "rent": 2242,
+        "address": "9105 Tranquil Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785058": [
+      {
+        "date": "2026-02-14",
+        "price": 338657,
+        "rent": 2605,
+        "address": "The Gateway Plan, Southridge - Spring Series",
+        "zipcode": "75071"
+      }
+    ],
+    "453856359": [
+      {
+        "date": "2026-02-14",
+        "price": 745000,
+        "rent": 3094,
+        "address": "329 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "457912075": [
+      {
+        "date": "2026-02-14",
+        "price": 682410,
+        "rent": 3576,
+        "address": "2228 Lakelet Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "449363229": [
+      {
+        "date": "2026-02-14",
+        "price": 570000,
+        "rent": 3168,
+        "address": "3921 Calderwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "441824998": [
+      {
+        "date": "2026-02-14",
+        "price": 410999,
+        "rent": 2462,
+        "address": "Nash Plan, Shaded Tree : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "457625774": [
+      {
+        "date": "2026-02-14",
+        "price": 411069,
+        "rent": 3857,
+        "address": "3406 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456229798": [
+      {
+        "date": "2026-02-14",
+        "price": 579717,
+        "rent": 3103,
+        "address": "4100 Explorer Way",
+        "zipcode": "75071"
+      }
+    ],
+    "440043201": [
+      {
+        "date": "2026-02-14",
+        "price": 330372,
+        "rent": 2288,
+        "address": "The Oleander Plan, Eastridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "457625770": [
+      {
+        "date": "2026-02-14",
+        "price": 329843,
+        "rent": 2389,
+        "address": "3417 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459281713": [
+      {
+        "date": "2026-02-14",
+        "price": 374990,
+        "rent": 2916,
+        "address": "Benchmark Plan, Westridge Journey",
+        "zipcode": "75071"
+      }
+    ],
+    "456192691": [
+      {
+        "date": "2026-02-14",
+        "price": 349000,
+        "rent": 1963,
+        "address": "1204 Pebblebrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458190778": [
+      {
+        "date": "2026-02-14",
+        "price": 279990,
+        "rent": 2029,
+        "address": "405 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "63674744": [
+      {
+        "date": "2026-02-14",
+        "price": 369000,
+        "rent": 2162,
+        "address": "605 Crystal Falls Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460413781": [
+      {
+        "date": "2026-02-14",
+        "price": 563990,
+        "rent": null,
+        "address": "Daisy Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "168643798": [
+      {
+        "date": "2026-02-14",
+        "price": 515000,
+        "rent": 2545,
+        "address": "3717 Cameroon Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457625900": [
+      {
+        "date": "2026-02-14",
+        "price": 326250,
+        "rent": 2370,
+        "address": "504 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459492121": [
+      {
+        "date": "2026-02-14",
+        "price": 414990,
+        "rent": 3641,
+        "address": "511 River Ridge Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "113398300": [
+      {
+        "date": "2026-02-14",
+        "price": 2800000,
+        "rent": 2105,
+        "address": "275 Aero Country Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "460413797": [
+      {
+        "date": "2026-02-14",
+        "price": 621990,
+        "rent": null,
+        "address": "Zinnia Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "456950029": [
+      {
+        "date": "2026-02-14",
+        "price": 364990,
+        "rent": 2432,
+        "address": "Compass Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "459798219": [
+      {
+        "date": "2026-02-14",
+        "price": 704490,
+        "rent": 3820,
+        "address": "3516 Teasdale Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459809654": [
+      {
+        "date": "2026-02-14",
+        "price": 316990,
+        "rent": 2224,
+        "address": "Hazel Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "451818238": [
+      {
+        "date": "2026-02-14",
+        "price": 749990,
+        "rent": 3965,
+        "address": "332 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "458242098": [
+      {
+        "date": "2026-02-14",
+        "price": 709605,
+        "rent": 3561,
+        "address": "2100 Lakelet Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459503849": [
+      {
+        "date": "2026-02-14",
+        "price": 595860,
+        "rent": 3271,
+        "address": "9309 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "459798213": [
+      {
+        "date": "2026-02-14",
+        "price": 289990,
+        "rent": 2073,
+        "address": "513 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458381749": [
+      {
+        "date": "2026-02-14",
+        "price": 724900,
+        "rent": 3295,
+        "address": "701 Lost Woods Way",
+        "zipcode": "75071"
+      }
+    ],
+    "460387946": [
+      {
+        "date": "2026-02-14",
+        "price": 673990,
+        "rent": null,
+        "address": "9421 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "338238634": [
+      {
+        "date": "2026-02-14",
+        "price": 539000,
+        "rent": 2413,
+        "address": "824 Habitat Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "459432408": [
+      {
+        "date": "2026-02-14",
+        "price": 669999,
+        "rent": 3676,
+        "address": "133 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459376168": [
+      {
+        "date": "2026-02-14",
+        "price": 599000,
+        "rent": 3338,
+        "address": "7108 Bergamot Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "450379683": [
+      {
+        "date": "2026-02-14",
+        "price": 582630,
+        "rent": 2924,
+        "address": "6708 Mill Creek Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459492117": [
+      {
+        "date": "2026-02-14",
+        "price": 334990,
+        "rent": 2490,
+        "address": "303 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458253166": [
+      {
+        "date": "2026-02-14",
+        "price": 599232,
+        "rent": 3326,
+        "address": "3105 Hoyle St",
+        "zipcode": "75071"
+      }
+    ],
+    "457625756": [
+      {
+        "date": "2026-02-14",
+        "price": 407914,
+        "rent": 3619,
+        "address": "3419 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455137623": [
+      {
+        "date": "2026-02-14",
+        "price": 489990,
+        "rent": 2749,
+        "address": "221 Cloverdale Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "456645303": [
+      {
+        "date": "2026-02-14",
+        "price": 430999,
+        "rent": 2923,
+        "address": "Townshend Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "249832081": [
+      {
+        "date": "2026-02-14",
+        "price": 650000,
+        "rent": null,
+        "address": "2712 Cross Oak Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "339271609": [
+      {
+        "date": "2026-02-14",
+        "price": 489000,
+        "rent": 2633,
+        "address": "404 Long Pines Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "345465393": [
+      {
+        "date": "2026-02-14",
+        "price": 330000,
+        "rent": 2095,
+        "address": "108 Mountain Meadow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457367643": [
+      {
+        "date": "2026-02-14",
+        "price": 779266,
+        "rent": 3961,
+        "address": "2917 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "450379671": [
+      {
+        "date": "2026-02-14",
+        "price": 619390,
+        "rent": 3016,
+        "address": "6717 Mill Creek Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460413789": [
+      {
+        "date": "2026-02-14",
+        "price": 511720,
+        "rent": null,
+        "address": "4725 Vizsla Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458243171": [
+      {
+        "date": "2026-02-14",
+        "price": 824900,
+        "rent": 4012,
+        "address": "4628 Kipling St",
+        "zipcode": "75071"
+      }
+    ],
+    "460269352": [
+      {
+        "date": "2026-02-14",
+        "price": 584990,
+        "rent": 3222,
+        "address": "4629 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "459804548": [
+      {
+        "date": "2026-02-14",
+        "price": 296990,
+        "rent": 2132,
+        "address": "504 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458863497": [
+      {
+        "date": "2026-02-14",
+        "price": 565190,
+        "rent": 3053,
+        "address": "9205 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "26627666": [
+      {
+        "date": "2026-02-14",
+        "price": 500000,
+        "rent": 2228,
+        "address": "621 New Hope Rd E",
+        "zipcode": "75071"
+      }
+    ],
+    "26628643": [
+      {
+        "date": "2026-02-14",
+        "price": 599900,
+        "rent": null,
+        "address": "5142 Stirrup Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "459415576": [
+      {
+        "date": "2026-02-14",
+        "price": 675000,
+        "rent": null,
+        "address": "6325 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458703303": [
+      {
+        "date": "2026-02-14",
+        "price": 639990,
+        "rent": 3599,
+        "address": "6220 Simone Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "116188010": [
+      {
+        "date": "2026-02-14",
+        "price": 1780000,
+        "rent": null,
+        "address": "5314 County Road 465",
+        "zipcode": "75071"
+      }
+    ],
+    "331506287": [
+      {
+        "date": "2026-02-14",
+        "price": 439000,
+        "rent": 2396,
+        "address": "8225 San Bernard Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "338238573": [
+      {
+        "date": "2026-02-14",
+        "price": 398500,
+        "rent": 2583,
+        "address": "313 Sugarmaple Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "339270404": [
+      {
+        "date": "2026-02-14",
+        "price": 489900,
+        "rent": null,
+        "address": "300 Sleepy Willow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "83732358": [
+      {
+        "date": "2026-02-14",
+        "price": 450000,
+        "rent": 2426,
+        "address": "1201 Evers Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457367294": [
+      {
+        "date": "2026-02-14",
+        "price": 679700,
+        "rent": 3208,
+        "address": "2913 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "456876053": [
+      {
+        "date": "2026-02-14",
+        "price": 328541,
+        "rent": 2214,
+        "address": "507 Clover Creek Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "450988538": [
+      {
+        "date": "2026-02-14",
+        "price": 599290,
+        "rent": 3314,
+        "address": "4012 Calderwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "449379288": [
+      {
+        "date": "2026-02-14",
+        "price": 924990,
+        "rent": 3951,
+        "address": "3216 Patterson Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "83729126": [
+      {
+        "date": "2026-02-14",
+        "price": 549900,
+        "rent": 2990,
+        "address": "2904 Torreya Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "249836188": [
+      {
+        "date": "2026-02-14",
+        "price": 475000,
+        "rent": 2476,
+        "address": "4705 Dorchester Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460413794": [
+      {
+        "date": "2026-02-14",
+        "price": 633990,
+        "rent": null,
+        "address": "Primrose Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "454280965": [
+      {
+        "date": "2026-02-14",
+        "price": 749000,
+        "rent": 3186,
+        "address": "813 Lost Woods Way",
+        "zipcode": "75071"
+      }
+    ],
+    "65361244": [
+      {
+        "date": "2026-02-14",
+        "price": 610000,
+        "rent": 3181,
+        "address": "1908 Canyon Wren Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458957963": [
+      {
+        "date": "2026-02-14",
+        "price": 432490,
+        "rent": 3141,
+        "address": "3708 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "448425519": [
+      {
+        "date": "2026-02-14",
+        "price": 354400,
+        "rent": 2219,
+        "address": "405 Snowbird Way",
+        "zipcode": "75071"
+      }
+    ],
+    "2057991084": [
+      {
+        "date": "2026-02-14",
+        "price": 403000,
+        "rent": 2338,
+        "address": "9232 Riverlight Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "440069251": [
+      {
+        "date": "2026-02-14",
+        "price": 379990,
+        "rent": 2361,
+        "address": "920 Cormorant Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459798215": [
+      {
+        "date": "2026-02-14",
+        "price": 649990,
+        "rent": 3576,
+        "address": "4725 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "453613598": [
+      {
+        "date": "2026-02-14",
+        "price": 499999,
+        "rent": 2712,
+        "address": "204 Bay Laurel",
+        "zipcode": "75071"
+      }
+    ],
+    "448692336": [
+      {
+        "date": "2026-02-14",
+        "price": 434990,
+        "rent": 2766,
+        "address": "4808 Maxwell Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456773051": [
+      {
+        "date": "2026-02-14",
+        "price": 574950,
+        "rent": 2978,
+        "address": "Inwood F Plan, Pecan Hill",
+        "zipcode": "75071"
+      }
+    ],
+    "460413805": [
+      {
+        "date": "2026-02-14",
+        "price": 573990,
+        "rent": null,
+        "address": "Violet Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "460278960": [
+      {
+        "date": "2026-02-14",
+        "price": 343418,
+        "rent": null,
+        "address": "3405 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460413791": [
+      {
+        "date": "2026-02-14",
+        "price": 606990,
+        "rent": null,
+        "address": "Lavender Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "457625777": [
+      {
+        "date": "2026-02-14",
+        "price": 344518,
+        "rent": 2358,
+        "address": "3423 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460413799": [
+      {
+        "date": "2026-02-14",
+        "price": 525990,
+        "rent": null,
+        "address": "Jasmine Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "448608280": [
+      {
+        "date": "2026-02-14",
+        "price": 430990,
+        "rent": 2562,
+        "address": "Weldon Plan, Painted Tree Woodland West - Village",
+        "zipcode": "75071"
+      }
+    ],
+    "457192044": [
+      {
+        "date": "2026-02-14",
+        "price": 596486,
+        "rent": 3070,
+        "address": "2904 Barbary Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "458781162": [
+      {
+        "date": "2026-02-14",
+        "price": 687448,
+        "rent": null,
+        "address": "6717 Alvarado Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460278959": [
+      {
+        "date": "2026-02-14",
+        "price": 338418,
+        "rent": null,
+        "address": "3418 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83754479": [
+      {
+        "date": "2026-02-14",
+        "price": 735000,
+        "rent": 3300,
+        "address": "1109 Well Meadow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "453261968": [
+      {
+        "date": "2026-02-14",
+        "price": 653990,
+        "rent": 2735,
+        "address": "Plan Brent Plan, Aster Park: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "454196974": [
+      {
+        "date": "2026-02-14",
+        "price": 499999,
+        "rent": 2674,
+        "address": "204 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "460056872": [
+      {
+        "date": "2026-02-14",
+        "price": 494990,
+        "rent": 2951,
+        "address": "Savannah Plan, Discovery Collection at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "458931124": [
+      {
+        "date": "2026-02-14",
+        "price": 626990,
+        "rent": 3681,
+        "address": "4704 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "94946052": [
+      {
+        "date": "2026-02-14",
+        "price": 450000,
+        "rent": 2361,
+        "address": "5208 Hidden Knolls Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2055872670": [
+      {
+        "date": "2026-02-14",
+        "price": 419000,
+        "rent": 2500,
+        "address": "8148 Legacy Oak Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458583992": [
+      {
+        "date": "2026-02-14",
+        "price": 485360,
+        "rent": 2958,
+        "address": "3709 Homer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "459829605": [
+      {
+        "date": "2026-02-14",
+        "price": 648890,
+        "rent": null,
+        "address": "8629 Katydid Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458074650": [
+      {
+        "date": "2026-02-14",
+        "price": 684786,
+        "rent": 3359,
+        "address": "4701 Bishop St",
+        "zipcode": "75071"
+      }
+    ],
+    "451123573": [
+      {
+        "date": "2026-02-14",
+        "price": 695000,
+        "rent": 3009,
+        "address": "312 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "453442451": [
+      {
+        "date": "2026-02-14",
+        "price": 445000,
+        "rent": 2689,
+        "address": "4716 Maxwell Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "452257555": [
+      {
+        "date": "2026-02-14",
+        "price": 531501,
+        "rent": 2915,
+        "address": "5112 Lawton Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457228425": [
+      {
+        "date": "2026-02-14",
+        "price": 711417,
+        "rent": 3566,
+        "address": "2232 Lakelet Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460278957": [
+      {
+        "date": "2026-02-14",
+        "price": 338233,
+        "rent": null,
+        "address": "3506 Morse Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459737202": [
+      {
+        "date": "2026-02-14",
+        "price": 395036,
+        "rent": 2780,
+        "address": "716 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "459804542": [
+      {
+        "date": "2026-02-14",
+        "price": 296990,
+        "rent": 2134,
+        "address": "510 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460159715": [
+      {
+        "date": "2026-02-14",
+        "price": 386803,
+        "rent": 2504,
+        "address": "812 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "452148965": [
+      {
+        "date": "2026-02-14",
+        "price": 378999,
+        "rent": 2441,
+        "address": "Agora Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "459925581": [
+      {
+        "date": "2026-02-14",
+        "price": 641660,
+        "rent": 3345,
+        "address": "9224 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "458243332": [
+      {
+        "date": "2026-02-14",
+        "price": 1099900,
+        "rent": 4329,
+        "address": "2408 Cairn Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459492123": [
+      {
+        "date": "2026-02-14",
+        "price": 279990,
+        "rent": 1999,
+        "address": "307 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "446836537": [
+      {
+        "date": "2026-02-14",
+        "price": 363410,
+        "rent": 2497,
+        "address": "409 Snowbird Way",
+        "zipcode": "75071"
+      }
+    ],
+    "26675019": [
+      {
+        "date": "2026-02-14",
+        "price": 595000,
+        "rent": 2714,
+        "address": "2729 Stickhorse Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "443286627": [
+      {
+        "date": "2026-02-14",
+        "price": 559000,
+        "rent": 3062,
+        "address": "Yosemite Plan, Painted Tree Lakeside",
+        "zipcode": "75071"
+      }
+    ],
+    "458243294": [
+      {
+        "date": "2026-02-14",
+        "price": 871437,
+        "rent": 3749,
+        "address": "3900 Bentsen St",
+        "zipcode": "75071"
+      }
+    ],
+    "459798220": [
+      {
+        "date": "2026-02-14",
+        "price": 289990,
+        "rent": 2073,
+        "address": "506 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "411559624": [
+      {
+        "date": "2026-02-14",
+        "price": 383990,
+        "rent": 2426,
+        "address": "2636 Red Tailed Hawk Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "453096071": [
+      {
+        "date": "2026-02-14",
+        "price": 728184,
+        "rent": 3397,
+        "address": "4508 Crescent Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "2058423295": [
+      {
+        "date": "2026-02-14",
+        "price": 410500,
+        "rent": null,
+        "address": "8141 Yellow Brick Pass",
+        "zipcode": "75071"
+      }
+    ],
+    "2058238573": [
+      {
+        "date": "2026-02-14",
+        "price": 423000,
+        "rent": 2498,
+        "address": "3524 Mallard Way",
+        "zipcode": "75071"
+      }
+    ],
+    "458842588": [
+      {
+        "date": "2026-02-14",
+        "price": 668862,
+        "rent": null,
+        "address": "6700 Mill Creek Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460278962": [
+      {
+        "date": "2026-02-14",
+        "price": 309262,
+        "rent": null,
+        "address": "3422 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457498356": [
+      {
+        "date": "2026-02-14",
+        "price": 586990,
+        "rent": 2943,
+        "address": "Plan Grantham Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "457846640": [
+      {
+        "date": "2026-02-14",
+        "price": 374990,
+        "rent": 2492,
+        "address": "Juniper Plan, Westridge Premier",
+        "zipcode": "75071"
+      }
+    ],
+    "446828398": [
+      {
+        "date": "2026-02-14",
+        "price": 924990,
+        "rent": 3662,
+        "address": "3208 Patterson Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "459991435": [
+      {
+        "date": "2026-02-14",
+        "price": 440469,
+        "rent": 3053,
+        "address": "806 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "444390195": [
+      {
+        "date": "2026-02-14",
+        "price": 373920,
+        "rent": 2363,
+        "address": "413 Snowbird Way",
+        "zipcode": "75071"
+      }
+    ],
+    "451086266": [
+      {
+        "date": "2026-02-14",
+        "price": 639990,
+        "rent": 3237,
+        "address": "4221 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "338238299": [
+      {
+        "date": "2026-02-14",
+        "price": 399000,
+        "rent": 2490,
+        "address": "372 Somerville Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455768194": [
+      {
+        "date": "2026-02-14",
+        "price": 591930,
+        "rent": 3437,
+        "address": "4744 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459492124": [
+      {
+        "date": "2026-02-14",
+        "price": 359990,
+        "rent": 2929,
+        "address": "301 Green Gables Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458243272": [
+      {
+        "date": "2026-02-14",
+        "price": 757665,
+        "rent": 4139,
+        "address": "3913 Hibiscus Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "352158496": [
+      {
+        "date": "2026-02-14",
+        "price": 455990,
+        "rent": 2563,
+        "address": "Acadia Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "457625895": [
+      {
+        "date": "2026-02-14",
+        "price": 269557,
+        "rent": 2001,
+        "address": "506 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460387940": [
+      {
+        "date": "2026-02-14",
+        "price": 673990,
+        "rent": null,
+        "address": "9405 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "457012088": [
+      {
+        "date": "2026-02-14",
+        "price": 430000,
+        "rent": 2604,
+        "address": "Bella II Plan, Painted Tree - Woodland North",
+        "zipcode": "75071"
+      }
+    ],
+    "457623502": [
+      {
+        "date": "2026-02-14",
+        "price": 331571,
+        "rent": 2247,
+        "address": "801 Dotty Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625891": [
+      {
+        "date": "2026-02-14",
+        "price": 281315,
+        "rent": 2097,
+        "address": "511 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785070": [
+      {
+        "date": "2026-02-14",
+        "price": 309262,
+        "rent": 2239,
+        "address": "The Oleander Plan, Southridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "460306045": [
+      {
+        "date": "2026-02-14",
+        "price": 415447,
+        "rent": null,
+        "address": "815 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "456075451": [
+      {
+        "date": "2026-02-14",
+        "price": 1099000,
+        "rent": null,
+        "address": "6824 Sunset Hills Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459281714": [
+      {
+        "date": "2026-02-14",
+        "price": 349990,
+        "rent": 2578,
+        "address": "Polaris Plan, Westridge Journey",
+        "zipcode": "75071"
+      }
+    ],
+    "459897577": [
+      {
+        "date": "2026-02-14",
+        "price": 442080,
+        "rent": 2621,
+        "address": "3717 Homer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "453197557": [
+      {
+        "date": "2026-02-14",
+        "price": 348990,
+        "rent": 2592,
+        "address": "Hickory Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "458573030": [
+      {
+        "date": "2026-02-14",
+        "price": 610965,
+        "rent": null,
+        "address": "4209 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "443286599": [
+      {
+        "date": "2026-02-14",
+        "price": 649000,
+        "rent": 3432,
+        "address": "Acadia Plan, Painted Tree Lakeside",
+        "zipcode": "75071"
+      }
+    ],
+    "460413802": [
+      {
+        "date": "2026-02-14",
+        "price": 588990,
+        "rent": null,
+        "address": "Bluebonnet Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "249837684": [
+      {
+        "date": "2026-02-14",
+        "price": 599990,
+        "rent": 3145,
+        "address": "709 Lost Woods Way",
+        "zipcode": "75071"
+      }
+    ],
+    "457062872": [
+      {
+        "date": "2026-02-14",
+        "price": 439030,
+        "rent": 2641,
+        "address": "3721 Homer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "460393595": [
+      {
+        "date": "2026-02-14",
+        "price": 774990,
+        "rent": null,
+        "address": "2624 Cone Flower St",
+        "zipcode": "75071"
+      }
+    ],
+    "80067890": [
+      {
+        "date": "2026-02-14",
+        "price": 899500,
+        "rent": 3515,
+        "address": "8600 Verona Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459767342": [
+      {
+        "date": "2026-02-14",
+        "price": 686671,
+        "rent": 3471,
+        "address": "4720 Bishop Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459798218": [
+      {
+        "date": "2026-02-14",
+        "price": 292490,
+        "rent": 2073,
+        "address": "516 Towerglen Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785061": [
+      {
+        "date": "2026-02-14",
+        "price": 396814,
+        "rent": 3772,
+        "address": "The Kessler Plan, Southridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "2072195071": [
+      {
+        "date": "2026-02-14",
+        "price": 444499,
+        "rent": 2596,
+        "address": "Allegro Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "26676721": [
+      {
+        "date": "2026-02-14",
+        "price": 249000,
+        "rent": 2537,
+        "address": "7400 County Road 410",
+        "zipcode": "75071"
+      }
+    ],
+    "453292483": [
+      {
+        "date": "2026-02-14",
+        "price": 371640,
+        "rent": 2522,
+        "address": "5303 Millbrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2054437424": [
+      {
+        "date": "2026-02-14",
+        "price": 343999,
+        "rent": 2142,
+        "address": "Fullerton Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "401793315": [
+      {
+        "date": "2026-02-14",
+        "price": 434999,
+        "rent": 2663,
+        "address": "Springsteen Plan, Shaded Tree : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "457846595": [
+      {
+        "date": "2026-02-14",
+        "price": 376990,
+        "rent": 2568,
+        "address": "Oleander Plan, Westridge Premier",
+        "zipcode": "75071"
+      }
+    ],
+    "345113675": [
+      {
+        "date": "2026-02-14",
+        "price": 573990,
+        "rent": 3410,
+        "address": "Caldwell Plan, Erwin Farms",
+        "zipcode": "75071"
+      }
+    ],
+    "457623362": [
+      {
+        "date": "2026-02-14",
+        "price": 470080,
+        "rent": 2979,
+        "address": "The Bexar Plan, Eastridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "453197558": [
+      {
+        "date": "2026-02-14",
+        "price": 299990,
+        "rent": 2002,
+        "address": "Oak II Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "442466390": [
+      {
+        "date": "2026-02-14",
+        "price": 744990,
+        "rent": 3626,
+        "address": "Spring Cress Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "455920588": [
+      {
+        "date": "2026-02-14",
+        "price": 658760,
+        "rent": 3126,
+        "address": "6613 Fort Parker Way",
+        "zipcode": "75071"
+      }
+    ],
+    "456341395": [
+      {
+        "date": "2026-02-14",
+        "price": 600000,
+        "rent": 2907,
+        "address": "7405 Moon Chase Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "457012089": [
+      {
+        "date": "2026-02-14",
+        "price": 470000,
+        "rent": 2977,
+        "address": "Montclair Plan, Painted Tree - Woodland North",
+        "zipcode": "75071"
+      }
+    ],
+    "442466394": [
+      {
+        "date": "2026-02-14",
+        "price": 775990,
+        "rent": 3642,
+        "address": "Rose II Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "440088912": [
+      {
+        "date": "2026-02-14",
+        "price": 364110,
+        "rent": 2343,
+        "address": "2841 Maidenhair Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "456684201": [
+      {
+        "date": "2026-02-14",
+        "price": 809990,
+        "rent": 3609,
+        "address": "Seaberry Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "336113976": [
+      {
+        "date": "2026-02-14",
+        "price": 414999,
+        "rent": 2672,
+        "address": "7112 Black Cherry Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "455811112": [
+      {
+        "date": "2026-02-14",
+        "price": 799990,
+        "rent": 3886,
+        "address": "6801 Marerro Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "453032670": [
+      {
+        "date": "2026-02-14",
+        "price": 633890,
+        "rent": 3418,
+        "address": "4204 Cleburne Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458798695": [
+      {
+        "date": "2026-02-14",
+        "price": 599990,
+        "rent": null,
+        "address": "2720 Shady Branch Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "459115815": [
+      {
+        "date": "2026-02-14",
+        "price": 649999,
+        "rent": 3355,
+        "address": "3204 Vermilion St",
+        "zipcode": "75071"
+      }
+    ],
+    "459492118": [
+      {
+        "date": "2026-02-14",
+        "price": 444990,
+        "rent": 3040,
+        "address": "3709 Turpin Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456971355": [
+      {
+        "date": "2026-02-14",
+        "price": 575260,
+        "rent": null,
+        "address": "7413 Moon Chase Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "459736419": [
+      {
+        "date": "2026-02-14",
+        "price": 405028,
+        "rent": 2780,
+        "address": "805 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "453170150": [
+      {
+        "date": "2026-02-14",
+        "price": 749990,
+        "rent": 3778,
+        "address": "320 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "457322979": [
+      {
+        "date": "2026-02-14",
+        "price": 774990,
+        "rent": 3569,
+        "address": "7220 Oak Knoll Pl",
+        "zipcode": "75071"
+      }
+    ],
+    "455601129": [
+      {
+        "date": "2026-02-14",
+        "price": 399990,
+        "rent": 2599,
+        "address": "4720 Maxwell Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "442720606": [
+      {
+        "date": "2026-02-14",
+        "price": 974990,
+        "rent": 3863,
+        "address": "3304 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "458824155": [
+      {
+        "date": "2026-02-14",
+        "price": 429269,
+        "rent": 3053,
+        "address": "709 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "454196981": [
+      {
+        "date": "2026-02-14",
+        "price": 534999,
+        "rent": 2716,
+        "address": "200 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "458243168": [
+      {
+        "date": "2026-02-14",
+        "price": 748048,
+        "rent": 3355,
+        "address": "4612 Kipling St",
+        "zipcode": "75071"
+      }
+    ],
+    "460413779": [
+      {
+        "date": "2026-02-14",
+        "price": 523990,
+        "rent": null,
+        "address": "Tulip Plan, Ridgeline",
+        "zipcode": "75071"
+      }
+    ],
+    "455949782": [
+      {
+        "date": "2026-02-14",
+        "price": 389950,
+        "rent": 2780,
+        "address": "4816 Lunker St",
+        "zipcode": "75071"
+      }
+    ],
+    "341880967": [
+      {
+        "date": "2026-02-14",
+        "price": 624990,
+        "rent": 3363,
+        "address": "Bordeaux Plan, Highland Lakes 50s",
+        "zipcode": "75071"
+      }
+    ],
+    "458190767": [
+      {
+        "date": "2026-02-14",
+        "price": 286990,
+        "rent": 2028,
+        "address": "3708 Valwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "440088848": [
+      {
+        "date": "2026-02-14",
+        "price": 419250,
+        "rent": 2552,
+        "address": "2857 Chisos Red Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459991842": [
+      {
+        "date": "2026-02-14",
+        "price": 398056,
+        "rent": 2780,
+        "address": "804 London Town Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "454871137": [
+      {
+        "date": "2026-02-14",
+        "price": 599328,
+        "rent": null,
+        "address": "4204 Gladewater Ave",
+        "zipcode": "75071"
+      }
+    ],
+    "459798210": [
+      {
+        "date": "2026-02-14",
+        "price": 594990,
+        "rent": 3481,
+        "address": "4700 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "456266879": [
+      {
+        "date": "2026-02-14",
+        "price": 799990,
+        "rent": 3673,
+        "address": "4020 Bentsen St",
+        "zipcode": "75071"
+      }
+    ],
+    "458863487": [
+      {
+        "date": "2026-02-14",
+        "price": 619100,
+        "rent": 3380,
+        "address": "9213 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "457012081": [
+      {
+        "date": "2026-02-14",
+        "price": 465000,
+        "rent": 2825,
+        "address": "Louis Plan, Painted Tree - Woodland North",
+        "zipcode": "75071"
+      }
+    ],
+    "460278961": [
+      {
+        "date": "2026-02-14",
+        "price": 331312,
+        "rent": null,
+        "address": "3420 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457681525": [
+      {
+        "date": "2026-02-14",
+        "price": 799990,
+        "rent": 3506,
+        "address": "2917 Engelman Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785083": [
+      {
+        "date": "2026-02-14",
+        "price": 318843,
+        "rent": 2441,
+        "address": "The Preston Plan, Southridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "63672900": [
+      {
+        "date": "2026-02-14",
+        "price": 469000,
+        "rent": 2394,
+        "address": "5332 Comanche Wells Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "448792149": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": 3132,
+        "address": "3109 Hoyle St",
+        "zipcode": "75071"
+      }
+    ],
+    "458715132": [
+      {
+        "date": "2026-02-14",
+        "price": 689490,
+        "rent": 3786,
+        "address": "4717 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "456444793": [
+      {
+        "date": "2026-02-14",
+        "price": 999990,
+        "rent": 3847,
+        "address": "3362 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "460417467": [
+      {
+        "date": "2026-02-14",
+        "price": 1870000,
+        "rent": null,
+        "address": "County Road 406",
+        "zipcode": "75071"
+      }
+    ],
+    "341881018": [
+      {
+        "date": "2026-02-14",
+        "price": 599963,
+        "rent": 3124,
+        "address": "Saffron Plan, Highland Lakes 50s",
+        "zipcode": "75071"
+      }
+    ],
+    "440805788": [
+      {
+        "date": "2026-02-14",
+        "price": 799995,
+        "rent": 3309,
+        "address": "Neece Plan, Toll Brothers at Aster Park - Executive Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "336114525": [
+      {
+        "date": "2026-02-14",
+        "price": 427999,
+        "rent": 2672,
+        "address": "7120 Black Cherry Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458573011": [
+      {
+        "date": "2026-02-14",
+        "price": 614433,
+        "rent": null,
+        "address": "4217 Cleburne Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458246638": [
+      {
+        "date": "2026-02-14",
+        "price": 392870,
+        "rent": 2703,
+        "address": "3909 Hessie Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "454932188": [
+      {
+        "date": "2026-02-14",
+        "price": 499990,
+        "rent": 2626,
+        "address": "9725 Juneberry Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "168641976": [
+      {
+        "date": "2026-02-14",
+        "price": 525000,
+        "rent": null,
+        "address": "7529 Guadalupe Way",
+        "zipcode": "75071"
+      }
+    ],
+    "55703570": [
+      {
+        "date": "2026-02-14",
+        "price": 535000,
+        "rent": 3369,
+        "address": "2540 Brinlee Branch Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "459115814": [
+      {
+        "date": "2026-02-14",
+        "price": 639999,
+        "rent": 3121,
+        "address": "4213 Attwater St",
+        "zipcode": "75071"
+      }
+    ],
+    "459798217": [
+      {
+        "date": "2026-02-14",
+        "price": 724490,
+        "rent": 3820,
+        "address": "4721 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "442579908": [
+      {
+        "date": "2026-02-14",
+        "price": 939990,
+        "rent": 3988,
+        "address": "3208 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "338238415": [
+      {
+        "date": "2026-02-14",
+        "price": 439000,
+        "rent": 2430,
+        "address": "917 Rough Hollow Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457625768": [
+      {
+        "date": "2026-02-14",
+        "price": 347418,
+        "rent": 2358,
+        "address": "3415 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "440088851": [
+      {
+        "date": "2026-02-14",
+        "price": 416990,
+        "rent": 2564,
+        "address": "2845 Chisos Red Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "26675058": [
+      {
+        "date": "2026-02-14",
+        "price": 399000,
+        "rent": 2174,
+        "address": "360 Rockcrest Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "453007334": [
+      {
+        "date": "2026-02-14",
+        "price": 609990,
+        "rent": 3362,
+        "address": "4009 Calderwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455768197": [
+      {
+        "date": "2026-02-14",
+        "price": 602220,
+        "rent": 3456,
+        "address": "4740 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "83743843": [
+      {
+        "date": "2026-02-14",
+        "price": 995000,
+        "rent": null,
+        "address": "2084 Broken Arrow Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "456654805": [
+      {
+        "date": "2026-02-14",
+        "price": 739935,
+        "rent": 3578,
+        "address": "2951 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "440088911": [
+      {
+        "date": "2026-02-14",
+        "price": 393430,
+        "rent": 2506,
+        "address": "2837 Maidenhair Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785079": [
+      {
+        "date": "2026-02-14",
+        "price": 264867,
+        "rent": 1975,
+        "address": "The Sequoia Plan, Southridge - Spring Series",
+        "zipcode": "75071"
+      }
+    ],
+    "460017381": [
+      {
+        "date": "2026-02-14",
+        "price": 622990,
+        "rent": 2742,
+        "address": "2724 Andorra Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459288334": [
+      {
+        "date": "2026-02-14",
+        "price": 572828,
+        "rent": 2928,
+        "address": "4709 Baytown Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "460203984": [
+      {
+        "date": "2026-02-14",
+        "price": 719559,
+        "rent": 3062,
+        "address": "3928 Attwater St",
+        "zipcode": "75071"
+      }
+    ],
+    "455706060": [
+      {
+        "date": "2026-02-14",
+        "price": 685900,
+        "rent": 3332,
+        "address": "3069W Plan, Trinity Falls 60'",
+        "zipcode": "75071"
+      }
+    ],
+    "455768208": [
+      {
+        "date": "2026-02-14",
+        "price": 639000,
+        "rent": 3544,
+        "address": "Majestic Plan, Painted Tree Woodland West",
+        "zipcode": "75071"
+      }
+    ],
+    "459635359": [
+      {
+        "date": "2026-02-14",
+        "price": 565000,
+        "rent": 2729,
+        "address": "7105 Bergamot Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459915972": [
+      {
+        "date": "2026-02-14",
+        "price": 553981,
+        "rent": 2721,
+        "address": "2620 Andorra Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "451086268": [
+      {
+        "date": "2026-02-14",
+        "price": 689990,
+        "rent": 3442,
+        "address": "6816 Alvarado Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456431603": [
+      {
+        "date": "2026-02-14",
+        "price": 322000,
+        "rent": 2328,
+        "address": "The Carlsbad Plan, Eastridge - Spring Series",
+        "zipcode": "75071"
+      }
+    ],
+    "460341010": [
+      {
+        "date": "2026-02-14",
+        "price": 749900,
+        "rent": null,
+        "address": "328 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "458177767": [
+      {
+        "date": "2026-02-14",
+        "price": 289360,
+        "rent": 2149,
+        "address": "The Shenandoah Plan, Eastridge - Spring Series",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785094": [
+      {
+        "date": "2026-02-14",
+        "price": 315413,
+        "rent": 2263,
+        "address": "The Allen Plan, Southridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "447359744": [
+      {
+        "date": "2026-02-14",
+        "price": 548990,
+        "rent": 2738,
+        "address": "Copaiba Plan, The Landing at Hidden Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "458261645": [
+      {
+        "date": "2026-02-14",
+        "price": 737558,
+        "rent": 3964,
+        "address": "4524 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458243331": [
+      {
+        "date": "2026-02-14",
+        "price": 899900,
+        "rent": 3343,
+        "address": "2412 Cairn Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "457062881": [
+      {
+        "date": "2026-02-14",
+        "price": 449680,
+        "rent": 2627,
+        "address": "3732 Homer Ct",
+        "zipcode": "75071"
+      }
+    ],
+    "456895373": [
+      {
+        "date": "2026-02-14",
+        "price": 764990,
+        "rent": 3603,
+        "address": "240 S Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "458863499": [
+      {
+        "date": "2026-02-14",
+        "price": 633990,
+        "rent": 3320,
+        "address": "9225 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "459899741": [
+      {
+        "date": "2026-02-14",
+        "price": 592722,
+        "rent": null,
+        "address": "4201 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460296098": [
+      {
+        "date": "2026-02-14",
+        "price": 774900,
+        "rent": null,
+        "address": "232 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "460220750": [
+      {
+        "date": "2026-02-14",
+        "price": 553490,
+        "rent": 2987,
+        "address": "9424 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "459464787": [
+      {
+        "date": "2026-02-14",
+        "price": 824990,
+        "rent": 3783,
+        "address": "2612 Cone Flower St",
+        "zipcode": "75071"
+      }
+    ],
+    "460296099": [
+      {
+        "date": "2026-02-14",
+        "price": 799900,
+        "rent": null,
+        "address": "324 Bay Laurel Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "442466376": [
+      {
+        "date": "2026-02-14",
+        "price": 549990,
+        "rent": 2664,
+        "address": "Cypress Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "2056979004": [
+      {
+        "date": "2026-02-14",
+        "price": 365990,
+        "rent": 2371,
+        "address": "Boyd Plan, Painted Tree - Village District",
+        "zipcode": "75071"
+      }
+    ],
+    "460298361": [
+      {
+        "date": "2026-02-14",
+        "price": 799990,
+        "rent": null,
+        "address": "225 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "439274801": [
+      {
+        "date": "2026-02-14",
+        "price": 559990,
+        "rent": 2759,
+        "address": "Plan Warrenton Plan, Aster Park: 40ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "456950015": [
+      {
+        "date": "2026-02-14",
+        "price": 355990,
+        "rent": 2363,
+        "address": "Contour Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "459281718": [
+      {
+        "date": "2026-02-14",
+        "price": 299990,
+        "rent": 2000,
+        "address": "Compass Plan, Westridge Journey",
+        "zipcode": "75071"
+      }
+    ],
+    "460101842": [
+      {
+        "date": "2026-02-14",
+        "price": 305000,
+        "rent": null,
+        "address": "C 48 Lake Shore Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460272012": [
+      {
+        "date": "2026-02-14",
+        "price": 610342,
+        "rent": null,
+        "address": "4600 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456879791": [
+      {
+        "date": "2026-02-14",
+        "price": 400990,
+        "rent": 2705,
+        "address": "2536 Red Tailed Hawk Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458501100": [
+      {
+        "date": "2026-02-14",
+        "price": 1049990,
+        "rent": 4506,
+        "address": "3200 Anaquitas Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "443570945": [
+      {
+        "date": "2026-02-14",
+        "price": 790990,
+        "rent": 4169,
+        "address": "Lakewood III Plan, Painted Tree 50' Series",
+        "zipcode": "75071"
+      }
+    ],
+    "453032675": [
+      {
+        "date": "2026-02-14",
+        "price": 599990,
+        "rent": 3449,
+        "address": "4233 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455271369": [
+      {
+        "date": "2026-02-14",
+        "price": 532990,
+        "rent": 2777,
+        "address": "Hawkins Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "460056858": [
+      {
+        "date": "2026-02-14",
+        "price": 399990,
+        "rent": 2558,
+        "address": "Chaise Plan, Carriage Collection at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "460333309": [
+      {
+        "date": "2026-02-14",
+        "price": 834900,
+        "rent": null,
+        "address": "Griffin V Plan, Eliana",
+        "zipcode": "75071"
+      }
+    ],
+    "458798694": [
+      {
+        "date": "2026-02-14",
+        "price": 686559,
+        "rent": null,
+        "address": "2716 Shady Branch Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458248389": [
+      {
+        "date": "2026-02-14",
+        "price": 1024990,
+        "rent": 4297,
+        "address": "3309 Andesite Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "459281716": [
+      {
+        "date": "2026-02-14",
+        "price": 379990,
+        "rent": 2941,
+        "address": "Wayfinder Plan, Westridge Journey",
+        "zipcode": "75071"
+      }
+    ],
+    "459798222": [
+      {
+        "date": "2026-02-14",
+        "price": 624490,
+        "rent": 3405,
+        "address": "4712 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "460213081": [
+      {
+        "date": "2026-02-14",
+        "price": 561742,
+        "rent": 2658,
+        "address": "3116 Barbary Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "440805786": [
+      {
+        "date": "2026-02-14",
+        "price": 839995,
+        "rent": 3501,
+        "address": "Metcalf Plan, Toll Brothers at Aster Park - Executive Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "457632333": [
+      {
+        "date": "2026-02-14",
+        "price": 665650,
+        "rent": 3012,
+        "address": "1108 Branching Brook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456910039": [
+      {
+        "date": "2026-02-14",
+        "price": 575000,
+        "rent": null,
+        "address": "7408 Dragonfly Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "456594779": [
+      {
+        "date": "2026-02-14",
+        "price": 399370,
+        "rent": 2795,
+        "address": "4800 Lunker St",
+        "zipcode": "75071"
+      }
+    ],
+    "456315402": [
+      {
+        "date": "2026-02-14",
+        "price": 775000,
+        "rent": null,
+        "address": "6308 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "456785666": [
+      {
+        "date": "2026-02-14",
+        "price": 775000,
+        "rent": 2247,
+        "address": "9404 Ragwing Ln #96.740",
+        "zipcode": "75071"
+      }
+    ],
+    "456893253": [
+      {
+        "date": "2026-02-14",
+        "price": 600000,
+        "rent": null,
+        "address": "7425 Moon Chase Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "116189339": [
+      {
+        "date": "2026-02-14",
+        "price": 1500000,
+        "rent": null,
+        "address": "6950 County Road 995",
+        "zipcode": "75071"
+      }
+    ],
+    "459221891": [
+      {
+        "date": "2026-02-14",
+        "price": 719999,
+        "rent": 3398,
+        "address": "3916 Attwater St",
+        "zipcode": "75071"
+      }
+    ],
+    "458546101": [
+      {
+        "date": "2026-02-14",
+        "price": 670480,
+        "rent": null,
+        "address": "4205 Tawakoni Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "441824948": [
+      {
+        "date": "2026-02-14",
+        "price": 441999,
+        "rent": 2822,
+        "address": "Hendrix Plan, Shaded Tree : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "441824945": [
+      {
+        "date": "2026-02-14",
+        "price": 301999,
+        "rent": 1944,
+        "address": "Pearce Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "460197887": [
+      {
+        "date": "2026-02-14",
+        "price": 778900,
+        "rent": 3862,
+        "address": "3553W Plan, Eliana 50'",
+        "zipcode": "75071"
+      }
+    ],
+    "457301324": [
+      {
+        "date": "2026-02-14",
+        "price": 845990,
+        "rent": 4181,
+        "address": "Lily IV Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "453292490": [
+      {
+        "date": "2026-02-14",
+        "price": 368055,
+        "rent": 2224,
+        "address": "5307 Millbrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "452099731": [
+      {
+        "date": "2026-02-14",
+        "price": 749000,
+        "rent": null,
+        "address": "7404 Lilypad Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "402471651": [
+      {
+        "date": "2026-02-14",
+        "price": 919900,
+        "rent": 3992,
+        "address": "Addison III Plan, Painted Tree 60' Series",
+        "zipcode": "75071"
+      }
+    ],
+    "456530417": [
+      {
+        "date": "2026-02-14",
+        "price": 461990,
+        "rent": 2801,
+        "address": "Garrison Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "2058217755": [
+      {
+        "date": "2026-02-14",
+        "price": 430000,
+        "rent": 2453,
+        "address": "8024 Acanthus St",
+        "zipcode": "75071"
+      }
+    ],
+    "460272013": [
+      {
+        "date": "2026-02-14",
+        "price": 730097,
+        "rent": null,
+        "address": "4525 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460056803": [
+      {
+        "date": "2026-02-14",
+        "price": 412990,
+        "rent": 2657,
+        "address": "Cremello Plan, Carriage Collection at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "457625903": [
+      {
+        "date": "2026-02-14",
+        "price": 343452,
+        "rent": 2650,
+        "address": "510 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455706008": [
+      {
+        "date": "2026-02-14",
+        "price": 569900,
+        "rent": 2886,
+        "address": "2474W Plan, Trinity Falls 50'",
+        "zipcode": "75071"
+      }
+    ],
+    "455706016": [
+      {
+        "date": "2026-02-14",
+        "price": 559900,
+        "rent": 2904,
+        "address": "2504W Plan, Trinity Falls 50'",
+        "zipcode": "75071"
+      }
+    ],
+    "457926172": [
+      {
+        "date": "2026-02-14",
+        "price": 899990,
+        "rent": 4147,
+        "address": "3921 Launch Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "456948673": [
+      {
+        "date": "2026-02-14",
+        "price": 775000,
+        "rent": null,
+        "address": "6321 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "455706052": [
+      {
+        "date": "2026-02-14",
+        "price": 765900,
+        "rent": 4009,
+        "address": "4016W Plan, Trinity Falls 60'",
+        "zipcode": "75071"
+      }
+    ],
+    "456645305": [
+      {
+        "date": "2026-02-14",
+        "price": 395999,
+        "rent": 2477,
+        "address": "Walsh Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "457625905": [
+      {
+        "date": "2026-02-14",
+        "price": 280180,
+        "rent": 2088,
+        "address": "512 Dorothy Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458931115": [
+      {
+        "date": "2026-02-14",
+        "price": 684490,
+        "rent": 3695,
+        "address": "4705 Sandburg St",
+        "zipcode": "75071"
+      }
+    ],
+    "456530412": [
+      {
+        "date": "2026-02-14",
+        "price": 547990,
+        "rent": 3187,
+        "address": "Easton Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "457036181": [
+      {
+        "date": "2026-02-14",
+        "price": 515900,
+        "rent": 2776,
+        "address": "1950W Plan, Trinity Falls 45'",
+        "zipcode": "75071"
+      }
+    ],
+    "457846710": [
+      {
+        "date": "2026-02-14",
+        "price": 354990,
+        "rent": 2362,
+        "address": "Palm Plan, Westridge Premier",
+        "zipcode": "75071"
+      }
+    ],
+    "2054785077": [
+      {
+        "date": "2026-02-14",
+        "price": 321150,
+        "rent": 2275,
+        "address": "The Olympic Plan, Southridge - Spring Series",
+        "zipcode": "75071"
+      }
+    ],
+    "458405280": [
+      {
+        "date": "2026-02-14",
+        "price": 348823,
+        "rent": 2512,
+        "address": "The Preston Plan, Eastridge - Signature Series",
+        "zipcode": "75071"
+      }
+    ],
+    "457623544": [
+      {
+        "date": "2026-02-14",
+        "price": 331182,
+        "rent": 2406,
+        "address": "712 Leavenworth Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460272014": [
+      {
+        "date": "2026-02-14",
+        "price": 711805,
+        "rent": null,
+        "address": "4700 Baytown Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "455706035": [
+      {
+        "date": "2026-02-14",
+        "price": 687900,
+        "rent": 3312,
+        "address": "3257W Plan, Trinity Falls 60'",
+        "zipcode": "75071"
+      }
+    ],
+    "456836740": [
+      {
+        "date": "2026-02-14",
+        "price": 499990,
+        "rent": 2850,
+        "address": "4816 Maxwell Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "458243478": [
+      {
+        "date": "2026-02-14",
+        "price": 405990,
+        "rent": 2646,
+        "address": "2516 Red Tailed Hawk Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "458417682": [
+      {
+        "date": "2026-02-14",
+        "price": 375000,
+        "rent": null,
+        "address": "405 Lloyd Stearman Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457885593": [
+      {
+        "date": "2026-02-14",
+        "price": 755900,
+        "rent": 3680,
+        "address": "BRENHAM Plan, Timber Creek",
+        "zipcode": "75071"
+      }
+    ],
+    "457036185": [
+      {
+        "date": "2026-02-14",
+        "price": 528900,
+        "rent": 2830,
+        "address": "2026W Plan, Trinity Falls 45'",
+        "zipcode": "75071"
+      }
+    ],
+    "455751608": [
+      {
+        "date": "2026-02-14",
+        "price": 338215,
+        "rent": 2041,
+        "address": "812 Antioch Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455751617": [
+      {
+        "date": "2026-02-14",
+        "price": 344665,
+        "rent": 2042,
+        "address": "5305 Millbrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "460333310": [
+      {
+        "date": "2026-02-14",
+        "price": 864900,
+        "rent": null,
+        "address": "Ashland III Plan, Eliana",
+        "zipcode": "75071"
+      }
+    ],
+    "460333311": [
+      {
+        "date": "2026-02-14",
+        "price": 914900,
+        "rent": null,
+        "address": "Stella Plan, Eliana",
+        "zipcode": "75071"
+      }
+    ],
+    "2056979009": [
+      {
+        "date": "2026-02-14",
+        "price": 394990,
+        "rent": 2527,
+        "address": "Emily Plan, Painted Tree - Village District",
+        "zipcode": "75071"
+      }
+    ],
+    "441824946": [
+      {
+        "date": "2026-02-14",
+        "price": 318999,
+        "rent": 2133,
+        "address": "Beckman Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "460278964": [
+      {
+        "date": "2026-02-14",
+        "price": 406969,
+        "rent": null,
+        "address": "3416 Copperwood Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457036188": [
+      {
+        "date": "2026-02-14",
+        "price": 513900,
+        "rent": 2727,
+        "address": "1910W Plan, Trinity Falls 45'",
+        "zipcode": "75071"
+      }
+    ],
+    "442466408": [
+      {
+        "date": "2026-02-14",
+        "price": 578990,
+        "rent": 2841,
+        "address": "Dogwood III Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "453197564": [
+      {
+        "date": "2026-02-14",
+        "price": 342990,
+        "rent": 2389,
+        "address": "Creede Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "455706033": [
+      {
+        "date": "2026-02-14",
+        "price": 641900,
+        "rent": 3050,
+        "address": "2726W Plan, Trinity Falls 60'",
+        "zipcode": "75071"
+      }
+    ],
+    "452128856": [
+      {
+        "date": "2026-02-14",
+        "price": 775000,
+        "rent": 3585,
+        "address": "224 Bee Balm Rd",
+        "zipcode": "75071"
+      }
+    ],
+    "448397704": [
+      {
+        "date": "2026-02-14",
+        "price": 527990,
+        "rent": 2928,
+        "address": "Chapelle II Plan, Painted Tree - Woodland West",
+        "zipcode": "75071"
+      }
+    ],
+    "440805789": [
+      {
+        "date": "2026-02-14",
+        "price": 1020995,
+        "rent": 4317,
+        "address": "Todd Plan, Toll Brothers at Aster Park - Executive Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "455235578": [
+      {
+        "date": "2026-02-14",
+        "price": 350000,
+        "rent": null,
+        "address": "0 County Road 206",
+        "zipcode": "75071"
+      }
+    ],
+    "441824938": [
+      {
+        "date": "2026-02-14",
+        "price": 349999,
+        "rent": 2456,
+        "address": "Oxford Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "2065500577": [
+      {
+        "date": "2026-02-14",
+        "price": 375000,
+        "rent": null,
+        "address": "LOT 22 Lake Breeze Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "456950028": [
+      {
+        "date": "2026-02-14",
+        "price": 462990,
+        "rent": 2855,
+        "address": "Mainstay Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "453197560": [
+      {
+        "date": "2026-02-14",
+        "price": 312990,
+        "rent": 2093,
+        "address": "Pecan Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "460269350": [
+      {
+        "date": "2026-02-14",
+        "price": 286990,
+        "rent": 2103,
+        "address": "120 Greenbriar Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "455768199": [
+      {
+        "date": "2026-02-14",
+        "price": 499900,
+        "rent": 2796,
+        "address": "Adolphus Plan, Painted Tree Woodland West",
+        "zipcode": "75071"
+      }
+    ],
+    "456950030": [
+      {
+        "date": "2026-02-14",
+        "price": 438990,
+        "rent": 2599,
+        "address": "Prosperity Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "447442469": [
+      {
+        "date": "2026-02-14",
+        "price": 707990,
+        "rent": 3388,
+        "address": "The Shenandoah II Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "460056874": [
+      {
+        "date": "2026-02-14",
+        "price": 479990,
+        "rent": 3094,
+        "address": "Sorrel Plan, Carriage Collection at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "457498351": [
+      {
+        "date": "2026-02-14",
+        "price": 534990,
+        "rent": 2700,
+        "address": "Plan Ashwood Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "458261640": [
+      {
+        "date": "2026-02-14",
+        "price": 759298,
+        "rent": 4015,
+        "address": "4521 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "457498357": [
+      {
+        "date": "2026-02-14",
+        "price": 504990,
+        "rent": 2522,
+        "address": "Plan Glenhurst Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "458703305": [
+      {
+        "date": "2026-02-14",
+        "price": 649990,
+        "rent": 3608,
+        "address": "6361 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "457846662": [
+      {
+        "date": "2026-02-14",
+        "price": 429990,
+        "rent": 3133,
+        "address": "Rosewood Plan, Westridge Premier",
+        "zipcode": "75071"
+      }
+    ],
+    "459762100": [
+      {
+        "date": "2026-02-14",
+        "price": 515900,
+        "rent": 2578,
+        "address": "1950W Plan, Trinity Falls At Province Woods 45'",
+        "zipcode": "75071"
+      }
+    ],
+    "459650935": [
+      {
+        "date": "2026-02-14",
+        "price": 628990,
+        "rent": 3445,
+        "address": "Marseille Plan, Painted Tree - South",
+        "zipcode": "75071"
+      }
+    ],
+    "459435691": [
+      {
+        "date": "2026-02-14",
+        "price": 489960,
+        "rent": 2977,
+        "address": "3736 Malamute Run",
+        "zipcode": "75071"
+      }
+    ],
+    "441824989": [
+      {
+        "date": "2026-02-14",
+        "price": 424999,
+        "rent": 2477,
+        "address": "Walsh Plan, Shaded Tree : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "460155164": [
+      {
+        "date": "2026-02-14",
+        "price": 444999,
+        "rent": 2402,
+        "address": "6836 Steiger Trl",
+        "zipcode": "75071"
+      }
+    ],
+    "442466389": [
+      {
+        "date": "2026-02-14",
+        "price": 559990,
+        "rent": 2683,
+        "address": "Jasmine Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "441824926": [
+      {
+        "date": "2026-02-14",
+        "price": 345999,
+        "rent": 2434,
+        "address": "Ramsey Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "460272016": [
+      {
+        "date": "2026-02-14",
+        "price": 716006,
+        "rent": null,
+        "address": "4517 Tippett Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "2059885983": [
+      {
+        "date": "2026-02-14",
+        "price": 399999,
+        "rent": null,
+        "address": "Tbd Lake Shore Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "453197562": [
+      {
+        "date": "2026-02-14",
+        "price": 367990,
+        "rent": 2537,
+        "address": "Glenwood Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "457498360": [
+      {
+        "date": "2026-02-14",
+        "price": 581990,
+        "rent": 2893,
+        "address": "Plan Kingston Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "460220758": [
+      {
+        "date": "2026-02-14",
+        "price": 652990,
+        "rent": 3293,
+        "address": "9409 Gossamer St",
+        "zipcode": "75071"
+      }
+    ],
+    "80069506": [
+      {
+        "date": "2026-02-14",
+        "price": 310000,
+        "rent": 3313,
+        "address": "Morning Gln",
+        "zipcode": "75071"
+      }
+    ],
+    "458883256": [
+      {
+        "date": "2026-02-14",
+        "price": 580990,
+        "rent": 2901,
+        "address": "Plan Newport Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "459762107": [
+      {
+        "date": "2026-02-14",
+        "price": 520900,
+        "rent": 2601,
+        "address": "1984W Plan, Trinity Falls At Province Woods 45'",
+        "zipcode": "75071"
+      }
+    ],
+    "455706050": [
+      {
+        "date": "2026-02-14",
+        "price": 747900,
+        "rent": 3594,
+        "address": "3593W Plan, Trinity Falls 60'",
+        "zipcode": "75071"
+      }
+    ],
+    "456950021": [
+      {
+        "date": "2026-02-14",
+        "price": 381990,
+        "rent": 2594,
+        "address": "Hallmark Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "459151843": [
+      {
+        "date": "2026-02-14",
+        "price": 1072990,
+        "rent": 3917,
+        "address": "Plan Lucca Plan, Ridgeline: 70ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "456950022": [
+      {
+        "date": "2026-02-14",
+        "price": 477990,
+        "rent": 2745,
+        "address": "Prestige Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "457036179": [
+      {
+        "date": "2026-02-14",
+        "price": 520900,
+        "rent": 2801,
+        "address": "1984W Plan, Trinity Falls 45'",
+        "zipcode": "75071"
+      }
+    ],
+    "439274804": [
+      {
+        "date": "2026-02-14",
+        "price": 709990,
+        "rent": 2968,
+        "address": "Plan Middleton Plan, Aster Park: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "441127681": [
+      {
+        "date": "2026-02-14",
+        "price": 639990,
+        "rent": 3702,
+        "address": "Lawson Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "458883255": [
+      {
+        "date": "2026-02-14",
+        "price": 631990,
+        "rent": 3267,
+        "address": "Plan Cambridge Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "460056835": [
+      {
+        "date": "2026-02-14",
+        "price": 572990,
+        "rent": 3274,
+        "address": "Cameron Plan, Inspiration Collection 60 at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "455751622": [
+      {
+        "date": "2026-02-14",
+        "price": 326085,
+        "rent": 1966,
+        "address": "5207 Millbrook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "345113693": [
+      {
+        "date": "2026-02-14",
+        "price": 546990,
+        "rent": 2957,
+        "address": "Mooreville Plan, Erwin Farms",
+        "zipcode": "75071"
+      }
+    ],
+    "455271358": [
+      {
+        "date": "2026-02-14",
+        "price": 496990,
+        "rent": 2475,
+        "address": "Marshall Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "457498378": [
+      {
+        "date": "2026-02-14",
+        "price": 539990,
+        "rent": 2770,
+        "address": "Plan Dorchester Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "442466397": [
+      {
+        "date": "2026-02-14",
+        "price": 609990,
+        "rent": 3073,
+        "address": "Violet III Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "441127686": [
+      {
+        "date": "2026-02-14",
+        "price": 573990,
+        "rent": 3168,
+        "address": "San Marcos Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "456684186": [
+      {
+        "date": "2026-02-14",
+        "price": 834990,
+        "rent": 3692,
+        "address": "Primrose FE V Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "441824971": [
+      {
+        "date": "2026-02-14",
+        "price": 329999,
+        "rent": 2276,
+        "address": "Newlin Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "439274778": [
+      {
+        "date": "2026-02-14",
+        "price": 563990,
+        "rent": 2726,
+        "address": "Plan London Plan, Aster Park: 40ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "460333313": [
+      {
+        "date": "2026-02-14",
+        "price": 949900,
+        "rent": null,
+        "address": "Madison II Plan, Eliana",
+        "zipcode": "75071"
+      }
+    ],
+    "441825034": [
+      {
+        "date": "2026-02-14",
+        "price": 396999,
+        "rent": 2352,
+        "address": "Frey Plan, Shaded Tree : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "456674319": [
+      {
+        "date": "2026-02-14",
+        "price": 639000,
+        "rent": 3036,
+        "address": "Heath - 4452SPR Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "453197567": [
+      {
+        "date": "2026-02-14",
+        "price": 332990,
+        "rent": 2246,
+        "address": "Greeley Plan, Westridge",
+        "zipcode": "75071"
+      }
+    ],
+    "447175366": [
+      {
+        "date": "2026-02-14",
+        "price": 588999,
+        "rent": 3058,
+        "address": "Fairfield II w/Theater Plan, Shaded Tree : Lakeside Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "442466370": [
+      {
+        "date": "2026-02-14",
+        "price": 589990,
+        "rent": 2841,
+        "address": "Violet Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "441127679": [
+      {
+        "date": "2026-02-14",
+        "price": 570990,
+        "rent": 3073,
+        "address": "Mooreville Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "439274797": [
+      {
+        "date": "2026-02-14",
+        "price": 501990,
+        "rent": 2348,
+        "address": "Plan Grayson Plan, Aster Park: 40ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "442466378": [
+      {
+        "date": "2026-02-14",
+        "price": 679990,
+        "rent": 2941,
+        "address": "Caraway Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "441127688": [
+      {
+        "date": "2026-02-14",
+        "price": 504990,
+        "rent": 2513,
+        "address": "Arlington Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "459151850": [
+      {
+        "date": "2026-02-14",
+        "price": 544990,
+        "rent": 2808,
+        "address": "Plan Davenport Plan, Ridgeline: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "447175370": [
+      {
+        "date": "2026-02-14",
+        "price": 591999,
+        "rent": 3166,
+        "address": "Granbury II Plan, Shaded Tree : Lakeside Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "458467083": [
+      {
+        "date": "2026-02-14",
+        "price": 596990,
+        "rent": 3056,
+        "address": "Plan Panamera Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "448397705": [
+      {
+        "date": "2026-02-14",
+        "price": 674990,
+        "rent": 3554,
+        "address": "Toulouse II Plan, Painted Tree - Woodland West",
+        "zipcode": "75071"
+      }
+    ],
+    "457618164": [
+      {
+        "date": "2026-02-14",
+        "price": 649990,
+        "rent": 3401,
+        "address": "6329 Foxglove Ln",
+        "zipcode": "75071"
+      }
+    ],
+    "439274806": [
+      {
+        "date": "2026-02-14",
+        "price": 634990,
+        "rent": 2745,
+        "address": "Plan Denton Plan, Aster Park: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "456442550": [
+      {
+        "date": "2026-02-14",
+        "price": 702900,
+        "rent": 3234,
+        "address": "BRENDAN Plan, Trinity Falls 60",
+        "zipcode": "75071"
+      }
+    ],
+    "460056838": [
+      {
+        "date": "2026-02-14",
+        "price": 613990,
+        "rent": 3434,
+        "address": "Dylan Plan, Inspiration Collection 70 at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "443286622": [
+      {
+        "date": "2026-02-14",
+        "price": 654000,
+        "rent": 3527,
+        "address": "Denali Plan, Painted Tree Lakeside",
+        "zipcode": "75071"
+      }
+    ],
+    "459762103": [
+      {
+        "date": "2026-02-14",
+        "price": 568900,
+        "rent": 2910,
+        "address": "2513W Plan, Trinity Falls At Province Woods 50'",
+        "zipcode": "75071"
+      }
+    ],
+    "439274776": [
+      {
+        "date": "2026-02-14",
+        "price": 634990,
+        "rent": 2810,
+        "address": "Plan Davenport Plan, Aster Park: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "441127690": [
+      {
+        "date": "2026-02-14",
+        "price": 597990,
+        "rent": 3410,
+        "address": "Caldwell Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "447359741": [
+      {
+        "date": "2026-02-14",
+        "price": 633990,
+        "rent": 3112,
+        "address": "Englewood Plan, The Landing at Hidden Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "456950031": [
+      {
+        "date": "2026-02-14",
+        "price": 603990,
+        "rent": 2824,
+        "address": "Stellar Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "456530409": [
+      {
+        "date": "2026-02-14",
+        "price": 539990,
+        "rent": 3136,
+        "address": "Farnsworth Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "456530411": [
+      {
+        "date": "2026-02-14",
+        "price": 529990,
+        "rent": 2904,
+        "address": "Carson Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "457498369": [
+      {
+        "date": "2026-02-14",
+        "price": 603990,
+        "rent": 3059,
+        "address": "Plan Redford Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "455629812": [
+      {
+        "date": "2026-02-14",
+        "price": 564990,
+        "rent": 3074,
+        "address": "Hamilton Plan, Highland Lakes",
+        "zipcode": "75071"
+      }
+    ],
+    "457498359": [
+      {
+        "date": "2026-02-14",
+        "price": 633990,
+        "rent": 3132,
+        "address": "Plan Fordham Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "442466405": [
+      {
+        "date": "2026-02-14",
+        "price": 709990,
+        "rent": 3295,
+        "address": "Carolina III Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "455271367": [
+      {
+        "date": "2026-02-14",
+        "price": 588990,
+        "rent": 3321,
+        "address": "Wellman Plan, Aster Park",
+        "zipcode": "75071"
+      }
+    ],
+    "456645288": [
+      {
+        "date": "2026-02-14",
+        "price": 374999,
+        "rent": 2352,
+        "address": "Frey Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "457498353": [
+      {
+        "date": "2026-02-14",
+        "price": 549990,
+        "rent": 2785,
+        "address": "Plan Denton Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "457498380": [
+      {
+        "date": "2026-02-14",
+        "price": 587990,
+        "rent": 2888,
+        "address": "Plan Westbury Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "456645300": [
+      {
+        "date": "2026-02-14",
+        "price": 386999,
+        "rent": 2462,
+        "address": "Nash Plan, Preserve at Honey Creek : Classic Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "456950027": [
+      {
+        "date": "2026-02-14",
+        "price": 458990,
+        "rent": 2846,
+        "address": "Palmary Plan, Del Webb at Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "454571700": [
+      {
+        "date": "2026-02-14",
+        "price": 561990,
+        "rent": 2761,
+        "address": "Plan Brent Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "460169383": [
+      {
+        "date": "2026-02-14",
+        "price": 365990,
+        "rent": 2466,
+        "address": "Cicero Old World Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "457632335": [
+      {
+        "date": "2026-02-14",
+        "price": 797211,
+        "rent": 3596,
+        "address": "1116 Branching Brook Dr",
+        "zipcode": "75071"
+      }
+    ],
+    "459650940": [
+      {
+        "date": "2026-02-14",
+        "price": 527990,
+        "rent": 2954,
+        "address": "Chapelle Plan, Painted Tree - South",
+        "zipcode": "75071"
+      }
+    ],
+    "459762102": [
+      {
+        "date": "2026-02-14",
+        "price": 559900,
+        "rent": 2904,
+        "address": "2504W Plan, Trinity Falls At Province Woods 50'",
+        "zipcode": "75071"
+      }
+    ],
+    "441824919": [
+      {
+        "date": "2026-02-14",
+        "price": 373999,
+        "rent": 2494,
+        "address": "Littleton Plan, Preserve at Honey Creek : Watermill Collection",
+        "zipcode": "75071"
+      }
+    ],
+    "460056873": [
+      {
+        "date": "2026-02-14",
+        "price": 506990,
+        "rent": 3165,
+        "address": "Ivy Plan, Discovery Collection at Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "442466386": [
+      {
+        "date": "2026-02-14",
+        "price": 754990,
+        "rent": 3636,
+        "address": "Seaberry II Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "443570949": [
+      {
+        "date": "2026-02-14",
+        "price": 747990,
+        "rent": 3992,
+        "address": "Geneva IV Plan, Painted Tree 50' Series",
+        "zipcode": "75071"
+      }
+    ],
+    "455706037": [
+      {
+        "date": "2026-02-14",
+        "price": 641900,
+        "rent": 3062,
+        "address": "2737W Plan, Trinity Falls 60'",
+        "zipcode": "75071"
+      }
+    ],
+    "456442549": [
+      {
+        "date": "2026-02-14",
+        "price": 678900,
+        "rent": 2945,
+        "address": "PARKHILL Plan, Trinity Falls 60",
+        "zipcode": "75071"
+      }
+    ],
+    "450585658": [
+      {
+        "date": "2026-02-14",
+        "price": 708990,
+        "rent": 3052,
+        "address": "Plan Panamera Plan, Aster Park: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "457498354": [
+      {
+        "date": "2026-02-14",
+        "price": 620990,
+        "rent": 3058,
+        "address": "Plan Middleton Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "439274794": [
+      {
+        "date": "2026-02-14",
+        "price": 493990,
+        "rent": 2341,
+        "address": "Plan Greyton Plan, Aster Park: 40ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "457012087": [
+      {
+        "date": "2026-02-14",
+        "price": 473000,
+        "rent": 2978,
+        "address": "Remy Plan, Painted Tree - Woodland North",
+        "zipcode": "75071"
+      }
+    ],
+    "450585662": [
+      {
+        "date": "2026-02-14",
+        "price": 700990,
+        "rent": 2845,
+        "address": "Plan McLaren Plan, Aster Park: 50ft. lots",
+        "zipcode": "75071"
+      }
+    ],
+    "457498381": [
+      {
+        "date": "2026-02-14",
+        "price": 663990,
+        "rent": 3544,
+        "address": "Plan Kent Plan, Trinity Falls",
+        "zipcode": "75071"
+      }
+    ],
+    "345113691": [
+      {
+        "date": "2026-02-14",
+        "price": 586990,
+        "rent": 3359,
+        "address": "Lexington Plan, Erwin Farms",
+        "zipcode": "75071"
+      }
+    ],
+    "442466374": [
+      {
+        "date": "2026-02-14",
+        "price": 593990,
+        "rent": 3133,
+        "address": "Dewberry Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "442466372": [
+      {
+        "date": "2026-02-14",
+        "price": 694990,
+        "rent": 3102,
+        "address": "Carolina II Plan, Painted Tree",
+        "zipcode": "75071"
+      }
+    ],
+    "460197880": [
+      {
+        "date": "2026-02-14",
+        "price": 698900,
+        "rent": 3099,
+        "address": "2561H Plan, Eliana 50'",
+        "zipcode": "75071"
+      }
+    ]
+  }
+}

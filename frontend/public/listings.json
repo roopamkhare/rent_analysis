@@ -1,7 +1,13 @@
 {
-  "zipcode": "75071",
+  "region": "dfw",
+  "scraped_at": "2026-02-14",
+  "zipcodes": [
+    "75071"
+  ],
   "total_listings": 820,
-  "scraped_at": "2026-02-14 10:47:30",
+  "per_zipcode": {
+    "75071": 820
+  },
   "listings": [
     {
       "zpid": "96438844",

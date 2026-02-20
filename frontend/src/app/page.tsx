@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { analyze, type AnalysisParams, type AnalysisResult, type Listing } from "@/lib/analyze";
 import Sidebar from "@/components/Sidebar";
 import PropertyDetail from "@/components/PropertyDetail";
@@ -27,11 +28,16 @@ const DEFAULT_PARAMS: AnalysisParams = {
 };
 
 interface ListingsData {
+  region?: string;
+  scraped_at?: string;
+  zipcodes?: string[];
+  total_listings?: number;
   listings: Listing[];
 }
 
 export default function Home() {
   const [raw, setRaw] = useState<Listing[]>([]);
+  const [meta, setMeta] = useState<{ region?: string; scraped_at?: string; zipcodes?: string[] }>({});
   const [params, setParams] = useState<AnalysisParams>(DEFAULT_PARAMS);
   const [selectedZpid, setSelectedZpid] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState("monthlyCashFlow");
@@ -46,6 +52,7 @@ export default function Home() {
       .then((data: ListingsData) => {
         const listings = data.listings.filter((l) => l.price > 0);
         setRaw(listings);
+        setMeta({ region: data.region, scraped_at: data.scraped_at, zipcodes: data.zipcodes });
         const prices = listings.map((l) => l.price);
         setPriceRange([Math.min(...prices), Math.max(...prices)]);
         setSelectedTypes([...new Set(listings.map((l) => l.homeType))].sort());
@@ -106,7 +113,7 @@ export default function Home() {
   if (!raw.length) {
     return (
       <div className="flex items-center justify-center h-screen text-[var(--color-muted)]">
-        Loading 820 properties…
+        Loading properties…
       </div>
     );
   }
@@ -125,11 +132,21 @@ export default function Home() {
       />
 
       <main className="flex-1 p-6 overflow-y-auto">
-        {/* Title */}
+        {/* Nav + Title */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold">🏠 Real Estate ROI Analyzer</h1>
+          <div className="flex items-center justify-between mb-1">
+            <h1 className="text-2xl font-bold">🏠 Real Estate ROI Analyzer</h1>
+            <Link
+              href="/history"
+              className="text-sm px-3 py-1.5 rounded-md bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-colors"
+            >
+              📊 Market History →
+            </Link>
+          </div>
           <p className="text-sm text-[var(--color-muted)]">
-            McKinney, TX (75071) — {filtered.length} properties · Click markers or rows to analyze
+            DFW Metroplex{meta.zipcodes ? ` (${meta.zipcodes.length} zipcodes)` : ""}
+            {meta.scraped_at ? ` · Updated ${meta.scraped_at}` : ""}
+            {" "} — {filtered.length} properties · Click markers or rows to analyze
           </p>
         </div>
 
@@ -167,7 +184,10 @@ export default function Home() {
 
         {/* Footer */}
         <div className="mt-8 pt-4 border-t border-[var(--color-border)] text-center text-xs text-[var(--color-muted)]">
-          Data: zillow_75071_listings.json · {raw.length} total · {filtered.length} filtered · {results.size} analyzed
+          {meta.zipcodes?.length ?? 1} zipcodes · {raw.length} total · {filtered.length} filtered · {results.size} analyzed
+          {meta.scraped_at ? ` · Last scraped ${meta.scraped_at}` : ""}
+          {" · "}
+          <Link href="/history" className="underline hover:text-[var(--color-primary)]">View market history</Link>
         </div>
       </main>
     </div>

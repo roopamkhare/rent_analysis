@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RE ROI Analyzer — McKinney TX 75071",
-  description: "Investment property analysis with S&P 500 comparison",
+  title: "DFW Real Estate ROI Analyzer",
+  description: "DFW Metroplex real estate investment analysis with historical tracking",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
