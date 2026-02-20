@@ -53,16 +53,16 @@ export default function PropertyDetail({ listing: l, result: r, params: p }: Pro
       )}
 
       {/* Key metrics */}
-      <div className="grid grid-cols-5 gap-3">
-        <Metric label="Monthly CF" value={`${cfIcon} ${fmtDollar(r.monthlyCashFlow)}`} />
-        <Metric label="Cap Rate" value={fmtPct(r.capRate)} />
-        <Metric label="Cash-on-Cash" value={fmtPct(r.cashOnCash)} />
-        <Metric label="IRR" value={fmtPct(r.irr)} />
-        <Metric label={`Profit (${p.holdingYears}yr)`} value={fmtDollar(r.totalProfit)} />
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        <Metric label="Monthly CF" value={`${cfIcon} ${fmtDollar(r.monthlyCashFlow)}`} tip="Monthly cash flow = effective rent − all expenses (mortgage, tax, insurance, maintenance, management, HOA)" />
+        <Metric label="Cap Rate" value={fmtPct(r.capRate)} tip="Cap Rate = Net Operating Income / Purchase Price. Ignores financing. 5%+ is generally considered good." />
+        <Metric label="Cash-on-Cash" value={fmtPct(r.cashOnCash)} tip="Cash-on-Cash = Annual Cash Flow / Your Cash Invested. Measures return on your actual out-of-pocket money." />
+        <Metric label="IRR" value={fmtPct(r.irr)} tip="Internal Rate of Return — total annualized return including cash flow, appreciation, and sale proceeds. The single best metric to compare investments." />
+        <Metric label={`Profit (${p.holdingYears}yr)`} value={fmtDollar(r.totalProfit)} tip={`Total profit if you sell after ${p.holdingYears} years: sale proceeds + cumulative cash flow − initial investment.`} />
       </div>
 
       {/* Financial breakdown */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <Card title="Purchase">
           <Row label="Price" value={fmtDollar(l.price)} />
           <Row label={`Down (${p.downPaymentPct}%)`} value={fmtDollar(r.downPayment)} />
@@ -92,11 +92,16 @@ export default function PropertyDetail({ listing: l, result: r, params: p }: Pro
   );
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
+function Metric({ label, value, tip }: { label: string; value: string; tip?: string }) {
   return (
-    <div className="bg-[var(--color-surface)] rounded-lg p-3 text-center border border-[var(--color-border)]">
+    <div className="bg-[var(--color-surface)] rounded-lg p-3 text-center border border-[var(--color-border)] relative group">
       <div className="text-xs text-[var(--color-muted)]">{label}</div>
       <div className="text-base font-bold mt-1">{value}</div>
+      {tip && (
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 hidden group-hover:block w-52 text-[10px] p-2 rounded bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] shadow-lg z-50 leading-snug">
+          {tip}
+        </div>
+      )}
     </div>
   );
 }
