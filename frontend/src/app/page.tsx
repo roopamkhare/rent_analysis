@@ -17,7 +17,7 @@ const DEFAULT_PARAMS: AnalysisParams = {
   downPaymentPct: 20,
   closingCostsPct: 3,
   sellingCostsPct: 6,
-  holdingYears: 15,
+  holdingYears: 10,
   appreciationRate: 3.5,
   rentIncreaseRate: 3,
   maintenancePct: 1,

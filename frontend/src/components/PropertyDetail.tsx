@@ -1,6 +1,6 @@
 "use client";
 
-import type { AnalysisResult, Listing, AnalysisParams } from "@/lib/analyze";
+import type { AnalysisResult, Listing, AnalysisParams, DataFlag } from "@/lib/analyze";
 import { fmtDollar, fmtPct } from "@/lib/format";
 import Charts from "./Charts";
 
@@ -30,6 +30,27 @@ export default function PropertyDetail({ listing: l, result: r, params: p }: Pro
           View on Zillow ↗
         </a>
       </div>
+
+      {/* Data quality flags */}
+      {r.dataFlags.length > 0 && (
+        <div className="bg-[var(--color-surface)] border border-[var(--color-gold)] rounded-lg p-3">
+          <p className="text-xs font-semibold text-[var(--color-gold)] mb-1.5">⚠️ Data Quality Flags</p>
+          <div className="flex flex-wrap gap-2">
+            {r.dataFlags.map((f) => (
+              <span
+                key={f.code}
+                className={`text-xs px-2 py-1 rounded-full ${
+                  f.severity === "error"
+                    ? "bg-[var(--color-red)]/20 text-[var(--color-red)]"
+                    : "bg-[var(--color-gold)]/20 text-[var(--color-gold)]"
+                }`}
+              >
+                {f.severity === "error" ? "🔴" : "🟡"} {f.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Key metrics */}
       <div className="grid grid-cols-5 gap-3">

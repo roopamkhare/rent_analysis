@@ -74,6 +74,7 @@ export default function PortfolioTable({ rows, selectedZpid, onSelect, sortBy, o
               <th className="text-right px-3 py-2">Cap Rate</th>
               <th className="text-right px-3 py-2">CoC</th>
               <th className="text-right px-3 py-2">IRR</th>
+              <th className="text-center px-3 py-2">Flags</th>
               <th className="text-center px-3 py-2">Zillow</th>
             </tr>
           </thead>
@@ -101,6 +102,15 @@ export default function PortfolioTable({ rows, selectedZpid, onSelect, sortBy, o
                   <td className="px-3 py-2 text-right">{fmtPct(r.capRate)}</td>
                   <td className="px-3 py-2 text-right">{fmtPct(r.cashOnCash)}</td>
                   <td className="px-3 py-2 text-right">{fmtPct(r.irr)}</td>
+                  <td className="px-3 py-2 text-center" title={r.dataFlags.map((f) => f.label).join("\n")}>
+                    {r.dataFlags.length > 0 ? (
+                      <span className={r.dataFlags.some((f) => f.severity === "error") ? "text-[var(--color-red)]" : "text-[var(--color-gold)]"}>
+                        {r.dataFlags.some((f) => f.severity === "error") ? "🔴" : "🟡"} {r.dataFlags.length}
+                      </span>
+                    ) : (
+                      <span className="text-[var(--color-green)]">✓</span>
+                    )}
+                  </td>
                   <td className="px-3 py-2 text-center">
                     <a href={zillow} target="_blank" rel="noopener noreferrer"
                       className="text-[var(--color-primary)] hover:underline"

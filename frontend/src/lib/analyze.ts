@@ -85,6 +85,14 @@ export interface AnalysisResult {
   spDeployedSeries: number[];
   spDeployed: number;
   spProfit: number;
+  // data quality flags
+  dataFlags: DataFlag[];
+}
+
+export interface DataFlag {
+  code: string;
+  label: string;
+  severity: "warn" | "error";
 }
 
 /* ── helpers ──────────────────────────────────────────────────── */
@@ -164,6 +172,39 @@ export function analyze(listing: Listing, p: AnalysisParams): AnalysisResult {
     : price * 0.008;
   const taxRate = listing.propertyTaxRate ?? 2.15;
   const moHoa = listing.monthlyHoaFee ?? 0;
+
+  // ── Data quality checks ────────────────────────────────────
+  const dataFlags: DataFlag[] = [];
+  const hasRentEst = listing.rentZestimate != null && listing.rentZestimate > 0;
+
+  if (!hasRentEst) {
+    dataFlags.push({ code: "NO_RENT", label: "No Zillow rent estimate — using 0.8% of price", severity: "warn" });
+  }
+
+  const rentToPriceRatio = (moRent * 12) / price;
+  if (rentToPriceRatio > 0.15) {
+    dataFlags.push({ code: "HIGH_RTP", label: `Rent-to-price ratio ${(rentToPriceRatio * 100).toFixed(1)}% (>15%) — rent may be overstated`, severity: "error" });
+  } else if (rentToPriceRatio < 0.03) {
+    dataFlags.push({ code: "LOW_RTP", label: `Rent-to-price ratio ${(rentToPriceRatio * 100).toFixed(1)}% (<3%) — rent looks too low`, severity: "warn" });
+  }
+
+  const sqft = listing.livingArea;
+  if (sqft && sqft > 0) {
+    const pricePerSqft = price / sqft;
+    const rentPerSqft = moRent / sqft;
+    if (pricePerSqft < 50) {
+      dataFlags.push({ code: "LOW_PPSF", label: `Price/sqft $${pricePerSqft.toFixed(0)} (<$50) — price may be wrong`, severity: "error" });
+    } else if (pricePerSqft > 1000) {
+      dataFlags.push({ code: "HIGH_PPSF", label: `Price/sqft $${pricePerSqft.toFixed(0)} (>$1000) — unusually high`, severity: "warn" });
+    }
+    if (rentPerSqft > 5) {
+      dataFlags.push({ code: "HIGH_RPSF", label: `Rent/sqft $${rentPerSqft.toFixed(2)} (>$5) — rent may be overstated`, severity: "error" });
+    } else if (rentPerSqft < 0.5) {
+      dataFlags.push({ code: "LOW_RPSF", label: `Rent/sqft $${rentPerSqft.toFixed(2)} (<$0.50) — rent looks too low`, severity: "warn" });
+    }
+  } else {
+    dataFlags.push({ code: "NO_SQFT", label: "No square footage data", severity: "warn" });
+  }
 
   // upfront
   const down = price * p.downPaymentPct / 100;
@@ -272,5 +313,6 @@ export function analyze(listing: Listing, p: AnalysisParams): AnalysisResult {
     spDeployedSeries: spDeployedList,
     spDeployed: spDep,
     spProfit,
+    dataFlags,
   };
 }
