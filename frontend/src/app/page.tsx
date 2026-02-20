@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { analyze, type AnalysisParams, type AnalysisResult, type Listing } from "@/lib/analyze";
+import { analyze, computeMedianRentPct, type AnalysisParams, type AnalysisResult, type Listing } from "@/lib/analyze";
 import Sidebar from "@/components/Sidebar";
 import PropertyDetail from "@/components/PropertyDetail";
 import PortfolioTable from "@/components/PortfolioTable";
@@ -25,6 +25,7 @@ const DEFAULT_PARAMS: AnalysisParams = {
   insuranceAnnual: 1200,
   mgmtFeePct: 0,
   spGrowthRate: 10,
+  rentEstimatePct: 0.55,  // updated once data loads
 };
 
 interface ListingsData {
@@ -56,6 +57,9 @@ export default function Home() {
         const prices = listings.map((l) => l.price);
         setPriceRange([Math.min(...prices), Math.max(...prices)]);
         setSelectedTypes([...new Set(listings.map((l) => l.homeType))].sort());
+        // compute data-driven rent estimate fallback
+        const medianPct = computeMedianRentPct(listings);
+        setParams((prev) => ({ ...prev, rentEstimatePct: Math.round(medianPct * 100) / 100 }));
       });
   }, []);
 

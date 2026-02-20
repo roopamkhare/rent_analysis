@@ -45,6 +45,17 @@ export interface AnalysisParams {
   insuranceAnnual: number;   // $
   mgmtFeePct: number;        // % of rent
   spGrowthRate: number;      // %/yr
+  rentEstimatePct: number;   // monthly rent as % of sale price (fallback)
+}
+
+/** Compute data-driven median rent-to-price % from listings with real rent estimates. */
+export function computeMedianRentPct(listings: Listing[]): number {
+  const ratios = listings
+    .filter((l) => l.rentZestimate != null && l.rentZestimate > 0 && l.price > 0)
+    .map((l) => (l.rentZestimate! / l.price) * 100);
+  if (ratios.length === 0) return 0.55; // sensible fallback for DFW
+  ratios.sort((a, b) => a - b);
+  return ratios[Math.floor(ratios.length / 2)];
 }
 
 export interface EquityPoint {
@@ -169,7 +180,7 @@ export function analyze(listing: Listing, p: AnalysisParams): AnalysisResult {
   const price = listing.price;
   const moRent = listing.rentZestimate && listing.rentZestimate > 0
     ? listing.rentZestimate
-    : price * 0.008;
+    : price * p.rentEstimatePct / 100;
   const taxRate = listing.propertyTaxRate ?? 2.15;
   const moHoa = listing.monthlyHoaFee ?? 0;
 
@@ -178,7 +189,7 @@ export function analyze(listing: Listing, p: AnalysisParams): AnalysisResult {
   const hasRentEst = listing.rentZestimate != null && listing.rentZestimate > 0;
 
   if (!hasRentEst) {
-    dataFlags.push({ code: "NO_RENT", label: "No Zillow rent estimate — using 0.8% of price", severity: "warn" });
+    dataFlags.push({ code: "NO_RENT", label: `No Zillow rent estimate — using ${p.rentEstimatePct.toFixed(2)}% of price`, severity: "warn" });
   }
 
   const rentToPriceRatio = (moRent * 12) / price;

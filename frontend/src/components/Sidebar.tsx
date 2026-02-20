@@ -75,6 +75,11 @@ export default function Sidebar({
         </label>
       </Section>
 
+      <Section title="🏘️ Rent Estimate">
+        <Slider label="Rent % of Price (mo)" value={p.rentEstimatePct} min={0.2} max={1.5} step={0.01} unit="%" onChange={(v) => set({ rentEstimatePct: v })} />
+        <p className="text-[10px] text-[var(--color-muted)] -mt-2 mb-2">Fallback when Zillow rent estimate is missing. Data median auto-applied on load.</p>
+      </Section>
+
       <Section title="📈 Growth">
         <Slider label="Appreciation" value={p.appreciationRate} min={0} max={10} step={0.5} unit="%/yr" onChange={(v) => set({ appreciationRate: v })} />
         <Slider label="Rent Increase" value={p.rentIncreaseRate} min={0} max={10} step={0.5} unit="%/yr" onChange={(v) => set({ rentIncreaseRate: v })} />
