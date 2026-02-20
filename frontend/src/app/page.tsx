@@ -44,6 +44,7 @@ export default function Home() {
   const [sortBy, setSortBy] = useState("monthlyCashFlow");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10_000_000]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [hideFlagged, setHideFlagged] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
 
   // Load data
@@ -97,13 +98,14 @@ export default function Home() {
   const sorted = useMemo(() => {
     const arr = filtered
       .map((l) => ({ listing: l, result: results.get(l.zpid)! }))
-      .filter((r) => r.result);
+      .filter((r) => r.result)
+      .filter((r) => !hideFlagged || r.result.dataFlags.length === 0);
     arr.sort((a, b) => {
       const key = sortBy as keyof AnalysisResult;
       return (b.result[key] as number) - (a.result[key] as number);
     });
     return arr;
-  }, [filtered, results, sortBy]);
+  }, [filtered, results, sortBy, hideFlagged]);
 
   // Selected property
   const selectedListing = filtered.find((l) => l.zpid === selectedZpid);
@@ -133,6 +135,8 @@ export default function Home() {
         priceRange={priceRange}
         priceMinMax={priceMinMax}
         onPriceRangeChange={setPriceRange}
+        hideFlagged={hideFlagged}
+        onHideFlaggedChange={setHideFlagged}
       />
 
       <main className="flex-1 p-6 overflow-y-auto">

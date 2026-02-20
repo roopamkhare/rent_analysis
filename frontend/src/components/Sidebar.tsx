@@ -11,6 +11,8 @@ interface Props {
   priceRange: [number, number];
   priceMinMax: [number, number];
   onPriceRangeChange: (r: [number, number]) => void;
+  hideFlagged: boolean;
+  onHideFlaggedChange: (v: boolean) => void;
 }
 
 function Slider({
@@ -41,6 +43,7 @@ export default function Sidebar({
   params: p, onChange,
   homeTypes, selectedTypes, onTypesChange,
   priceRange, priceMinMax, onPriceRangeChange,
+  hideFlagged, onHideFlaggedChange,
 }: Props) {
   const set = (patch: Partial<AnalysisParams>) => onChange({ ...p, ...patch });
 
@@ -130,6 +133,16 @@ export default function Sidebar({
             </button>
           ))}
         </div>
+
+        <label className="flex items-center gap-2 cursor-pointer mb-1">
+          <input
+            type="checkbox"
+            checked={hideFlagged}
+            onChange={(e) => onHideFlaggedChange(e.target.checked)}
+            className="accent-[var(--color-primary)]"
+          />
+          <span className="text-xs text-[var(--color-muted)]">Hide flagged properties</span>
+        </label>
       </Section>
     </aside>
   );
