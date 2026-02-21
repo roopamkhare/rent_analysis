@@ -11,6 +11,57 @@ import PortfolioTable from "@/components/PortfolioTable";
 // Leaflet must be client-only
 const PropertyMap = dynamic(() => import("@/components/PropertyMap"), { ssr: false });
 
+/* ── Address autocomplete search ─────────────────────────────── */
+function AddressSearch({ listings, onSelect }: { listings: Listing[]; onSelect: (zpid: string) => void }) {
+  const [query, setQuery] = useState("");
+  const [focused, setFocused] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const matches = useMemo(() => {
+    if (query.length < 2) return [];
+    const q = query.toLowerCase();
+    return listings
+      .filter((l) => l.addressRaw.toLowerCase().includes(q) || l.streetAddress.toLowerCase().includes(q))
+      .slice(0, 8);
+  }, [query, listings]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setFocused(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative flex-1 max-w-md">
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => { setQuery(e.target.value); setFocused(true); }}
+        onFocus={() => setFocused(true)}
+        placeholder="🔍 Search address..."
+        className="w-full text-sm px-3 py-1.5 rounded-md bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-muted)] focus:border-[var(--color-primary)] outline-none"
+      />
+      {focused && matches.length > 0 && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+          {matches.map((l) => (
+            <button
+              key={l.zpid}
+              className="w-full text-left px-3 py-2 text-sm hover:bg-[var(--color-primary)]/20 transition-colors border-b border-[var(--color-border)] last:border-0"
+              onClick={() => { onSelect(l.zpid); setQuery(l.streetAddress); setFocused(false); }}
+            >
+              <span className="text-[var(--color-text)]">{l.streetAddress}</span>
+              <span className="text-[10px] text-[var(--color-muted)] ml-2">{l.city} {l.zipcode}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const DEFAULT_PARAMS: AnalysisParams = {
   interestRate: 6.5,
   loanTerm: 30,
@@ -164,16 +215,19 @@ export default function Home() {
 
         {/* Map controls + Map + Legend */}
         <div className="mb-6">
-          {/* Hide flagged toggle */}
-          <div className="flex items-center justify-between mb-2">
-            <label className="flex items-center gap-2 cursor-pointer">
+          {/* Search + Hide flagged row */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mb-2">
+            {/* Address search */}
+            <AddressSearch listings={displayListings} onSelect={handleSelect} />
+
+            <label className="flex items-center gap-2 cursor-pointer shrink-0">
               <input
                 type="checkbox"
                 checked={hideFlagged}
                 onChange={(e) => setHideFlagged(e.target.checked)}
                 className="accent-[var(--color-primary)]"
               />
-              <span className="text-xs text-[var(--color-muted)]">Hide suspicious data properties</span>
+              <span className="text-xs text-[var(--color-muted)]">Hide suspicious data</span>
               {hideFlagged && displayListings.length < filtered.length && (
                 <span className="text-[10px] text-[var(--color-gold)]">
                   ({filtered.length - displayListings.length} hidden)
