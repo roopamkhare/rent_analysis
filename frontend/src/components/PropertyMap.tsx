@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import L from "leaflet";
 import type { AnalysisResult, Listing } from "@/lib/analyze";
 import { fmtDollar } from "@/lib/format";
@@ -15,22 +15,19 @@ interface Props {
 export default function PropertyMap({ listings, results, selectedZpid, onSelect }: Props) {
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.CircleMarker>>(new Map());
+  const layerGroupRef = useRef<L.LayerGroup | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  // Keep onSelect in a ref so marker callbacks always use the latest
+  const onSelectRef = useRef(onSelect);
+  onSelectRef.current = onSelect;
 
-  // Initialize map once
+  // Initialize map ONCE on mount
   useEffect(() => {
-    if (mapRef.current || !containerRef.current) return;
-    const valid = listings.filter((l) => l.latitude && l.longitude);
-    if (!valid.length) return;
-
-    const center: [number, number] = [
-      valid.reduce((s, l) => s + l.latitude, 0) / valid.length,
-      valid.reduce((s, l) => s + l.longitude, 0) / valid.length,
-    ];
+    if (!containerRef.current) return;
 
     const map = L.map(containerRef.current, {
-      center,
-      zoom: 12,
+      center: [32.95, -96.75],   // DFW default
+      zoom: 11,
       scrollWheelZoom: true,
     });
 
@@ -39,9 +36,36 @@ export default function PropertyMap({ listings, results, selectedZpid, onSelect 
       maxZoom: 19,
     }).addTo(map);
 
+    const lg = L.layerGroup().addTo(map);
     mapRef.current = map;
+    layerGroupRef.current = lg;
 
-    // Add markers — color by IRR, size by monthly cash flow
+    return () => {
+      map.remove();
+      mapRef.current = null;
+      layerGroupRef.current = null;
+      markersRef.current.clear();
+    };
+  }, []); // truly once
+
+  // Rebuild markers whenever listings or results change
+  useEffect(() => {
+    const map = mapRef.current;
+    const lg = layerGroupRef.current;
+    if (!map || !lg) return;
+
+    // Clear old markers
+    lg.clearLayers();
+    markersRef.current.clear();
+
+    const valid = listings.filter((l) => l.latitude && l.longitude);
+    if (!valid.length) return;
+
+    // Fit map to data bounds
+    const bounds = L.latLngBounds(valid.map((l) => [l.latitude, l.longitude] as [number, number]));
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+
+    // Compute CF scale
     const cfValues = valid.map((l) => {
       const r = results.get(l.zpid);
       return r ? r.monthlyCashFlow : 0;
@@ -53,13 +77,11 @@ export default function PropertyMap({ listings, results, selectedZpid, onSelect 
       if (!r) return;
       const cf = r.monthlyCashFlow;
       const irr = r.irr;
-      // Color by IRR tier
       const color = irr >= 10 ? "#06A77D" : irr >= 5 ? "#F39C12" : "#E74C3C";
-      // Size by absolute cash flow; CF-positive gets bigger circles
       const absCf = Math.abs(cf);
       const radius = cf >= 0
-        ? 6 + (absCf / cfMax) * 22   // positive CF: 6–28
-        : 4 + (absCf / cfMax) * 6;   // negative CF: 4–10 (small)
+        ? 6 + (absCf / cfMax) * 22
+        : 4 + (absCf / cfMax) * 6;
 
       const marker = L.circleMarker([l.latitude, l.longitude], {
         radius,
@@ -67,7 +89,7 @@ export default function PropertyMap({ listings, results, selectedZpid, onSelect 
         color: "#fff",
         weight: 1.5,
         fillOpacity: 0.85,
-      }).addTo(map);
+      });
 
       marker.bindPopup(
         `<div style="font-size:13px;line-height:1.5">
@@ -80,19 +102,13 @@ export default function PropertyMap({ listings, results, selectedZpid, onSelect 
         { closeButton: false },
       );
 
-      marker.on("click", () => onSelect(l.zpid));
+      marker.on("click", () => onSelectRef.current(l.zpid));
       marker.on("mouseover", () => marker.openPopup());
       marker.on("mouseout", () => marker.closePopup());
 
+      lg.addLayer(marker);
       markersRef.current.set(l.zpid, marker);
     });
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-      markersRef.current.clear();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listings, results]);
 
   // Highlight selected marker

@@ -22,7 +22,13 @@ function AddressSearch({ listings, onSelect, onClear }: { listings: Listing[]; o
     if (locked || query.length < 2) return [];
     const q = query.toLowerCase();
     return listings
-      .filter((l) => l.addressRaw.toLowerCase().includes(q) || l.streetAddress.toLowerCase().includes(q))
+      .filter((l) => {
+        const addr = (l.addressRaw || "").toLowerCase();
+        const street = (l.streetAddress || "").toLowerCase();
+        const city = (l.city || "").toLowerCase();
+        const zip = (l.zipcode || "");
+        return addr.includes(q) || street.includes(q) || city.includes(q) || zip.includes(q);
+      })
       .slice(0, 8);
   }, [query, listings, locked]);
 
@@ -41,6 +47,14 @@ function AddressSearch({ listings, onSelect, onClear }: { listings: Listing[]; o
     onClear();
   };
 
+  const handlePick = (l: Listing) => {
+    const label = [l.streetAddress, l.city, l.zipcode].filter(Boolean).join(", ");
+    setQuery(label);
+    setLocked(true);
+    setFocused(false);
+    onSelect(l.zpid);
+  };
+
   return (
     <div ref={ref} className="relative flex-1 max-w-md">
       <div className="relative">
@@ -48,12 +62,13 @@ function AddressSearch({ listings, onSelect, onClear }: { listings: Listing[]; o
           type="text"
           value={query}
           onChange={(e) => {
-            setQuery(e.target.value);
+            const val = e.target.value;
+            setQuery(val);
             setFocused(true);
             if (locked) { setLocked(false); onClear(); }
           }}
           onFocus={() => setFocused(true)}
-          placeholder="🔍 Search address..."
+          placeholder="🔍 Search address, city, or zip..."
           className="w-full text-sm px-3 py-1.5 pr-8 rounded-md bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-muted)] focus:border-[var(--color-primary)] outline-none"
         />
         {query && (
@@ -65,12 +80,12 @@ function AddressSearch({ listings, onSelect, onClear }: { listings: Listing[]; o
         )}
       </div>
       {focused && matches.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-lg z-[9999] max-h-60 overflow-y-auto">
           {matches.map((l) => (
             <button
               key={l.zpid}
               className="w-full text-left px-3 py-2 text-sm hover:bg-[var(--color-primary)]/20 transition-colors border-b border-[var(--color-border)] last:border-0"
-              onClick={() => { onSelect(l.zpid); setQuery(l.streetAddress); setLocked(true); setFocused(false); }}
+              onMouseDown={(e) => { e.preventDefault(); handlePick(l); }}
             >
               <span className="text-[var(--color-text)]">{l.streetAddress}</span>
               <span className="text-[10px] text-[var(--color-muted)] ml-2">{l.city} {l.zipcode}</span>
