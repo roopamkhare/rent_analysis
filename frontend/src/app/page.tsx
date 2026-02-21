@@ -202,10 +202,10 @@ export default function Home() {
               <span className="inline-block w-3 h-3 rounded-full" style={{ background: "#E74C3C" }} /> IRR &lt; 5%
             </span>
             <span className="border-l border-[var(--color-border)] pl-4 flex items-center gap-1">
-              <span className="inline-block w-2 h-2 rounded-full bg-[var(--color-muted)]" /> Small = low IRR
+              <span className="inline-block w-2 h-2 rounded-full bg-[var(--color-muted)]" /> Small = low CF
             </span>
             <span className="flex items-center gap-1">
-              <span className="inline-block w-4 h-4 rounded-full bg-[var(--color-muted)]" /> Large = high IRR
+              <span className="inline-block w-4 h-4 rounded-full bg-[var(--color-muted)]" /> Large = high CF
             </span>
           </div>
         </div>

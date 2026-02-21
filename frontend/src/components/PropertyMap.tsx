@@ -41,21 +41,25 @@ export default function PropertyMap({ listings, results, selectedZpid, onSelect 
 
     mapRef.current = map;
 
-    // Add markers — size by IRR to highlight best investment opportunities
-    const irrValues = valid.map((l) => {
+    // Add markers — color by IRR, size by monthly cash flow
+    const cfValues = valid.map((l) => {
       const r = results.get(l.zpid);
-      return r ? r.irr : 0;
+      return r ? r.monthlyCashFlow : 0;
     });
-    const irrMax = Math.max(...irrValues, 1);
+    const cfMax = Math.max(...cfValues.map(Math.abs), 1);
 
     valid.forEach((l) => {
       const r = results.get(l.zpid);
       if (!r) return;
       const cf = r.monthlyCashFlow;
       const irr = r.irr;
-      // Larger circles for higher IRR; minimum radius 5, max ~28
-      const radius = 5 + (Math.max(irr, 0) / irrMax) * 23;
+      // Color by IRR tier
       const color = irr >= 10 ? "#06A77D" : irr >= 5 ? "#F39C12" : "#E74C3C";
+      // Size by absolute cash flow; CF-positive gets bigger circles
+      const absCf = Math.abs(cf);
+      const radius = cf >= 0
+        ? 6 + (absCf / cfMax) * 22   // positive CF: 6–28
+        : 4 + (absCf / cfMax) * 6;   // negative CF: 4–10 (small)
 
       const marker = L.circleMarker([l.latitude, l.longitude], {
         radius,
