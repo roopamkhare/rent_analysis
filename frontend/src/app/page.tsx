@@ -12,18 +12,19 @@ import PortfolioTable from "@/components/PortfolioTable";
 const PropertyMap = dynamic(() => import("@/components/PropertyMap"), { ssr: false });
 
 /* ── Address autocomplete search ─────────────────────────────── */
-function AddressSearch({ listings, onSelect }: { listings: Listing[]; onSelect: (zpid: string) => void }) {
+function AddressSearch({ listings, onSelect, onClear }: { listings: Listing[]; onSelect: (zpid: string) => void; onClear: () => void }) {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
+  const [locked, setLocked] = useState(false);   // true after selecting a result
   const ref = useRef<HTMLDivElement>(null);
 
   const matches = useMemo(() => {
-    if (query.length < 2) return [];
+    if (locked || query.length < 2) return [];
     const q = query.toLowerCase();
     return listings
       .filter((l) => l.addressRaw.toLowerCase().includes(q) || l.streetAddress.toLowerCase().includes(q))
       .slice(0, 8);
-  }, [query, listings]);
+  }, [query, listings, locked]);
 
   // Close on outside click
   useEffect(() => {
@@ -34,23 +35,42 @@ function AddressSearch({ listings, onSelect }: { listings: Listing[]; onSelect: 
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  const handleClear = () => {
+    setQuery("");
+    setLocked(false);
+    onClear();
+  };
+
   return (
     <div ref={ref} className="relative flex-1 max-w-md">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => { setQuery(e.target.value); setFocused(true); }}
-        onFocus={() => setFocused(true)}
-        placeholder="🔍 Search address..."
-        className="w-full text-sm px-3 py-1.5 rounded-md bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-muted)] focus:border-[var(--color-primary)] outline-none"
-      />
+      <div className="relative">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setFocused(true);
+            if (locked) { setLocked(false); onClear(); }
+          }}
+          onFocus={() => setFocused(true)}
+          placeholder="🔍 Search address..."
+          className="w-full text-sm px-3 py-1.5 pr-8 rounded-md bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder-[var(--color-muted)] focus:border-[var(--color-primary)] outline-none"
+        />
+        {query && (
+          <button
+            onClick={handleClear}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--color-muted)] hover:text-[var(--color-text)] text-sm"
+            title="Clear search"
+          >✕</button>
+        )}
+      </div>
       {focused && matches.length > 0 && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
           {matches.map((l) => (
             <button
               key={l.zpid}
               className="w-full text-left px-3 py-2 text-sm hover:bg-[var(--color-primary)]/20 transition-colors border-b border-[var(--color-border)] last:border-0"
-              onClick={() => { onSelect(l.zpid); setQuery(l.streetAddress); setFocused(false); }}
+              onClick={() => { onSelect(l.zpid); setQuery(l.streetAddress); setLocked(true); setFocused(false); }}
             >
               <span className="text-[var(--color-text)]">{l.streetAddress}</span>
               <span className="text-[10px] text-[var(--color-muted)] ml-2">{l.city} {l.zipcode}</span>
@@ -92,6 +112,7 @@ export default function Home() {
   const [meta, setMeta] = useState<{ region?: string; scraped_at?: string; zipcodes?: string[] }>({});
   const [params, setParams] = useState<AnalysisParams>(DEFAULT_PARAMS);
   const [selectedZpid, setSelectedZpid] = useState<string | null>(null);
+  const [searchZpid, setSearchZpid] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState("monthlyCashFlow");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10_000_000]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -158,10 +179,20 @@ export default function Home() {
     return arr;
   }, [filtered, results, sortBy, hideFlagged]);
 
-  // Listings to display (respects hideFlagged)
+  // Listings to display (respects hideFlagged + search filter)
   const displayListings = useMemo(
-    () => sorted.map((r) => r.listing),
-    [sorted],
+    () => {
+      const list = sorted.map((r) => r.listing);
+      if (searchZpid) return list.filter((l) => l.zpid === searchZpid);
+      return list;
+    },
+    [sorted, searchZpid],
+  );
+
+  // Sorted rows for table (respects search filter)
+  const displayRows = useMemo(
+    () => searchZpid ? sorted.filter((r) => r.listing.zpid === searchZpid) : sorted,
+    [sorted, searchZpid],
   );
 
   // Selected property
@@ -171,6 +202,15 @@ export default function Home() {
   const handleSelect = useCallback((zpid: string) => {
     setSelectedZpid(zpid);
     setTimeout(() => detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+  }, []);
+
+  const handleSearchSelect = useCallback((zpid: string) => {
+    setSearchZpid(zpid);
+    handleSelect(zpid);
+  }, [handleSelect]);
+
+  const handleSearchClear = useCallback(() => {
+    setSearchZpid(null);
   }, []);
 
   if (!raw.length) {
@@ -218,7 +258,7 @@ export default function Home() {
           {/* Search + Hide flagged row */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mb-2">
             {/* Address search */}
-            <AddressSearch listings={displayListings} onSelect={handleSelect} />
+            <AddressSearch listings={sorted.map((r) => r.listing)} onSelect={handleSearchSelect} onClear={handleSearchClear} />
 
             <label className="flex items-center gap-2 cursor-pointer shrink-0">
               <input
@@ -279,7 +319,7 @@ export default function Home() {
 
         {/* Portfolio summary + table */}
         <PortfolioTable
-          rows={sorted}
+          rows={displayRows}
           selectedZpid={selectedZpid}
           onSelect={handleSelect}
           sortBy={sortBy}
