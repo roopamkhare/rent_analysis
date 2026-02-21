@@ -141,8 +141,6 @@ export default function Home() {
         priceRange={priceRange}
         priceMinMax={priceMinMax}
         onPriceRangeChange={setPriceRange}
-        hideFlagged={hideFlagged}
-        onHideFlaggedChange={setHideFlagged}
       />
 
       <main className="flex-1 p-6 overflow-y-auto">
@@ -164,14 +162,52 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Map */}
+        {/* Map controls + Map + Legend */}
         <div className="mb-6">
+          {/* Hide flagged toggle */}
+          <div className="flex items-center justify-between mb-2">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={hideFlagged}
+                onChange={(e) => setHideFlagged(e.target.checked)}
+                className="accent-[var(--color-primary)]"
+              />
+              <span className="text-xs text-[var(--color-muted)]">Hide suspicious data properties</span>
+              {hideFlagged && displayListings.length < filtered.length && (
+                <span className="text-[10px] text-[var(--color-gold)]">
+                  ({filtered.length - displayListings.length} hidden)
+                </span>
+              )}
+            </label>
+          </div>
+
           <PropertyMap
             listings={displayListings}
             results={results}
             selectedZpid={selectedZpid}
             onSelect={handleSelect}
           />
+
+          {/* Legend */}
+          <div className="flex flex-wrap items-center gap-4 mt-2 text-[10px] text-[var(--color-muted)]">
+            <span className="font-semibold text-xs text-[var(--color-text)]">Legend:</span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block w-3 h-3 rounded-full" style={{ background: "#06A77D" }} /> IRR ≥ 10%
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block w-3 h-3 rounded-full" style={{ background: "#F39C12" }} /> IRR 5–10%
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block w-3 h-3 rounded-full" style={{ background: "#E74C3C" }} /> IRR &lt; 5%
+            </span>
+            <span className="border-l border-[var(--color-border)] pl-4 flex items-center gap-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-[var(--color-muted)]" /> Small = low IRR
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block w-4 h-4 rounded-full bg-[var(--color-muted)]" /> Large = high IRR
+            </span>
+          </div>
         </div>
 
         {/* Selected property details */}
